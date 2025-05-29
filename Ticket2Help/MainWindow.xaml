@@ -5,8 +5,157 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Ticket2Help"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="Ticket2Help - Sistema de Gestão" 
+        Height="700" Width="1200"
+        WindowState="Maximized"
+        Background="#F8F9FA">
 
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header/Menu -->
+        <Border Grid.Row="0" Background="#2E7D32" Padding="15">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" Orientation="Horizontal">
+                    <TextBlock Text="Ticket2Help" 
+                              FontSize="20" 
+                              FontWeight="Bold" 
+                              Foreground="White"
+                              VerticalAlignment="Center"/>
+
+                    <!-- Menu Buttons -->
+                    <StackPanel Orientation="Horizontal" Margin="30,0,0,0">
+                        <Button x:Name="btnTickets" 
+                               Content="Tickets" 
+                               Style="{StaticResource MenuButtonStyle}"
+                               Click="BtnTickets_Click"/>
+
+                        <Button x:Name="btnCriarTicket" 
+                               Content="Criar Ticket" 
+                               Style="{StaticResource MenuButtonStyle}"
+                               Click="BtnCriarTicket_Click"/>
+
+                        <Button x:Name="btnDashboard" 
+                               Content="Dashboard" 
+                               Style="{StaticResource MenuButtonStyle}"
+                               Click="BtnDashboard_Click"
+                               Visibility="Collapsed"/>
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" Orientation="Horizontal">
+                    <TextBlock x:Name="lblUtilizador" 
+                              Text="" 
+                              Foreground="White" 
+                              VerticalAlignment="Center"
+                              Margin="0,0,15,0"/>
+                    <Button Content="Sair" 
+                           Background="Transparent"
+                           Foreground="White"
+                           BorderThickness="1"
+                           BorderBrush="White"
+                           Padding="10,5"
+                           Click="BtnSair_Click"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- Content Area -->
+        <Grid Grid.Row="1" Margin="20">
+            <!-- Content will be loaded here dynamically -->
+            <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden"/>
+
+            <!-- Default Welcome Content -->
+            <StackPanel x:Name="WelcomePanel" 
+                       HorizontalAlignment="Center" 
+                       VerticalAlignment="Center">
+                <TextBlock Text="Bem-vindo ao Ticket2Help!" 
+                          FontSize="24" 
+                          FontWeight="SemiBold"
+                          Foreground="#2E7D32"
+                          HorizontalAlignment="Center"
+                          Margin="0,0,0,20"/>
+
+                <TextBlock Text="Sistema de Gestão de Tickets de Helpdesk" 
+                          FontSize="16" 
+                          Foreground="#666"
+                          HorizontalAlignment="Center"
+                          Margin="0,0,0,30"/>
+
+                <Grid Width="400">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Button Grid.Row="0"
+                           Content="Ver Todos os Tickets"
+                           Height="50"
+                           Margin="0,5"
+                           Background="#2E7D32"
+                           Foreground="White"
+                           FontSize="14"
+                           Click="BtnTickets_Click"/>
+
+                    <Button Grid.Row="1"
+                           Content="Criar Novo Ticket"
+                           Height="50"
+                           Margin="0,5"
+                           Background="#1976D2"
+                           Foreground="White"
+                           FontSize="14"
+                           Click="BtnCriarTicket_Click"/>
+
+                    <Button Grid.Row="2"
+                           x:Name="btnDashboardWelcome"
+                           Content="Dashboard Estatístico"
+                           Height="50"
+                           Margin="0,5"
+                           Background="#FF6F00"
+                           Foreground="White"
+                           FontSize="14"
+                           Click="BtnDashboard_Click"
+                           Visibility="Collapsed"/>
+                </Grid>
+            </StackPanel>
+        </Grid>
+
+        <!-- Status Bar -->
+        <StatusBar Grid.Row="2" Background="#E0E0E0">
+            <StatusBarItem>
+                <TextBlock x:Name="statusText" Text="Pronto"/>
+            </StatusBarItem>
+            <StatusBarItem HorizontalAlignment="Right">
+                <TextBlock Text="{Binding Source={x:Static sys:DateTime.Now}, StringFormat='dd/MM/yyyy HH:mm'}"
+                          xmlns:sys="clr-namespace:System;assembly=mscorlib"/>
+            </StatusBarItem>
+        </StatusBar>
     </Grid>
+
+    <Window.Resources>
+        <Style x:Key="MenuButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="15,8"/>
+            <Setter Property="Margin" Value="5,0"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#388E3C"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
 </Window>
