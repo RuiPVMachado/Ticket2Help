@@ -3,7 +3,6 @@ using System.Windows.Controls;
 using MODELS;
 using Ticket2Help.Views;
 
-
 namespace Ticket2Help
 {
     /// <summary>
@@ -59,7 +58,12 @@ namespace Ticket2Help
             {
                 WelcomePanel.Visibility = Visibility.Collapsed;
 
-                // Carregar página de tickets baseada no tipo de utilizador
+                // Por enquanto, mostrar uma mensagem até as páginas serem criadas
+                MessageBox.Show($"Lista de tickets será carregada aqui.\nUtilizador: {_utilizadorAtual.Nome} ({_utilizadorAtual.Tipo})",
+                               "Em Desenvolvimento", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                // TODO: Implementar quando as páginas estiverem prontas
+                /*
                 if (_utilizadorAtual.Tipo == TipoUtilizador.Tecnico)
                 {
                     var ticketsPage = new Pages.TicketsTecnicoPage(_utilizadorAtual);
@@ -67,9 +71,10 @@ namespace Ticket2Help
                 }
                 else
                 {
-                    var ticketsPage = new Pages.Tickets1ColaboradorPage(_utilizadorAtual);
+                    var ticketsPage = new Pages.TicketsColaboradorPage(_utilizadorAtual);
                     MainFrame.Navigate(ticketsPage);
                 }
+                */
 
                 statusText.Text = "Visualizando tickets";
             }
@@ -88,8 +93,17 @@ namespace Ticket2Help
             try
             {
                 WelcomePanel.Visibility = Visibility.Collapsed;
+
+                // Por enquanto, mostrar uma mensagem até a página ser criada
+                MessageBox.Show($"Formulário de criação de ticket será carregado aqui.\nUtilizador: {_utilizadorAtual.Nome}",
+                               "Em Desenvolvimento", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                // TODO: Implementar quando a página estiver pronta
+                /*
                 var criarTicketPage = new Pages.CriarTicketPage(_utilizadorAtual);
                 MainFrame.Navigate(criarTicketPage);
+                */
+
                 statusText.Text = "Criando novo ticket";
             }
             catch (Exception ex)
@@ -114,8 +128,17 @@ namespace Ticket2Help
             try
             {
                 WelcomePanel.Visibility = Visibility.Collapsed;
+
+                // Por enquanto, mostrar uma mensagem até a página ser criada
+                MessageBox.Show("Dashboard estatístico será carregado aqui.",
+                               "Em Desenvolvimento", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                // TODO: Implementar quando a página estiver pronta
+                /*
                 var dashboardPage = new Pages.DashboardPage(_utilizadorAtual);
                 MainFrame.Navigate(dashboardPage);
+                */
+
                 statusText.Text = "Visualizando dashboard";
             }
             catch (Exception ex)
