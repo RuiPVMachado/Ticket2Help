@@ -1,0 +1,62 @@
+CREATE DATABASE Tick2HelpDB; 
+
+GO 
+
+USE Tick2DeskDB; 
+
+GO 
+
+-- Tabela de Utilizadores 
+CREATE TABLE Utilizadores ( 
+    Id INT PRIMARY KEY IDENTITY(1,1), 
+    Nome NVARCHAR(100) NOT NULL, 
+    Username NVARCHAR(50) NOT NULL UNIQUE, 
+    PasswordHash NVARCHAR(255) NOT NULL, 
+    TipoUtilizador NVARCHAR(20) NOT NULL CHECK (TipoUtilizador IN ('Tecnico', 'Colaborador')), 
+    DataCriacao DATETIME DEFAULT GETDATE() 
+
+); 
+
+-- Tabela principal de Tickets 
+CREATE TABLE Tickets ( 
+    Id INT PRIMARY KEY IDENTITY(1,1), 
+    Titulo NVARCHAR(100) NOT NULL, 
+    Descricao NVARCHAR(MAX) NOT NULL, 
+    Prioridade NVARCHAR(20) NOT NULL CHECK (Prioridade IN ('Alta', 'Media', 'Baixa')), 
+    Tipo NVARCHAR(20) NOT NULL CHECK (Tipo IN ('Hardware', 'Software')), 
+    Estado NVARCHAR(20) NOT NULL DEFAULT 'PorAtender' CHECK (Estado IN ('PorAtender', 'EmAtendimento', 'Atendido')), 
+    SubEstadoAtendimento NVARCHAR(20) CHECK (SubEstadoAtendimento IN ('Resolvido', 'NaoResolvido')), 
+    DataCriacao DATETIME NOT NULL DEFAULT GETDATE(), 
+    DataAtendimento DATETIME, 
+    IdColaborador INT NOT NULL, 
+    IdTecnico INT, 
+    FOREIGN KEY (IdColaborador) REFERENCES Utilizadores(Id), 
+    FOREIGN KEY (IdTecnico) REFERENCES Utilizadores(Id) 
+); 
+
+ 
+
+-- Tabela de Detalhes de Hardware 
+CREATE TABLE DetalhesHardware ( 
+    Id INT PRIMARY KEY IDENTITY(1,1), 
+    TicketId INT NOT NULL UNIQUE, 
+    Equipamento NVARCHAR(100) NOT NULL, 
+    Avaria NVARCHAR(500) NOT NULL,           -- Para descrever o problema 
+    PecaSubstituida NVARCHAR(100),           -- Pode ser NULL se não houve substituição 
+    DescricaoReparacao NVARCHAR(1000),       -- Descrição do que foi feito 
+    FOREIGN KEY (TicketId) REFERENCES Tickets(Id) ON DELETE CASCADE 
+); 
+
+ 
+
+-- Tabela de Detalhes de Software 
+CREATE TABLE DetalhesSoftware ( 
+    Id INT PRIMARY KEY IDENTITY(1,1), 
+    TicketId INT NOT NULL UNIQUE, 
+    Aplicacao NVARCHAR(100) NOT NULL, 
+    DescricaoNecessidade NVARCHAR(500) NOT NULL,  -- O que o utilizador precisa 
+    SolucaoAplicada NVARCHAR(MAX),                 -- Pode ser NULL se ainda não foi resolvido 
+    FOREIGN KEY (TicketId) REFERENCES Tickets(Id) ON DELETE CASCADE 
+); 
+
+GO
