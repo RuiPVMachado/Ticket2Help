@@ -1,0 +1,234 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows;
+using System.Windows.Controls;
+using MODELS;
+using BLL.Services;
+using BLL.Interfaces;
+using DAL.Repositories;
+
+namespace Ticket2Help.Views
+{
+    /// <summary>
+    /// Página de gestão de tickets para colaboradores
+    /// </summary>
+    public partial class TicketsColaboradorPage : Page
+    {
+        private readonly Utilizador _utilizadorAtual;
+        private readonly ITicketService _ticketService;
+        private readonly IUtilizadorService _utilizadorService;
+        private List<Ticket> _todosTickets;
+        private List<Ticket> _ticketsFiltrados;
+
+        public TicketsColaboradorPage(Utilizador utilizador)
+        {
+            InitializeComponent();
+            _utilizadorAtual = utilizador;
+
+            // Inicializar serviços (assumindo injeção de dependência ou factory)
+            var ticketRepo = new TicketRepository();
+            var hwRepo = new DetalhesHardwareRepository();
+            var swRepo = new DetalhesSoftwareRepository();
+            var userRepo = new UtilizadorRepository();
+
+            _ticketService = new TicketService(ticketRepo, hwRepo, swRepo);
+            _utilizadorService = new UtilizadorService(userRepo);
+
+            CarregarTickets();
+            AtualizarEstatisticas();
+        }
+
+        /// <summary>
+        /// Carrega todos os tickets do colaborador atual
+        /// </summary>
+        private void CarregarTickets()
+        {
+            try
+            {
+                lblStatus.Text = "Carregando tickets...";
+
+                // Carregar apenas os tickets do colaborador logado
+                _todosTickets = _ticketService.ObterTodos()
+                    .Where(t => t.IdColaborador == _utilizadorAtual.Id)
+                    .ToList();
+
+                // Enriquecer com nomes dos utilizadores
+                EnriquecerTicketsComNomes();
+
+                // Aplicar filtros atuais
+                AplicarFiltros();
+
+                lblStatus.Text = "Tickets carregados com sucesso";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao carregar tickets: {ex.Message}", "Erro",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+                lblStatus.Text = "Erro ao carregar tickets";
+            }
+        }
+
+        /// <summary>
+        /// Enriquece os tickets com nomes dos colaboradores e técnicos
+        /// </summary>
+        private void EnriquecerTicketsComNomes()
+        {
+            var utilizadores = _utilizadorService.ObterTodos();
+
+            foreach (var ticket in _todosTickets)
+            {
+                var colaborador = utilizadores.FirstOrDefault(u => u.Id == ticket.IdColaborador);
+                ticket.NomeColaborador = colaborador?.Nome ?? "Desconhecido";
+
+                if (ticket.IdTecnico.HasValue)
+                {
+                    var tecnico = utilizadores.FirstOrDefault(u => u.Id == ticket.IdTecnico.Value);
+                    ticket.NomeTecnico = tecnico?.Nome ?? "Não atribuído";
+                }
+                else
+                {
+                    ticket.NomeTecnico = "Não atribuído";
+                }
+            }
+        }
+
+        /// <summary>
+        /// Aplica os filtros selecionados
+        /// </summary>
+        private void AplicarFiltros()
+        {
+            _ticketsFiltrados = _todosTickets.ToList();
+
+            // Filtro por estado
+            var estadoSelecionado = (cmbFiltroEstado.SelectedItem as ComboBoxItem)?.Content.ToString();
+            if (!string.IsNullOrEmpty(estadoSelecionado) && estadoSelecionado != "Todos")
+            {
+                switch (estadoSelecionado)
+                {
+                    case "Por Atender":
+                        _ticketsFiltrados = _ticketsFiltrados.Where(t => t.Estado == EstadoTicket.PorAtender).ToList();
+                        break;
+                    case "Em Atendimento":
+                        _ticketsFiltrados = _ticketsFiltrados.Where(t => t.Estado == EstadoTicket.EmAtendimento).ToList();
+                        break;
+                    case "Atendido":
+                        _ticketsFiltrados = _ticketsFiltrados.Where(t => t.Estado == EstadoTicket.Atendido).ToList();
+                        break;
+                }
+            }
+
+            // Filtro por prioridade
+            var prioridadeSelecionada = (cmbFiltroPrioridade.SelectedItem as ComboBoxItem)?.Content.ToString();
+            if (!string.IsNullOrEmpty(prioridadeSelecionada) && prioridadeSelecionada != "Todas")
+            {
+                var prioridade = Enum.Parse<Prioridade>(prioridadeSelecionada);
+                _ticketsFiltrados = _ticketsFiltrados.Where(t => t.Prioridade == prioridade).ToList();
+            }
+
+            // Ordenar por data de criação (mais recentes primeiro)
+            _ticketsFiltrados = _ticketsFiltrados.OrderByDescending(t => t.DataCriacao).ToList();
+
+            // Atualizar grid
+            dgTickets.ItemsSource = _ticketsFiltrados;
+            lblTotalTickets.Text = $"Total: {_ticketsFiltrados.Count} tickets";
+        }
+
+        /// <summary>
+        /// Atualiza as estatísticas rápidas
+        /// </summary>
+        private void AtualizarEstatisticas()
+        {
+            if (_todosTickets == null) return;
+
+            // Tickets urgentes (prioridade alta)
+            var urgentes = _todosTickets.Count(t => t.Prioridade == Prioridade.Alta &&
+                                                   t.Estado != EstadoTicket.Atendido);
+            lblUrgentes.Text = urgentes.ToString();
+
+            // Tickets por atender
+            var porAtender = _todosTickets.Count(t => t.Estado == EstadoTicket.PorAtender);
+            lblPorAtender.Text = porAtender.ToString();
+
+            // Tickets em atendimento
+            var emAtendimento = _todosTickets.Count(t => t.Estado == EstadoTicket.EmAtendimento);
+            lblEmAtendimento.Text = emAtendimento.ToString();
+        }
+
+        #region Event Handlers
+
+        /// <summary>
+        /// Atualizar lista de tickets
+        /// </summary>
+        private void BtnAtualizar_Click(object sender, RoutedEventArgs e)
+        {
+            CarregarTickets();
+            AtualizarEstatisticas();
+        }
+
+        /// <summary>
+        /// Ver detalhes do ticket selecionado
+        /// </summary>
+        private void BtnDetalhes_Click(object sender, RoutedEventArgs e)
+        {
+            if (dgTickets.SelectedItem is Ticket ticketSelecionado)
+            {
+                try
+                {
+                    // TODO: Implementar janela de detalhes
+                    MessageBox.Show($"Detalhes do Ticket #{ticketSelecionado.Id}\n\n" +
+                                   $"Título: {ticketSelecionado.Titulo}\n" +
+                                   $"Descrição: {ticketSelecionado.Descricao}\n" +
+                                   $"Prioridade: {ticketSelecionado.Prioridade}\n" +
+                                   $"Estado: {ticketSelecionado.Estado}\n" +
+                                   $"Técnico: {ticketSelecionado.NomeTecnico}\n" +
+                                   $"Criado em: {ticketSelecionado.DataCriacao:dd/MM/yyyy HH:mm}",
+                                   "Detalhes do Ticket", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Erro ao carregar detalhes: {ex.Message}", "Erro",
+                        MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Por favor, selecione um ticket.", "Aviso",
+                    MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+
+        /// <summary>
+        /// Filtro por estado alterado
+        /// </summary>
+        private void CmbFiltroEstado_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (_todosTickets != null)
+            {
+                AplicarFiltros();
+            }
+        }
+
+        /// <summary>
+        /// Filtro por prioridade alterado
+        /// </summary>
+        private void CmbFiltroPrioridade_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (_todosTickets != null)
+            {
+                AplicarFiltros();
+            }
+        }
+
+        /// <summary>
+        /// Seleção no grid alterada
+        /// </summary>
+        private void DgTickets_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            bool temSelecao = dgTickets.SelectedItem != null;
+            btnDetalhes.IsEnabled = temSelecao;
+        }
+
+        #endregion
+    }
+}

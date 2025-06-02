@@ -13,5 +13,9 @@
         public DateTime? DataAtendimento { get; set; }
         public int IdColaborador { get; set; }
         public int? IdTecnico { get; set; }
+
+        //adicionado posteriormente para exibir nomes na interface colaboradorpage
+        public string NomeColaborador { get; set; }
+        public string NomeTecnico { get; set; }
     }
 }
