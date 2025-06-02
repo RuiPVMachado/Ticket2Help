@@ -58,23 +58,17 @@ namespace Ticket2Help
             {
                 WelcomePanel.Visibility = Visibility.Collapsed;
 
-                // Por enquanto, mostrar uma mensagem até as páginas serem criadas
-                MessageBox.Show($"Lista de tickets será carregada aqui.\nUtilizador: {_utilizadorAtual.Nome} ({_utilizadorAtual.Tipo})",
-                               "Em Desenvolvimento", MessageBoxButton.OK, MessageBoxImage.Information);
-
-                // TODO: Implementar quando as páginas estiverem prontas
-                /*
                 if (_utilizadorAtual.Tipo == TipoUtilizador.Tecnico)
                 {
-                    var ticketsPage = new Pages.TicketsTecnicoPage(_utilizadorAtual);
+                    var ticketsPage = new Views.TicketsTecnicoPage(_utilizadorAtual);
                     MainFrame.Navigate(ticketsPage);
                 }
                 else
                 {
-                    var ticketsPage = new Pages.TicketsColaboradorPage(_utilizadorAtual);
+                    var ticketsPage = new Views.TicketsColaboradorPage(_utilizadorAtual);
                     MainFrame.Navigate(ticketsPage);
                 }
-                */
+                
 
                 statusText.Text = "Visualizando tickets";
             }
