@@ -139,6 +139,13 @@
                             Click="BtnDetalhes_Click"
                             Margin="5"
                             IsEnabled="False"/>
+
+                    <Button x:Name="btnEliminar" 
+                            Content="🗑️ Eliminar" 
+                            Style="{StaticResource PrimaryButton}"
+                            Click="BtnEliminar_Click"
+                            Margin="5"
+                            IsEnabled="False"/>
                 </StackPanel>
 
                 <!-- Estatísticas Rápidas -->
