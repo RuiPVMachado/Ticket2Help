@@ -16,6 +16,7 @@ namespace DAL.Interfaces
         List<Ticket> ObterTodos();
         List<Ticket> ObterPorEstado(EstadoTicket estado);
         bool AtualizarEstado(int ticketId, EstadoTicket novoEstado, SubEstadoAtendimento? subEstado, int? tecnicoId = null);
+        bool Eliminar(int ticketId);
     }
 }
 
