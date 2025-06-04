@@ -234,10 +234,10 @@ namespace Ticket2Help.Views
                     var resultado = MessageBox.Show(
                         "Deseja finalizar este ticket como resolvido?",
                         "Finalizar Ticket",
-                        MessageBoxButton.YesNoCancel,
+                        MessageBoxButton.YesNo,
                         MessageBoxImage.Question);
 
-                    if (resultado == MessageBoxResult.Cancel) return;
+                    if (resultado == MessageBoxResult.No) return;
 
                     novoEstado = EstadoTicket.Atendido;
                     var subEstado = resultado == MessageBoxResult.Yes ?
