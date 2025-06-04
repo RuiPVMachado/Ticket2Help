@@ -345,11 +345,13 @@ namespace Ticket2Help.Views
             {
                 btnAtender.IsEnabled = false;
                 btnDetalhes.IsEnabled = false;
+                btnEliminar.IsEnabled = false;
                 btnAtender.Content = "✋ Atender Ticket";
                 return;
             }
 
             btnDetalhes.IsEnabled = true;
+            btnEliminar.IsEnabled = TicketSelecionado.Estado != EstadoTicket.Atendido;
 
             // Lógica para botão de atender
             switch (TicketSelecionado.Estado)
@@ -385,7 +387,41 @@ namespace Ticket2Help.Views
             }
         }
         #endregion
+        private void BtnEliminar_Click(object sender, RoutedEventArgs e)
+        {
+            if (TicketSelecionado == null) return;
 
+            try
+            {
+                var confirmacao = MessageBox.Show(
+                    "Tem certeza que deseja eliminar este ticket?\nEsta ação não pode ser desfeita.",
+                    "Confirmar Eliminação",
+                    MessageBoxButton.YesNo,
+                    MessageBoxImage.Warning);
+
+                if (confirmacao == MessageBoxResult.Yes)
+                {
+                    bool sucesso = _ticketService.EliminarTicket(TicketSelecionado.Id);
+
+                    if (sucesso)
+                    {
+                        MessageBox.Show("Ticket eliminado com sucesso!", "Sucesso",
+                            MessageBoxButton.OK, MessageBoxImage.Information);
+                        CarregarTickets();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Não foi possível eliminar o ticket.", "Erro",
+                            MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao eliminar ticket: {ex.Message}", "Erro",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
         #region INotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
 
