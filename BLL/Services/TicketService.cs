@@ -37,13 +37,13 @@ namespace BLL.Services
 
         /// <inheritdoc />
         public int CriarTicketHardware(string titulo, string descricao, Prioridade prioridade,
-            int colaboradorId, string equipamento, string avaria)
+            int colaboradorId, string equipamento, string avaria, int criadoPorId, bool criadoPorTecnico = false)
         {
             try
             {
                 // Utiliza o factory para criar o ticket e detalhes
                 var (ticket, detalhes) = TicketFactory.CriarTicketHardware(
-                    titulo, descricao, prioridade, colaboradorId, equipamento, avaria);
+                    titulo, descricao, prioridade, colaboradorId, equipamento, avaria, criadoPorId, criadoPorTecnico);
 
                 // Persiste o ticket
                 int ticketId = _ticketRepo.Criar(ticket);
@@ -67,13 +67,13 @@ namespace BLL.Services
 
         /// <inheritdoc />
         public int CriarTicketSoftware(string titulo, string descricao, Prioridade prioridade,
-            int colaboradorId, string aplicacao, string necessidade)
+            int colaboradorId, string aplicacao, string necessidade, int criadoPorId, bool criadoPorTecnico = false)
         {
             try
             {
                 // Utiliza o factory para criar o ticket e detalhes
                 var (ticket, detalhes) = TicketFactory.CriarTicketSoftware(
-                    titulo, descricao, prioridade, colaboradorId, aplicacao, necessidade);
+                    titulo, descricao, prioridade, colaboradorId, aplicacao, necessidade, criadoPorId, criadoPorTecnico);
 
                 // Persiste o ticket
                 int ticketId = _ticketRepo.Criar(ticket);
@@ -93,6 +93,23 @@ namespace BLL.Services
             {
                 throw new InvalidOperationException("Erro ao criar ticket de software", ex);
             }
+        }
+
+        /// <summary>
+        /// Métodos de compatibilidade - mantêm a assinatura original para não quebrar código existente
+        /// </summary>
+        public int CriarTicketHardware(string titulo, string descricao, Prioridade prioridade,
+            int colaboradorId, string equipamento, string avaria)
+        {
+            return CriarTicketHardware(titulo, descricao, prioridade, colaboradorId,
+                                     equipamento, avaria, colaboradorId, false);
+        }
+
+        public int CriarTicketSoftware(string titulo, string descricao, Prioridade prioridade,
+            int colaboradorId, string aplicacao, string necessidade)
+        {
+            return CriarTicketSoftware(titulo, descricao, prioridade, colaboradorId,
+                                     aplicacao, necessidade, colaboradorId, false);
         }
 
         /// <inheritdoc />
@@ -165,6 +182,7 @@ namespace BLL.Services
         {
             return _ticketRepo.ObterPorEstado(estado);
         }
+
         public bool EliminarTicket(int ticketId)
         {
             // Validar se o ticket existe
@@ -173,7 +191,7 @@ namespace BLL.Services
                 return false;
 
             if (ticket.Estado == EstadoTicket.Atendido)
-                 return false;
+                return false;
 
             return _ticketRepo.Eliminar(ticketId);
         }

@@ -20,12 +20,14 @@ namespace BLL.Interfaces
         /// <param name="titulo">Título do ticket</param>
         /// <param name="descricao">Descrição geral do problema</param>
         /// <param name="prioridade">Prioridade do ticket</param>
-        /// <param name="colaboradorId">ID do colaborador que cria o ticket</param>
+        /// <param name="colaboradorId">ID do colaborador que tem o problema</param>
         /// <param name="equipamento">Equipamento com problema</param>
         /// <param name="avaria">Descrição da avaria</param>
+        /// <param name="criadoPorId">ID de quem está a criar o ticket</param>
+        /// <param name="criadoPorTecnico">Se foi criado por técnico</param>
         /// <returns>ID do ticket criado</returns>
         int CriarTicketHardware(string titulo, string descricao, Prioridade prioridade,
-            int colaboradorId, string equipamento, string avaria);
+            int colaboradorId, string equipamento, string avaria, int criadoPorId, bool criadoPorTecnico = false);
 
         /// <summary>
         /// Cria um novo ticket de software utilizando o factory pattern.
@@ -33,10 +35,21 @@ namespace BLL.Interfaces
         /// <param name="titulo">Título do ticket</param>
         /// <param name="descricao">Descrição geral da necessidade</param>
         /// <param name="prioridade">Prioridade do ticket</param>
-        /// <param name="colaboradorId">ID do colaborador que cria o ticket</param>
+        /// <param name="colaboradorId">ID do colaborador que tem a necessidade</param>
         /// <param name="aplicacao">Software/aplicação em questão</param>
         /// <param name="necessidade">Descrição da necessidade</param>
+        /// <param name="criadoPorId">ID de quem está a criar o ticket</param>
+        /// <param name="criadoPorTecnico">Se foi criado por técnico</param>
         /// <returns>ID do ticket criado</returns>
+        int CriarTicketSoftware(string titulo, string descricao, Prioridade prioridade,
+            int colaboradorId, string aplicacao, string necessidade, int criadoPorId, bool criadoPorTecnico = false);
+
+        /// <summary>
+        /// Métodos de compatibilidade para criação por colaboradores (mantém assinatura original)
+        /// </summary>
+        int CriarTicketHardware(string titulo, string descricao, Prioridade prioridade,
+            int colaboradorId, string equipamento, string avaria);
+
         int CriarTicketSoftware(string titulo, string descricao, Prioridade prioridade,
             int colaboradorId, string aplicacao, string necessidade);
 
@@ -74,6 +87,7 @@ namespace BLL.Interfaces
         /// Lista todos os tickets com determinado estado.
         /// </summary>
         List<Ticket> ObterPorEstado(EstadoTicket estado);
+
         /// <summary>
         /// Elimina um ticket e todos os seus detalhes associados.
         /// </summary>
