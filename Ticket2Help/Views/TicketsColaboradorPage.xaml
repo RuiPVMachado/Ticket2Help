@@ -8,7 +8,49 @@
       Background="#F8F9FA">
 
     <Page.Resources>
-        <!-- (Mantém os DataTemplates existentes: PrioridadeTemplate e EstadoTemplate) -->
+        <DataTemplate x:Key="PrioridadeTemplate">
+            <Border CornerRadius="3" Padding="5,2">
+                <Border.Style>
+                    <Style TargetType="Border">
+                        <Setter Property="Background" Value="#28A745"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Prioridade}" Value="Alta">
+                                <Setter Property="Background" Value="#DC3545"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Prioridade}" Value="Media">
+                                <Setter Property="Background" Value="#FFC107"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+                <TextBlock Text="{Binding Prioridade}" 
+                      Foreground="White" 
+                      FontSize="10" 
+                      FontWeight="Bold"/>
+            </Border>
+        </DataTemplate>
+
+        <DataTemplate x:Key="EstadoTemplate">
+            <Border CornerRadius="3" Padding="5,2">
+                <Border.Style>
+                    <Style TargetType="Border">
+                        <Setter Property="Background" Value="#6C757D"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Estado}" Value="EmAtendimento">
+                                <Setter Property="Background" Value="#007BFF"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Estado}" Value="Atendido">
+                                <Setter Property="Background" Value="#28A745"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+                <TextBlock Text="{Binding Estado}" 
+                      Foreground="White" 
+                      FontSize="10" 
+                      FontWeight="Bold"/>
+            </Border>
+        </DataTemplate>
     </Page.Resources>
 
     <Grid Margin="20">
@@ -117,34 +159,42 @@
 
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="ID" 
-                                        Binding="{Binding Id}" 
-                                        Width="60"
-                                        ElementStyle="{StaticResource {x:Type TextBlock}}"/>
+                        Binding="{Binding Id}" 
+                        Width="60"
+                        ElementStyle="{StaticResource {x:Type TextBlock}}"/>
 
                     <DataGridTextColumn Header="Título" 
-                                        Binding="{Binding Titulo}" 
-                                        Width="250"
-                                        ElementStyle="{StaticResource {x:Type TextBlock}}"/>
+                        Binding="{Binding Titulo}" 
+                        Width="250"
+                        ElementStyle="{StaticResource {x:Type TextBlock}}"/>
 
-                    <DataGridTextColumn Header="Prioridade" Width="90" Binding="{Binding Prioridade}" />
+                    <DataGridTemplateColumn Header="Prioridade" Width="90">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <StaticResource ResourceKey="PrioridadeTemplate"/>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
 
                     <DataGridTextColumn Header="Tipo" 
-                                        Binding="{Binding Tipo}" 
-                                        Width="80"/>
+                        Binding="{Binding Tipo}" 
+                        Width="80"/>
 
-                    <DataGridTextColumn Header="Estado" Width="110" Binding="{Binding Estado}" />
+                    <DataGridTemplateColumn Header="Estado" Width="110">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <StaticResource ResourceKey="EstadoTemplate"/>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
 
                     <DataGridTextColumn Header="Criado em" 
-                                        Binding="{Binding DataCriacao, StringFormat='dd/MM/yyyy HH:mm'}" 
-                                        Width="130"/>
+                        Binding="{Binding DataCriacao, StringFormat='dd/MM/yyyy HH:mm'}" 
+                        Width="130"/>
 
                     <DataGridTextColumn Header="Colaborador" 
-                                        Binding="{Binding NomeColaborador}" 
-                                        Width="150"/>
+                        Binding="{Binding NomeColaborador}" 
+                        Width="150"/>
 
                     <DataGridTextColumn Header="Técnico" 
-                                        Binding="{Binding NomeTecnico}" 
-                                        Width="150"/>
+                        Binding="{Binding NomeTecnico}" 
+                        Width="150"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Border>
