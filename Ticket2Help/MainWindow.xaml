@@ -52,6 +52,11 @@
 
                     <!-- Menu Buttons -->
                     <StackPanel Orientation="Horizontal" Margin="30,0,0,0">
+                        <Button x:Name="btnHomePage" 
+                               Content="Início" 
+                               Style="{StaticResource MenuButtonStyle}"
+                               Click="BtnHomePage_Click"/>
+                        
                         <Button x:Name="btnTickets" 
                                Content="Tickets" 
                                Style="{StaticResource MenuButtonStyle}"
