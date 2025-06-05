@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using BLL.Interfaces;
@@ -16,6 +18,8 @@ namespace Ticket2Help.Views
     {
         private readonly Utilizador _utilizadorAtual;
         private ITicketService _ticketService;
+        private IUtilizadorService _utilizadorService;
+        private List<Utilizador> _colaboradores;
 
         /// <summary>
         /// Construtor da página de criação de tickets
@@ -28,6 +32,9 @@ namespace Ticket2Help.Views
 
             // Configurar serviços (injeção de dependências manual)
             ConfigurarServicos();
+
+            // Configurar interface baseada no tipo de utilizador
+            ConfigurarInterface();
         }
 
         /// <summary>
@@ -39,9 +46,56 @@ namespace Ticket2Help.Views
             ITicketRepository ticketRepo = new TicketRepository();
             IDetalhesHardwareRepository hwRepo = new DetalhesHardwareRepository();
             IDetalhesSoftwareRepository swRepo = new DetalhesSoftwareRepository();
+            IUtilizadorRepository utilizadorRepo = new UtilizadorRepository();
 
-            // Serviço
+            // Serviços
             _ticketService = new TicketService(ticketRepo, hwRepo, swRepo);
+            _utilizadorService = new UtilizadorService(utilizadorRepo);
+        }
+
+        /// <summary>
+        /// Configura a interface baseada no tipo de utilizador
+        /// </summary>
+        private void ConfigurarInterface()
+        {
+            if (_utilizadorAtual.Tipo == TipoUtilizador.Tecnico)
+            {
+                // Técnico pode selecionar colaborador
+                pnlColaborador.Visibility = Visibility.Visible;
+                CarregarColaboradores();
+            }
+            else
+            {
+                // Colaborador cria ticket para si mesmo
+                pnlColaborador.Visibility = Visibility.Collapsed;
+            }
+        }
+
+        /// <summary>
+        /// Carrega a lista de colaboradores para seleção (apenas para técnicos)
+        /// </summary>
+        private void CarregarColaboradores()
+        {
+            try
+            {
+                var todosUtilizadores = _utilizadorService.ObterTodos();
+                _colaboradores = todosUtilizadores.Where(u => u.Tipo == TipoUtilizador.Colaborador).ToList();
+
+                cbColaborador.ItemsSource = _colaboradores;
+                cbColaborador.DisplayMemberPath = "Nome";
+                cbColaborador.SelectedValuePath = "Id";
+
+                if (_colaboradores.Count == 0)
+                {
+                    MostrarErro("Não foram encontrados colaboradores no sistema.");
+                    btnCriar.IsEnabled = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MostrarErro($"Erro ao carregar colaboradores: {ex.Message}");
+                btnCriar.IsEnabled = false;
+            }
         }
 
         /// <summary>
@@ -90,16 +144,53 @@ namespace Ticket2Help.Views
                 btnCriar.IsEnabled = false;
                 btnCriar.Content = "Criando...";
 
-                // Criar objeto ticket
-                var ticket = CriarObjetoTicket();
-                object detalhes = CriarObjetoDetalhes();
+                // Obter dados do formulário
+                var dadosTicket = ObterDadosFormulario();
 
-                // Criar ticket no sistema
-                int ticketId = _ticketService.CriarTicket(ticket, detalhes);
+                int ticketId;
+                string tipoSelecionado = ((ComboBoxItem)cbTipo.SelectedItem).Tag.ToString();
+
+                // Criar ticket usando os métodos específicos do factory
+                if (tipoSelecionado == "Hardware")
+                {
+                    ticketId = _ticketService.CriarTicketHardware(
+                        dadosTicket.Titulo,
+                        dadosTicket.Descricao,
+                        dadosTicket.Prioridade,
+                        dadosTicket.ColaboradorId,
+                        dadosTicket.Equipamento,
+                        dadosTicket.Avaria,
+                        _utilizadorAtual.Id,
+                        _utilizadorAtual.Tipo == TipoUtilizador.Tecnico
+                    );
+                }
+                else
+                {
+                    ticketId = _ticketService.CriarTicketSoftware(
+                        dadosTicket.Titulo,
+                        dadosTicket.Descricao,
+                        dadosTicket.Prioridade,
+                        dadosTicket.ColaboradorId,
+                        dadosTicket.Aplicacao,
+                        dadosTicket.Necessidade,
+                        _utilizadorAtual.Id,
+                        _utilizadorAtual.Tipo == TipoUtilizador.Tecnico
+                    );
+                }
 
                 // Sucesso - mostrar mensagem e voltar
-                MessageBox.Show($"Ticket #{ticketId} criado com sucesso!\n\nTítulo: {ticket.Titulo}\nTipo: {ticket.Tipo}\nPrioridade: {ticket.Prioridade}",
-                               "Ticket Criado", MessageBoxButton.OK, MessageBoxImage.Information);
+                string mensagemSucesso = $"Ticket #{ticketId} criado com sucesso!\n\n" +
+                                       $"Título: {dadosTicket.Titulo}\n" +
+                                       $"Tipo: {tipoSelecionado}\n" +
+                                       $"Prioridade: {dadosTicket.Prioridade}";
+
+                if (_utilizadorAtual.Tipo == TipoUtilizador.Tecnico)
+                {
+                    var colaboradorSelecionado = _colaboradores.FirstOrDefault(c => c.Id == dadosTicket.ColaboradorId);
+                    mensagemSucesso += $"\nColaborador: {colaboradorSelecionado?.Nome}";
+                }
+
+                MessageBox.Show(mensagemSucesso, "Ticket Criado", MessageBoxButton.OK, MessageBoxImage.Information);
 
                 // Voltar para a página anterior ou principal
                 VoltarPaginaAnterior();
@@ -164,6 +255,17 @@ namespace Ticket2Help.Views
                 return false;
             }
 
+            // Validação específica para técnicos
+            if (_utilizadorAtual.Tipo == TipoUtilizador.Tecnico)
+            {
+                if (cbColaborador.SelectedItem == null)
+                {
+                    MostrarErro("Selecione o colaborador para quem está a criar o ticket.");
+                    cbColaborador.Focus();
+                    return false;
+                }
+            }
+
             // Validações específicas por tipo
             string tipoSelecionado = ((ComboBoxItem)cbTipo.SelectedItem).Tag.ToString();
 
@@ -204,50 +306,49 @@ namespace Ticket2Help.Views
         }
 
         /// <summary>
-        /// Cria o objeto Ticket com base nos dados do formulário
+        /// Classe auxiliar para transportar dados do formulário
         /// </summary>
-        private Ticket CriarObjetoTicket()
+        private class DadosFormulario
+        {
+            public string Titulo { get; set; }
+            public string Descricao { get; set; }
+            public Prioridade Prioridade { get; set; }
+            public int ColaboradorId { get; set; }
+            public string Equipamento { get; set; }
+            public string Avaria { get; set; }
+            public string Aplicacao { get; set; }
+            public string Necessidade { get; set; }
+        }
+
+        /// <summary>
+        /// Obtém os dados do formulário
+        /// </summary>
+        private DadosFormulario ObterDadosFormulario()
         {
             string prioridadeStr = ((ComboBoxItem)cbPrioridade.SelectedItem).Tag.ToString();
-            string tipoStr = ((ComboBoxItem)cbTipo.SelectedItem).Tag.ToString();
 
-            return new Ticket
+            // Determinar ID do colaborador
+            int colaboradorId;
+            if (_utilizadorAtual.Tipo == TipoUtilizador.Tecnico)
+            {
+                colaboradorId = (int)cbColaborador.SelectedValue;
+            }
+            else
+            {
+                colaboradorId = _utilizadorAtual.Id;
+            }
+
+            return new DadosFormulario
             {
                 Titulo = txtTitulo.Text.Trim(),
                 Descricao = txtDescricao.Text.Trim(),
                 Prioridade = Enum.Parse<Prioridade>(prioridadeStr),
-                Tipo = Enum.Parse<TipoTicket>(tipoStr),
-                Estado = EstadoTicket.PorAtender,
-                DataCriacao = DateTime.Now,
-                IdColaborador = _utilizadorAtual.Id
+                ColaboradorId = colaboradorId,
+                Equipamento = txtEquipamento?.Text?.Trim(),
+                Avaria = txtAvaria?.Text?.Trim(),
+                Aplicacao = txtAplicacao?.Text?.Trim(),
+                Necessidade = txtNecessidade?.Text?.Trim()
             };
-        }
-
-        /// <summary>
-        /// Cria o objeto de detalhes (Hardware ou Software) com base no tipo selecionado
-        /// </summary>
-        private object CriarObjetoDetalhes()
-        {
-            string tipoSelecionado = ((ComboBoxItem)cbTipo.SelectedItem).Tag.ToString();
-
-            if (tipoSelecionado == "Hardware")
-            {
-                return new DetalhesHardware
-                {
-                    Equipamento = txtEquipamento.Text.Trim(),
-                    Avaria = txtAvaria.Text.Trim()
-                    // PecaSubstituida e DescricaoReparacao são preenchidos quando o ticket é atendido
-                };
-            }
-            else // Software
-            {
-                return new DetalhesSoftware
-                {
-                    Aplicacao = txtAplicacao.Text.Trim(),
-                    DescricaoNecessidade = txtNecessidade.Text.Trim()
-                    // SolucaoAplicada é preenchida quando o ticket é atendido
-                };
-            }
         }
 
         /// <summary>
@@ -318,6 +419,7 @@ namespace Ticket2Help.Views
             txtAplicacao.TextChanged += OnTextChanged;
             txtNecessidade.TextChanged += OnTextChanged;
             cbPrioridade.SelectionChanged += OnSelectionChanged;
+            cbColaborador.SelectionChanged += OnSelectionChanged;
         }
     }
 }
