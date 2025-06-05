@@ -72,12 +72,6 @@
                                Style="{StaticResource MenuButtonStyle}"
                                Click="BtnDashboard_Click"
                                Visibility="Collapsed"/>
-                        
-                        <Button x:Name="btnAdd" 
-                               Content="Dashboard" 
-                               Style="{StaticResource MenuButtonStyle}"
-                               Click="btnAdd"
-                               Visibility="Collapsed"/>
                     </StackPanel>
                 </StackPanel>
 
