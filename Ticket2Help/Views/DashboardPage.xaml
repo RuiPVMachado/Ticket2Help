@@ -71,14 +71,14 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <!-- Total de Tickets -->
+                <!-- % Tickets Concluídos-->
                 <Border Grid.Column="0" Style="{StaticResource CardStyle}">
                     <StackPanel>
                         <TextBlock x:Name="lblTotalTickets" 
                                    Text="0" 
                                    Style="{StaticResource StatNumberStyle}"
                                    Foreground="#2196F3"/>
-                        <TextBlock Text="Total de Tickets" 
+                        <TextBlock Text="% Tickets Concluídos" 
                                    Style="{StaticResource StatLabelStyle}"/>
                     </StackPanel>
                 </Border>
@@ -107,14 +107,14 @@
                     </StackPanel>
                 </Border>
 
-                <!-- Tickets Atendidos -->
+                <!-- Tempo Médio -->
                 <Border Grid.Column="3" Style="{StaticResource CardStyle}">
                     <StackPanel>
                         <TextBlock x:Name="lblTicketsAtendidos" 
                                    Text="0" 
                                    Style="{StaticResource StatNumberStyle}"
                                    Foreground="#2E7D32"/>
-                        <TextBlock Text="Atendidos" 
+                        <TextBlock Text="Tempo Médio de Atendimento" 
                                    Style="{StaticResource StatLabelStyle}"/>
                     </StackPanel>
                 </Border>
