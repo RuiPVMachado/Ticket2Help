@@ -77,10 +77,53 @@ namespace Ticket2Help.Views
         /// </summary>
         private void AtualizarEstatisticasRapidas(List<Ticket> tickets)
         {
-            lblTotalTickets.Text = tickets.Count.ToString();
+            // Percentagem de tickets concluídos
+            var totalTickets = tickets.Count;
+            var ticketsAtendidos = tickets.Count(t => t.Estado == EstadoTicket.Atendido);
+            var percentagemConcluidos = totalTickets > 0 ? (double)ticketsAtendidos / totalTickets * 100 : 0;
+            lblTotalTickets.Text = $"{percentagemConcluidos:F1}%";
+
+            // Outros contadores
             lblTicketsPorAtender.Text = tickets.Count(t => t.Estado == EstadoTicket.PorAtender).ToString();
             lblTicketsEmAtendimento.Text = tickets.Count(t => t.Estado == EstadoTicket.EmAtendimento).ToString();
-            lblTicketsAtendidos.Text = tickets.Count(t => t.Estado == EstadoTicket.Atendido).ToString();
+
+            // Tempo de atendimento médio
+            var ticketsComTempoAtendimento = tickets
+                .Where(t => t.Estado == EstadoTicket.Atendido && t.DataAtendimento.HasValue)
+                .ToList();
+
+            if (ticketsComTempoAtendimento.Any())
+            {
+                var tempoMedioEmDias = ticketsComTempoAtendimento
+                    .Average(t => (t.DataAtendimento.Value - t.DataCriacao).TotalDays);
+
+                lblTicketsAtendidos.Text = FormatarTempoMedio(tempoMedioEmDias);
+            }
+            else
+            {
+                lblTicketsAtendidos.Text = "N/A";
+            }
+        }
+
+        /// <summary>
+        /// Formata o tempo médio de atendimento de forma mais legível
+        /// </summary>
+        private string FormatarTempoMedio(double dias)
+        {
+            var timeSpan = TimeSpan.FromDays(dias);
+
+            if (timeSpan.TotalDays >= 1)
+            {
+                return $"{timeSpan.TotalDays:F1}d";
+            }
+            else if (timeSpan.TotalHours >= 1)
+            {
+                return $"{timeSpan.TotalHours:F1}h";
+            }
+            else
+            {
+                return $"{timeSpan.TotalMinutes:F0}min";
+            }
         }
 
         /// <summary>
@@ -225,6 +268,37 @@ namespace Ticket2Help.Views
                 dgResumo.ItemsSource = resumoItems;
                 return;
             }
+
+            // Adicionar estatística de conclusão
+            var ticketsAtendidos = tickets.Count(t => t.Estado == EstadoTicket.Atendido);
+            var percentagemConcluidos = (double)ticketsAtendidos / total * 100;
+            resumoItems.Add(new ResumoItem
+            {
+                Categoria = "Taxa de Conclusão",
+                Quantidade = ticketsAtendidos,
+                Percentual = $"{percentagemConcluidos:F1}%"
+            });
+
+            // Adicionar tempo médio de atendimento
+            var ticketsComTempo = tickets
+                .Where(t => t.Estado == EstadoTicket.Atendido && t.DataAtendimento.HasValue)
+                .ToList();
+
+            if (ticketsComTempo.Any())
+            {
+                var tempoMedioEmDias = ticketsComTempo
+                    .Average(t => (t.DataAtendimento.Value - t.DataCriacao).TotalDays);
+
+                resumoItems.Add(new ResumoItem
+                {
+                    Categoria = "Tempo Médio de Atendimento",
+                    Quantidade = ticketsComTempo.Count,
+                    Percentual = FormatarTempoMedio(tempoMedioEmDias)
+                });
+            }
+
+            // Separador
+            resumoItems.Add(new ResumoItem { Categoria = "--- Estados ---", Quantidade = 0, Percentual = "" });
 
             // Estados
             var estadosGroups = tickets.GroupBy(t => t.Estado);
