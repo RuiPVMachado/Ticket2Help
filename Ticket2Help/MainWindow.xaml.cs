@@ -150,5 +150,20 @@ namespace Ticket2Help
         /// Propriedade para acesso ao utilizador atual (para as páginas)
         /// </summary>
         public Utilizador UtilizadorAtual => _utilizadorAtual;
+
+        private void BtnHomePage_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                MainFrame.Content = null;
+                WelcomePanel.Visibility = Visibility.Visible;
+                statusText.Text = "Página inicial";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao carregar página inicial: {ex.Message}", "Erro",
+                               MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
     }
 }

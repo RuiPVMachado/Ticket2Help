@@ -229,7 +229,7 @@ namespace Ticket2Help.Views
                 {
                     Values = values,
                     Fill = new SolidColorPaint(SKColors.CornflowerBlue),
-                    Name = "Tickets por Tipo"
+                    Name = "Quantidade:"
                 }
             };
 

@@ -1,0 +1,135 @@
+\doxysection{Factory.\+cs}
+\hypertarget{_factory_8cs_source}{}\label{_factory_8cs_source}\index{BLL/Factory.cs@{BLL/Factory.cs}}
+\mbox{\hyperlink{_factory_8cs}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00001}00001\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_m_o_d_e_l_s}{MODELS}};}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00002}00002\ \textcolor{keyword}{using\ }System;}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00004}\mbox{\hyperlink{namespace_b_l_l}{00004}}\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_b_l_l}{BLL}}}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00005}00005\ \{}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00010}\mbox{\hyperlink{class_b_l_l_1_1_ticket_factory}{00010}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_b_l_l_1_1_ticket_factory}{TicketFactory}}}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00011}00011\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00023}\mbox{\hyperlink{class_b_l_l_1_1_ticket_factory_a281511e6beb655c81a2d1d2ca6be2d90}{00023}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_m_o_d_e_l_s_1_1_ticket}{Ticket}}\ \mbox{\hyperlink{class_b_l_l_1_1_ticket_factory_a281511e6beb655c81a2d1d2ca6be2d90}{CriarTicket}}(}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00024}00024\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_m_o_d_e_l_s_a4372778b4bc973caa684eb995f794f4a}{TipoTicket}}\ tipo,}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00025}00025\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ titulo,}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00026}00026\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ descricao,}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00027}00027\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_m_o_d_e_l_s_a0abe9be3f332911e48c25f1aa1be6ade}{Prioridade}}\ prioridade,}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00028}00028\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ colaboradorId,}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00029}00029\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ criadoPorId,}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00030}00030\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ criadoPorTecnico\ =\ \textcolor{keyword}{false})}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00031}00031\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00032}00032\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Validações\ básicas}}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00033}00033\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keywordtype}{string}.IsNullOrWhiteSpace(titulo))}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00034}00034\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentException(\textcolor{stringliteral}{"{}Título\ não\ pode\ estar\ vazio"{}},\ nameof(titulo));}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00036}00036\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keywordtype}{string}.IsNullOrWhiteSpace(descricao))}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00037}00037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentException(\textcolor{stringliteral}{"{}Descrição\ não\ pode\ estar\ vazia"{}},\ nameof(descricao));}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00039}00039\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (colaboradorId\ <=\ 0)}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00040}00040\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentException(\textcolor{stringliteral}{"{}ID\ do\ colaborador\ deve\ ser\ válido"{}},\ nameof(colaboradorId));}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (criadoPorId\ <=\ 0)}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentException(\textcolor{stringliteral}{"{}ID\ de\ quem\ cria\ deve\ ser\ válido"{}},\ nameof(criadoPorId));}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_m_o_d_e_l_s_1_1_ticket}{Ticket}}}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00047}00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Tipo\ =\ tipo,}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Titulo\ =\ titulo,}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Descricao\ =\ descricao,}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_m_o_d_e_l_s_a0abe9be3f332911e48c25f1aa1be6ade}{Prioridade}}\ =\ prioridade,}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ IdColaborador\ =\ colaboradorId,}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Se\ criado\ por\ técnico,\ já\ pode\ ficar\ em\ atendimento\ e\ ter\ técnico\ atribuído}}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Estado\ =\ criadoPorTecnico\ ?\ \mbox{\hyperlink{namespace_m_o_d_e_l_s_ac6c57d118921219af7a865da77f4fd61ab21d13f0e763085f0699acf3ea9f5483}{EstadoTicket.EmAtendimento}}\ :\ \mbox{\hyperlink{namespace_m_o_d_e_l_s_ac6c57d118921219af7a865da77f4fd61}{EstadoTicket}}.PorAtender,}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DataCriacao\ =\ DateTime.Now,}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DataAtendimento\ =\ criadoPorTecnico\ ?\ DateTime.Now\ :\ (DateTime?)\textcolor{keyword}{null},}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ IdTecnico\ =\ criadoPorTecnico\ ?\ criadoPorId\ :\ (\textcolor{keywordtype}{int}?)\textcolor{keyword}{null},}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SubEstado\ =\ \textcolor{keyword}{null}}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00059}00059\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00060}00060\ }
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00073}\mbox{\hyperlink{class_b_l_l_1_1_ticket_factory_a8c0d53808a2efec102fc5e7fd1460011}{00073}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ (\mbox{\hyperlink{class_m_o_d_e_l_s_1_1_ticket}{Ticket}}\ \mbox{\hyperlink{class_b_l_l_1_1_ticket_factory_a7815657af560f22c6a37e24b45408d98}{ticket}},\ \mbox{\hyperlink{class_m_o_d_e_l_s_1_1_detalhes_hardware}{DetalhesHardware}}\ detalhes)\ \mbox{\hyperlink{class_b_l_l_1_1_ticket_factory_a8c0d53808a2efec102fc5e7fd1460011}{CriarTicketHardware}}(}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ titulo,}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ descricao,}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_m_o_d_e_l_s_a0abe9be3f332911e48c25f1aa1be6ade}{Prioridade}}\ prioridade,}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00077}00077\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ colaboradorId,}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00078}00078\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ equipamento,}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00079}00079\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ avaria,}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ criadoPorId,}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ criadoPorTecnico\ =\ \textcolor{keyword}{false})}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00082}00082\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ \ \ var\ \mbox{\hyperlink{class_b_l_l_1_1_ticket_factory_a7815657af560f22c6a37e24b45408d98}{ticket}}\ =\ \mbox{\hyperlink{class_b_l_l_1_1_ticket_factory_a281511e6beb655c81a2d1d2ca6be2d90}{CriarTicket}}(\mbox{\hyperlink{namespace_m_o_d_e_l_s_a4372778b4bc973caa684eb995f794f4a}{TipoTicket}}.Hardware,\ titulo,\ descricao,\ prioridade,}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00084}00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ colaboradorId,\ criadoPorId,\ criadoPorTecnico);}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00085}00085\ }
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ var\ detalhes\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_m_o_d_e_l_s_1_1_detalhes_hardware}{DetalhesHardware}}}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Equipamento\ =\ equipamento\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentException(\textcolor{stringliteral}{"{}Equipamento\ não\ pode\ estar\ vazio"{}}),}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Avaria\ =\ avaria\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentException(\textcolor{stringliteral}{"{}Avaria\ não\ pode\ estar\ vazia"{}}),}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Campos\ preenchidos\ durante\ atendimento}}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PecaSubstituida\ =\ \textcolor{keyword}{null},}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DescricaoReparacao\ =\ \textcolor{keyword}{null}}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00094}00094\ }
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\mbox{\hyperlink{class_b_l_l_1_1_ticket_factory_a7815657af560f22c6a37e24b45408d98}{ticket}},\ detalhes);}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00096}00096\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00097}00097\ }
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00110}\mbox{\hyperlink{class_b_l_l_1_1_ticket_factory_ac87da98273f22c66393de97f57845e24}{00110}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ (\mbox{\hyperlink{class_m_o_d_e_l_s_1_1_ticket}{Ticket}}\ \mbox{\hyperlink{class_b_l_l_1_1_ticket_factory_a7815657af560f22c6a37e24b45408d98}{ticket}},\ \mbox{\hyperlink{class_m_o_d_e_l_s_1_1_detalhes_software}{DetalhesSoftware}}\ detalhes)\ \mbox{\hyperlink{class_b_l_l_1_1_ticket_factory_ac87da98273f22c66393de97f57845e24}{CriarTicketSoftware}}(}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ titulo,}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ descricao,}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_m_o_d_e_l_s_a0abe9be3f332911e48c25f1aa1be6ade}{Prioridade}}\ prioridade,}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ colaboradorId,}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00115}00115\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ aplicacao,}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ necessidade,}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00117}00117\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ criadoPorId,}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00118}00118\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ criadoPorTecnico\ =\ \textcolor{keyword}{false})}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00119}00119\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00120}00120\ \ \ \ \ \ \ \ \ \ \ \ \ var\ \mbox{\hyperlink{class_b_l_l_1_1_ticket_factory_a7815657af560f22c6a37e24b45408d98}{ticket}}\ =\ \mbox{\hyperlink{class_b_l_l_1_1_ticket_factory_a281511e6beb655c81a2d1d2ca6be2d90}{CriarTicket}}(\mbox{\hyperlink{namespace_m_o_d_e_l_s_a4372778b4bc973caa684eb995f794f4a}{TipoTicket}}.Software,\ titulo,\ descricao,\ prioridade,}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00121}00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ colaboradorId,\ criadoPorId,\ criadoPorTecnico);}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00122}00122\ }
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00123}00123\ \ \ \ \ \ \ \ \ \ \ \ \ var\ detalhes\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_m_o_d_e_l_s_1_1_detalhes_software}{DetalhesSoftware}}}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Aplicacao\ =\ aplicacao\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentException(\textcolor{stringliteral}{"{}Aplicação\ não\ pode\ estar\ vazia"{}}),}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DescricaoNecessidade\ =\ necessidade\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentException(\textcolor{stringliteral}{"{}Necessidade\ não\ pode\ estar\ vazia"{}}),}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Campo\ preenchido\ durante\ atendimento}}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SolucaoAplicada\ =\ \textcolor{keyword}{null}}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00130}00130\ }
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\mbox{\hyperlink{class_b_l_l_1_1_ticket_factory_a7815657af560f22c6a37e24b45408d98}{ticket}},\ detalhes);}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00132}00132\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00133}00133\ }
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00137}\mbox{\hyperlink{class_b_l_l_1_1_ticket_factory_ae55dc2a0d6d147535f2300509d0d2906}{00137}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_m_o_d_e_l_s_1_1_ticket}{Ticket}}\ \mbox{\hyperlink{class_b_l_l_1_1_ticket_factory_ae55dc2a0d6d147535f2300509d0d2906}{CriarTicket}}(}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00138}00138\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_m_o_d_e_l_s_a4372778b4bc973caa684eb995f794f4a}{TipoTicket}}\ tipo,}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00139}00139\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ titulo,}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00140}00140\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ descricao,}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00141}00141\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_m_o_d_e_l_s_a0abe9be3f332911e48c25f1aa1be6ade}{Prioridade}}\ prioridade,}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00142}00142\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ colaboradorId)}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00143}00143\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00144}00144\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_b_l_l_1_1_ticket_factory_a281511e6beb655c81a2d1d2ca6be2d90}{CriarTicket}}(tipo,\ titulo,\ descricao,\ prioridade,\ colaboradorId,\ colaboradorId,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00145}00145\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00146}00146\ }
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00147}\mbox{\hyperlink{class_b_l_l_1_1_ticket_factory_a36f591eadd2d02c69630054ca513f8d4}{00147}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ (\mbox{\hyperlink{class_m_o_d_e_l_s_1_1_ticket}{Ticket}}\ \mbox{\hyperlink{class_b_l_l_1_1_ticket_factory_a7815657af560f22c6a37e24b45408d98}{ticket}},\ \mbox{\hyperlink{class_m_o_d_e_l_s_1_1_detalhes_hardware}{DetalhesHardware}}\ detalhes)\ \mbox{\hyperlink{class_b_l_l_1_1_ticket_factory_a36f591eadd2d02c69630054ca513f8d4}{CriarTicketHardware}}(}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00148}00148\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ titulo,}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00149}00149\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ descricao,}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00150}00150\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_m_o_d_e_l_s_a0abe9be3f332911e48c25f1aa1be6ade}{Prioridade}}\ prioridade,}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00151}00151\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ colaboradorId,}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00152}00152\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ equipamento,}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00153}00153\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ avaria)}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00154}00154\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00155}00155\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_b_l_l_1_1_ticket_factory_a8c0d53808a2efec102fc5e7fd1460011}{CriarTicketHardware}}(titulo,\ descricao,\ prioridade,\ colaboradorId,}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00156}00156\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ equipamento,\ avaria,\ colaboradorId,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00157}00157\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00158}00158\ }
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00159}\mbox{\hyperlink{class_b_l_l_1_1_ticket_factory_a474925ec0fa04c5be275f57e68655365}{00159}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ (\mbox{\hyperlink{class_m_o_d_e_l_s_1_1_ticket}{Ticket}}\ \mbox{\hyperlink{class_b_l_l_1_1_ticket_factory_a7815657af560f22c6a37e24b45408d98}{ticket}},\ \mbox{\hyperlink{class_m_o_d_e_l_s_1_1_detalhes_software}{DetalhesSoftware}}\ detalhes)\ \mbox{\hyperlink{class_b_l_l_1_1_ticket_factory_a474925ec0fa04c5be275f57e68655365}{CriarTicketSoftware}}(}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00160}00160\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ titulo,}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00161}00161\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ descricao,}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00162}00162\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_m_o_d_e_l_s_a0abe9be3f332911e48c25f1aa1be6ade}{Prioridade}}\ prioridade,}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00163}00163\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ colaboradorId,}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00164}00164\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ aplicacao,}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00165}00165\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ necessidade)}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00166}00166\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00167}00167\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_b_l_l_1_1_ticket_factory_ac87da98273f22c66393de97f57845e24}{CriarTicketSoftware}}(titulo,\ descricao,\ prioridade,\ colaboradorId,}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00168}00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ aplicacao,\ necessidade,\ colaboradorId,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00169}00169\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00170}00170\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_factory_8cs_source_l00171}00171\ \}}
+
+\end{DoxyCode}

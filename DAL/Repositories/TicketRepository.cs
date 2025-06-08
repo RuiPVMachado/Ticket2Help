@@ -105,6 +105,41 @@ namespace DAL.Repositories
             return cmd.ExecuteNonQuery() > 0;
         }
 
+        public bool Eliminar(int ticketId)
+        {
+            using var conn = new SqlConnection(DatabaseConfig.ConnectionString);
+            conn.Open();
+            using var transaction = conn.BeginTransaction();
+
+            try
+            {
+                // Eliminar primeiro os detalhes (referências)
+                const string deleteHwSql = "DELETE FROM DetalhesHardware WHERE TicketId = @TicketId";
+                using var cmdHw = new SqlCommand(deleteHwSql, conn, transaction);
+                cmdHw.Parameters.AddWithValue("@TicketId", ticketId);
+                cmdHw.ExecuteNonQuery();
+
+                const string deleteSwSql = "DELETE FROM DetalhesSoftware WHERE TicketId = @TicketId";
+                using var cmdSw = new SqlCommand(deleteSwSql, conn, transaction);
+                cmdSw.Parameters.AddWithValue("@TicketId", ticketId);
+                cmdSw.ExecuteNonQuery();
+
+                // Eliminar o ticket
+                const string deleteTicketSql = "DELETE FROM Tickets WHERE Id = @Id";
+                using var cmdTicket = new SqlCommand(deleteTicketSql, conn, transaction);
+                cmdTicket.Parameters.AddWithValue("@Id", ticketId);
+                int rowsAffected = cmdTicket.ExecuteNonQuery();
+
+                transaction.Commit();
+                return rowsAffected > 0;
+            }
+            catch
+            {
+                transaction.Rollback();
+                return false;
+            }
+        }
+
         // Método auxiliar para ler um Ticket do reader
         private Ticket LerTicket(SqlDataReader reader)
         {

@@ -1,0 +1,265 @@
+\doxysection{BLL.\+Interfaces.\+ITicket\+Service Interface Reference}
+\hypertarget{interface_b_l_l_1_1_interfaces_1_1_i_ticket_service}{}\label{interface_b_l_l_1_1_interfaces_1_1_i_ticket_service}\index{BLL.Interfaces.ITicketService@{BLL.Interfaces.ITicketService}}
+
+
+Define as operações de negócio relacionadas com tickets.  
+
+
+
+
+Inheritance diagram for BLL.\+Interfaces.\+ITicket\+Service\+:
+% FIG 0
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{interface_b_l_l_1_1_interfaces_1_1_i_ticket_service_a45287c84ca47bc743fd8ddbd9cf5d34c}{Criar\+Ticket\+Hardware}} (string titulo, string descricao, \mbox{\hyperlink{namespace_m_o_d_e_l_s_a0abe9be3f332911e48c25f1aa1be6ade}{Prioridade}} prioridade, int colaborador\+Id, string equipamento, string avaria, int criado\+Por\+Id, bool criado\+Por\+Tecnico=false)
+\begin{DoxyCompactList}\small\item\em Cria um novo ticket de hardware utilizando o factory pattern. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{interface_b_l_l_1_1_interfaces_1_1_i_ticket_service_af5ffad457c3bae20a939bc78a506b7ac}{Criar\+Ticket\+Software}} (string titulo, string descricao, \mbox{\hyperlink{namespace_m_o_d_e_l_s_a0abe9be3f332911e48c25f1aa1be6ade}{Prioridade}} prioridade, int colaborador\+Id, string aplicacao, string necessidade, int criado\+Por\+Id, bool criado\+Por\+Tecnico=false)
+\begin{DoxyCompactList}\small\item\em Cria um novo ticket de software utilizando o factory pattern. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{interface_b_l_l_1_1_interfaces_1_1_i_ticket_service_aeb1f6253a8071c665f509dd7b473f625}{Criar\+Ticket\+Hardware}} (string titulo, string descricao, \mbox{\hyperlink{namespace_m_o_d_e_l_s_a0abe9be3f332911e48c25f1aa1be6ade}{Prioridade}} prioridade, int colaborador\+Id, string equipamento, string avaria)
+\begin{DoxyCompactList}\small\item\em Métodos de compatibilidade para criação por colaboradores (mantém assinatura original) \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{interface_b_l_l_1_1_interfaces_1_1_i_ticket_service_a3e889f2e7b9320bb2981e5afc620d724}{Criar\+Ticket\+Software}} (string titulo, string descricao, \mbox{\hyperlink{namespace_m_o_d_e_l_s_a0abe9be3f332911e48c25f1aa1be6ade}{Prioridade}} prioridade, int colaborador\+Id, string aplicacao, string necessidade)
+\item 
+int \mbox{\hyperlink{interface_b_l_l_1_1_interfaces_1_1_i_ticket_service_a9bdc29465cec032838180a870d34cc5f}{Criar\+Ticket}} (\mbox{\hyperlink{class_m_o_d_e_l_s_1_1_ticket}{Ticket}} ticket, object detalhes)
+\begin{DoxyCompactList}\small\item\em Cria um novo ticket (método genérico mantido para compatibilidade). \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{interface_b_l_l_1_1_interfaces_1_1_i_ticket_service_a3844e39cb438ecb1aa3309cfb1de4e18}{Atualizar\+Estado}} (int ticket\+Id, \mbox{\hyperlink{namespace_m_o_d_e_l_s_ac6c57d118921219af7a865da77f4fd61}{Estado\+Ticket}} novo\+Estado, \mbox{\hyperlink{namespace_m_o_d_e_l_s_ad2812b97c4926c0be1844d9165eef801}{Sub\+Estado\+Atendimento}}? sub\+Estado, int tecnico\+Id, object? detalhes=null)
+\begin{DoxyCompactList}\small\item\em Altera o estado de um ticket e regista os detalhes finais. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_m_o_d_e_l_s_1_1_ticket}{Ticket}} \mbox{\hyperlink{interface_b_l_l_1_1_interfaces_1_1_i_ticket_service_a4c572c6c900651a7222a52df1428f91f}{Obter\+Por\+Id}} (int id)
+\begin{DoxyCompactList}\small\item\em Obtém um ticket pelo seu ID. \end{DoxyCompactList}\item 
+List$<$ \mbox{\hyperlink{class_m_o_d_e_l_s_1_1_ticket}{Ticket}} $>$ \mbox{\hyperlink{interface_b_l_l_1_1_interfaces_1_1_i_ticket_service_aa11270512f9bd9e0de381c8a8595e42d}{Obter\+Todos}} ()
+\begin{DoxyCompactList}\small\item\em Lista todos os tickets. \end{DoxyCompactList}\item 
+List$<$ \mbox{\hyperlink{class_m_o_d_e_l_s_1_1_ticket}{Ticket}} $>$ \mbox{\hyperlink{interface_b_l_l_1_1_interfaces_1_1_i_ticket_service_a9788c0b9dccfadee3376d32690b7bca0}{Obter\+Por\+Estado}} (\mbox{\hyperlink{namespace_m_o_d_e_l_s_ac6c57d118921219af7a865da77f4fd61}{Estado\+Ticket}} estado)
+\begin{DoxyCompactList}\small\item\em Lista todos os tickets com determinado estado. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{interface_b_l_l_1_1_interfaces_1_1_i_ticket_service_a091545387912be2da04cde81e0e8de6a}{Eliminar\+Ticket}} (int ticket\+Id)
+\begin{DoxyCompactList}\small\item\em Elimina um ticket e todos os seus detalhes associados. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Define as operações de negócio relacionadas com tickets. 
+
+Definition at line \mbox{\hyperlink{_i_ticket_service_8cs_source_l00015}{15}} of file \mbox{\hyperlink{_i_ticket_service_8cs_source}{ITicket\+Service.\+cs}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{interface_b_l_l_1_1_interfaces_1_1_i_ticket_service_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{interface_b_l_l_1_1_interfaces_1_1_i_ticket_service_a3844e39cb438ecb1aa3309cfb1de4e18}\index{BLL.Interfaces.ITicketService@{BLL.Interfaces.ITicketService}!AtualizarEstado@{AtualizarEstado}}
+\index{AtualizarEstado@{AtualizarEstado}!BLL.Interfaces.ITicketService@{BLL.Interfaces.ITicketService}}
+\doxysubsubsection{\texorpdfstring{AtualizarEstado()}{AtualizarEstado()}}
+{\footnotesize\ttfamily \label{interface_b_l_l_1_1_interfaces_1_1_i_ticket_service_a3844e39cb438ecb1aa3309cfb1de4e18} 
+bool BLL.\+Interfaces.\+ITicket\+Service.\+Atualizar\+Estado (\begin{DoxyParamCaption}\item[{int}]{ticket\+Id}{, }\item[{\mbox{\hyperlink{namespace_m_o_d_e_l_s_ac6c57d118921219af7a865da77f4fd61}{Estado\+Ticket}}}]{novo\+Estado}{, }\item[{\mbox{\hyperlink{namespace_m_o_d_e_l_s_ad2812b97c4926c0be1844d9165eef801}{Sub\+Estado\+Atendimento}}?}]{sub\+Estado}{, }\item[{int}]{tecnico\+Id}{, }\item[{object?}]{detalhes}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+
+
+Altera o estado de um ticket e regista os detalhes finais. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ticket\+Id} & ID do ticket.\\
+\hline
+{\em novo\+Estado} & Novo estado (Em\+Atendimento ou Atendido).\\
+\hline
+{\em sub\+Estado} & Subestado (Resolvido/\+Nao\+Resolvido).\\
+\hline
+{\em tecnico\+Id} & Id do técnico que atende.\\
+\hline
+{\em detalhes} & Detalhes HW/\+SW caso o ticket seja encerrado.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True se for atualizado com sucesso.
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{class_b_l_l_1_1_services_1_1_ticket_service_aeb67a33c58115a5535ff897454d07cdc}{BLL.\+Services.\+Ticket\+Service}}.
+
+\Hypertarget{interface_b_l_l_1_1_interfaces_1_1_i_ticket_service_a9bdc29465cec032838180a870d34cc5f}\index{BLL.Interfaces.ITicketService@{BLL.Interfaces.ITicketService}!CriarTicket@{CriarTicket}}
+\index{CriarTicket@{CriarTicket}!BLL.Interfaces.ITicketService@{BLL.Interfaces.ITicketService}}
+\doxysubsubsection{\texorpdfstring{CriarTicket()}{CriarTicket()}}
+{\footnotesize\ttfamily \label{interface_b_l_l_1_1_interfaces_1_1_i_ticket_service_a9bdc29465cec032838180a870d34cc5f} 
+int BLL.\+Interfaces.\+ITicket\+Service.\+Criar\+Ticket (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_m_o_d_e_l_s_1_1_ticket}{Ticket}}}]{ticket}{, }\item[{object}]{detalhes}{}\end{DoxyParamCaption})}
+
+
+
+Cria um novo ticket (método genérico mantido para compatibilidade). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ticket} & Objeto base do ticket.\\
+\hline
+{\em detalhes} & Detalhes específicos (hardware/software).\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Id do ticket criado.
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{class_b_l_l_1_1_services_1_1_ticket_service_ab8bfb9786e22d67f3252aa8046989d7f}{BLL.\+Services.\+Ticket\+Service}}.
+
+\Hypertarget{interface_b_l_l_1_1_interfaces_1_1_i_ticket_service_aeb1f6253a8071c665f509dd7b473f625}\index{BLL.Interfaces.ITicketService@{BLL.Interfaces.ITicketService}!CriarTicketHardware@{CriarTicketHardware}}
+\index{CriarTicketHardware@{CriarTicketHardware}!BLL.Interfaces.ITicketService@{BLL.Interfaces.ITicketService}}
+\doxysubsubsection{\texorpdfstring{CriarTicketHardware()}{CriarTicketHardware()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{interface_b_l_l_1_1_interfaces_1_1_i_ticket_service_aeb1f6253a8071c665f509dd7b473f625} 
+int BLL.\+Interfaces.\+ITicket\+Service.\+Criar\+Ticket\+Hardware (\begin{DoxyParamCaption}\item[{string}]{titulo}{, }\item[{string}]{descricao}{, }\item[{\mbox{\hyperlink{namespace_m_o_d_e_l_s_a0abe9be3f332911e48c25f1aa1be6ade}{Prioridade}}}]{prioridade}{, }\item[{int}]{colaborador\+Id}{, }\item[{string}]{equipamento}{, }\item[{string}]{avaria}{}\end{DoxyParamCaption})}
+
+
+
+Métodos de compatibilidade para criação por colaboradores (mantém assinatura original) 
+
+
+
+Implemented in \mbox{\hyperlink{class_b_l_l_1_1_services_1_1_ticket_service_af3f09276a112df2bcb741d4dcf5f946a}{BLL.\+Services.\+Ticket\+Service}}.
+
+\Hypertarget{interface_b_l_l_1_1_interfaces_1_1_i_ticket_service_a45287c84ca47bc743fd8ddbd9cf5d34c}\index{BLL.Interfaces.ITicketService@{BLL.Interfaces.ITicketService}!CriarTicketHardware@{CriarTicketHardware}}
+\index{CriarTicketHardware@{CriarTicketHardware}!BLL.Interfaces.ITicketService@{BLL.Interfaces.ITicketService}}
+\doxysubsubsection{\texorpdfstring{CriarTicketHardware()}{CriarTicketHardware()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{interface_b_l_l_1_1_interfaces_1_1_i_ticket_service_a45287c84ca47bc743fd8ddbd9cf5d34c} 
+int BLL.\+Interfaces.\+ITicket\+Service.\+Criar\+Ticket\+Hardware (\begin{DoxyParamCaption}\item[{string}]{titulo}{, }\item[{string}]{descricao}{, }\item[{\mbox{\hyperlink{namespace_m_o_d_e_l_s_a0abe9be3f332911e48c25f1aa1be6ade}{Prioridade}}}]{prioridade}{, }\item[{int}]{colaborador\+Id}{, }\item[{string}]{equipamento}{, }\item[{string}]{avaria}{, }\item[{int}]{criado\+Por\+Id}{, }\item[{bool}]{criado\+Por\+Tecnico}{ = {\ttfamily false}}\end{DoxyParamCaption})}
+
+
+
+Cria um novo ticket de hardware utilizando o factory pattern. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em titulo} & Título do ticket\\
+\hline
+{\em descricao} & Descrição geral do problema\\
+\hline
+{\em prioridade} & \doxylink{namespace_m_o_d_e_l_s_a0abe9be3f332911e48c25f1aa1be6ade}{Prioridade} do ticket\\
+\hline
+{\em colaborador\+Id} & ID do colaborador que tem o problema\\
+\hline
+{\em equipamento} & Equipamento com problema\\
+\hline
+{\em avaria} & Descrição da avaria\\
+\hline
+{\em criado\+Por\+Id} & ID de quem está a criar o ticket\\
+\hline
+{\em criado\+Por\+Tecnico} & Se foi criado por técnico\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+ID do ticket criado
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{class_b_l_l_1_1_services_1_1_ticket_service_a393d74c7a512da854754dcd89f3dae0b}{BLL.\+Services.\+Ticket\+Service}}.
+
+\Hypertarget{interface_b_l_l_1_1_interfaces_1_1_i_ticket_service_a3e889f2e7b9320bb2981e5afc620d724}\index{BLL.Interfaces.ITicketService@{BLL.Interfaces.ITicketService}!CriarTicketSoftware@{CriarTicketSoftware}}
+\index{CriarTicketSoftware@{CriarTicketSoftware}!BLL.Interfaces.ITicketService@{BLL.Interfaces.ITicketService}}
+\doxysubsubsection{\texorpdfstring{CriarTicketSoftware()}{CriarTicketSoftware()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{interface_b_l_l_1_1_interfaces_1_1_i_ticket_service_a3e889f2e7b9320bb2981e5afc620d724} 
+int BLL.\+Interfaces.\+ITicket\+Service.\+Criar\+Ticket\+Software (\begin{DoxyParamCaption}\item[{string}]{titulo}{, }\item[{string}]{descricao}{, }\item[{\mbox{\hyperlink{namespace_m_o_d_e_l_s_a0abe9be3f332911e48c25f1aa1be6ade}{Prioridade}}}]{prioridade}{, }\item[{int}]{colaborador\+Id}{, }\item[{string}]{aplicacao}{, }\item[{string}]{necessidade}{}\end{DoxyParamCaption})}
+
+
+
+Implemented in \mbox{\hyperlink{class_b_l_l_1_1_services_1_1_ticket_service_ac3707913716f8c0193ffe20c8ba35646}{BLL.\+Services.\+Ticket\+Service}}.
+
+\Hypertarget{interface_b_l_l_1_1_interfaces_1_1_i_ticket_service_af5ffad457c3bae20a939bc78a506b7ac}\index{BLL.Interfaces.ITicketService@{BLL.Interfaces.ITicketService}!CriarTicketSoftware@{CriarTicketSoftware}}
+\index{CriarTicketSoftware@{CriarTicketSoftware}!BLL.Interfaces.ITicketService@{BLL.Interfaces.ITicketService}}
+\doxysubsubsection{\texorpdfstring{CriarTicketSoftware()}{CriarTicketSoftware()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{interface_b_l_l_1_1_interfaces_1_1_i_ticket_service_af5ffad457c3bae20a939bc78a506b7ac} 
+int BLL.\+Interfaces.\+ITicket\+Service.\+Criar\+Ticket\+Software (\begin{DoxyParamCaption}\item[{string}]{titulo}{, }\item[{string}]{descricao}{, }\item[{\mbox{\hyperlink{namespace_m_o_d_e_l_s_a0abe9be3f332911e48c25f1aa1be6ade}{Prioridade}}}]{prioridade}{, }\item[{int}]{colaborador\+Id}{, }\item[{string}]{aplicacao}{, }\item[{string}]{necessidade}{, }\item[{int}]{criado\+Por\+Id}{, }\item[{bool}]{criado\+Por\+Tecnico}{ = {\ttfamily false}}\end{DoxyParamCaption})}
+
+
+
+Cria um novo ticket de software utilizando o factory pattern. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em titulo} & Título do ticket\\
+\hline
+{\em descricao} & Descrição geral da necessidade\\
+\hline
+{\em prioridade} & \doxylink{namespace_m_o_d_e_l_s_a0abe9be3f332911e48c25f1aa1be6ade}{Prioridade} do ticket\\
+\hline
+{\em colaborador\+Id} & ID do colaborador que tem a necessidade\\
+\hline
+{\em aplicacao} & Software/aplicação em questão\\
+\hline
+{\em necessidade} & Descrição da necessidade\\
+\hline
+{\em criado\+Por\+Id} & ID de quem está a criar o ticket\\
+\hline
+{\em criado\+Por\+Tecnico} & Se foi criado por técnico\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+ID do ticket criado
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{class_b_l_l_1_1_services_1_1_ticket_service_a3e5553dd4011f2e4200dd5befd322cde}{BLL.\+Services.\+Ticket\+Service}}.
+
+\Hypertarget{interface_b_l_l_1_1_interfaces_1_1_i_ticket_service_a091545387912be2da04cde81e0e8de6a}\index{BLL.Interfaces.ITicketService@{BLL.Interfaces.ITicketService}!EliminarTicket@{EliminarTicket}}
+\index{EliminarTicket@{EliminarTicket}!BLL.Interfaces.ITicketService@{BLL.Interfaces.ITicketService}}
+\doxysubsubsection{\texorpdfstring{EliminarTicket()}{EliminarTicket()}}
+{\footnotesize\ttfamily \label{interface_b_l_l_1_1_interfaces_1_1_i_ticket_service_a091545387912be2da04cde81e0e8de6a} 
+bool BLL.\+Interfaces.\+ITicket\+Service.\+Eliminar\+Ticket (\begin{DoxyParamCaption}\item[{int}]{ticket\+Id}{}\end{DoxyParamCaption})}
+
+
+
+Elimina um ticket e todos os seus detalhes associados. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ticket\+Id} & ID do ticket a eliminar.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True se foi eliminado com sucesso.
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{class_b_l_l_1_1_services_1_1_ticket_service_aecf0de9f1ab1598d65d95f6ab009c894}{BLL.\+Services.\+Ticket\+Service}}.
+
+\Hypertarget{interface_b_l_l_1_1_interfaces_1_1_i_ticket_service_a9788c0b9dccfadee3376d32690b7bca0}\index{BLL.Interfaces.ITicketService@{BLL.Interfaces.ITicketService}!ObterPorEstado@{ObterPorEstado}}
+\index{ObterPorEstado@{ObterPorEstado}!BLL.Interfaces.ITicketService@{BLL.Interfaces.ITicketService}}
+\doxysubsubsection{\texorpdfstring{ObterPorEstado()}{ObterPorEstado()}}
+{\footnotesize\ttfamily \label{interface_b_l_l_1_1_interfaces_1_1_i_ticket_service_a9788c0b9dccfadee3376d32690b7bca0} 
+List$<$ \mbox{\hyperlink{class_m_o_d_e_l_s_1_1_ticket}{Ticket}} $>$ BLL.\+Interfaces.\+ITicket\+Service.\+Obter\+Por\+Estado (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_m_o_d_e_l_s_ac6c57d118921219af7a865da77f4fd61}{Estado\+Ticket}}}]{estado}{}\end{DoxyParamCaption})}
+
+
+
+Lista todos os tickets com determinado estado. 
+
+
+
+Implemented in \mbox{\hyperlink{class_b_l_l_1_1_services_1_1_ticket_service_aee71332a9bcd126a4e1a2aeeeeb22f3c}{BLL.\+Services.\+Ticket\+Service}}.
+
+\Hypertarget{interface_b_l_l_1_1_interfaces_1_1_i_ticket_service_a4c572c6c900651a7222a52df1428f91f}\index{BLL.Interfaces.ITicketService@{BLL.Interfaces.ITicketService}!ObterPorId@{ObterPorId}}
+\index{ObterPorId@{ObterPorId}!BLL.Interfaces.ITicketService@{BLL.Interfaces.ITicketService}}
+\doxysubsubsection{\texorpdfstring{ObterPorId()}{ObterPorId()}}
+{\footnotesize\ttfamily \label{interface_b_l_l_1_1_interfaces_1_1_i_ticket_service_a4c572c6c900651a7222a52df1428f91f} 
+\mbox{\hyperlink{class_m_o_d_e_l_s_1_1_ticket}{Ticket}} BLL.\+Interfaces.\+ITicket\+Service.\+Obter\+Por\+Id (\begin{DoxyParamCaption}\item[{int}]{id}{}\end{DoxyParamCaption})}
+
+
+
+Obtém um ticket pelo seu ID. 
+
+
+
+Implemented in \mbox{\hyperlink{class_b_l_l_1_1_services_1_1_ticket_service_adbcf3f705dda7b5c6e28bd685cad55bc}{BLL.\+Services.\+Ticket\+Service}}.
+
+\Hypertarget{interface_b_l_l_1_1_interfaces_1_1_i_ticket_service_aa11270512f9bd9e0de381c8a8595e42d}\index{BLL.Interfaces.ITicketService@{BLL.Interfaces.ITicketService}!ObterTodos@{ObterTodos}}
+\index{ObterTodos@{ObterTodos}!BLL.Interfaces.ITicketService@{BLL.Interfaces.ITicketService}}
+\doxysubsubsection{\texorpdfstring{ObterTodos()}{ObterTodos()}}
+{\footnotesize\ttfamily \label{interface_b_l_l_1_1_interfaces_1_1_i_ticket_service_aa11270512f9bd9e0de381c8a8595e42d} 
+List$<$ \mbox{\hyperlink{class_m_o_d_e_l_s_1_1_ticket}{Ticket}} $>$ BLL.\+Interfaces.\+ITicket\+Service.\+Obter\+Todos (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Lista todos os tickets. 
+
+
+
+Implemented in \mbox{\hyperlink{class_b_l_l_1_1_services_1_1_ticket_service_a1e984d0391c771c9ee06f7229a36b7a1}{BLL.\+Services.\+Ticket\+Service}}.
+
+
+
+The documentation for this interface was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+BLL/\+Interfaces/\mbox{\hyperlink{_i_ticket_service_8cs}{ITicket\+Service.\+cs}}\end{DoxyCompactItemize}

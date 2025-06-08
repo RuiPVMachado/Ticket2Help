@@ -175,9 +175,10 @@ namespace Ticket2Help.Views
                     // "Todas" não aplica filtro
             }
 
-            // Ordenar por prioridade e data
-            tickets = tickets.OrderByDescending(t => t.Prioridade)
-                            .ThenBy(t => t.DataCriacao);
+            // Ordenar: por atender primeiro, depois por prioridade crescente e data
+            tickets = tickets.OrderBy(t => t.Estado) 
+                             .ThenBy(t => t.Prioridade)
+                             .ThenBy(t => t.DataCriacao);
 
             TicketsFiltrados = tickets.ToList();
             dgTickets.ItemsSource = TicketsFiltrados;
@@ -221,23 +222,25 @@ namespace Ticket2Help.Views
             {
                 EstadoTicket novoEstado;
                 string acao;
+                string acaoSucesso;
 
                 if (TicketSelecionado.Estado == EstadoTicket.PorAtender)
                 {
                     novoEstado = EstadoTicket.EmAtendimento;
                     acao = "assumir";
+                    acaoSucesso = "assumido";
                 }
                 else if (TicketSelecionado.Estado == EstadoTicket.EmAtendimento &&
                          TicketSelecionado.IdTecnico == _utilizadorAtual.Id)
                 {
-                    // Finalizar ticket - aqui você pode abrir uma janela para inserir detalhes
+                    // Finalizar ticket (abre janela com detalhes)
                     var resultado = MessageBox.Show(
                         "Deseja finalizar este ticket como resolvido?",
                         "Finalizar Ticket",
-                        MessageBoxButton.YesNoCancel,
+                        MessageBoxButton.YesNo,
                         MessageBoxImage.Question);
 
-                    if (resultado == MessageBoxResult.Cancel) return;
+                    if (resultado == MessageBoxResult.No) return;
 
                     novoEstado = EstadoTicket.Atendido;
                     var subEstado = resultado == MessageBoxResult.Yes ?
@@ -286,7 +289,7 @@ namespace Ticket2Help.Views
 
                     if (sucesso)
                     {
-                        MessageBox.Show($"Ticket {acao} com sucesso!", "Sucesso",
+                        MessageBox.Show($"Ticket {acaoSucesso} com sucesso!", "Sucesso",
                             MessageBoxButton.OK, MessageBoxImage.Information);
                         CarregarTickets();
                     }
@@ -310,8 +313,6 @@ namespace Ticket2Help.Views
 
             try
             {
-                // Por enquanto, mostrar detalhes numa MessageBox
-                // TODO: Criar uma janela de detalhes mais elaborada
                 string detalhes = $"ID: {TicketSelecionado.Id}\n" +
                                  $"Título: {TicketSelecionado.Titulo}\n" +
                                  $"Descrição: {TicketSelecionado.Descricao}\n" +
@@ -345,11 +346,13 @@ namespace Ticket2Help.Views
             {
                 btnAtender.IsEnabled = false;
                 btnDetalhes.IsEnabled = false;
+                btnEliminar.IsEnabled = false;
                 btnAtender.Content = "✋ Atender Ticket";
                 return;
             }
 
             btnDetalhes.IsEnabled = true;
+            btnEliminar.IsEnabled = TicketSelecionado.Estado != EstadoTicket.Atendido;
 
             // Lógica para botão de atender
             switch (TicketSelecionado.Estado)
@@ -385,7 +388,41 @@ namespace Ticket2Help.Views
             }
         }
         #endregion
+        private void BtnEliminar_Click(object sender, RoutedEventArgs e)
+        {
+            if (TicketSelecionado == null) return;
 
+            try
+            {
+                var confirmacao = MessageBox.Show(
+                    "Tem certeza que deseja eliminar este ticket?\nEsta ação não pode ser desfeita.",
+                    "Confirmar Eliminação",
+                    MessageBoxButton.YesNo,
+                    MessageBoxImage.Warning);
+
+                if (confirmacao == MessageBoxResult.Yes)
+                {
+                    bool sucesso = _ticketService.EliminarTicket(TicketSelecionado.Id);
+
+                    if (sucesso)
+                    {
+                        MessageBox.Show("Ticket eliminado com sucesso!", "Sucesso",
+                            MessageBoxButton.OK, MessageBoxImage.Information);
+                        CarregarTickets();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Não foi possível eliminar o ticket.", "Erro",
+                            MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao eliminar ticket: {ex.Message}", "Erro",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
         #region INotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
 

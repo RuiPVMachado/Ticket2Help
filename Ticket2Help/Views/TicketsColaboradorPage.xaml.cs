@@ -227,8 +227,72 @@ namespace Ticket2Help.Views
         {
             bool temSelecao = dgTickets.SelectedItem != null;
             btnDetalhes.IsEnabled = temSelecao;
+            btnEliminar.IsEnabled = temSelecao &&
+                ((Ticket)dgTickets.SelectedItem)?.Estado != EstadoTicket.Atendido;
         }
+        /// <summary>
+        /// Eliminar ticket selecionado
+        /// </summary>
+        private void BtnEliminar_Click(object sender, RoutedEventArgs e)
+        {
+            var ticketSelecionado = dgTickets.SelectedItem as Ticket;
+            if (ticketSelecionado == null) return;
 
+            try
+            {
+                // Confirmação antes de eliminar
+                var confirmacao = MessageBox.Show(
+                    "Tem certeza que deseja eliminar este ticket?\nEsta ação não pode ser desfeita.",
+                    "Confirmar Eliminação",
+                    MessageBoxButton.YesNo,
+                    MessageBoxImage.Warning);
+
+                if (confirmacao == MessageBoxResult.Yes)
+                {
+                    // Verificar se o ticket pode ser eliminado
+                    if (ticketSelecionado.Estado == EstadoTicket.Atendido)
+                    {
+                        MessageBox.Show(
+                            "Não é possível eliminar tickets já atendidos.",
+                            "Operação não permitida",
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Warning);
+                        return;
+                    }
+
+                    bool sucesso = _ticketService.EliminarTicket(ticketSelecionado.Id);
+
+                    if (sucesso)
+                    {
+                        MessageBox.Show(
+                            "Ticket eliminado com sucesso!",
+                            "Sucesso",
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Information);
+
+                        // Recarregar a lista de tickets e atualizar estatísticas
+                        CarregarTickets();
+                        AtualizarEstatisticas();
+                    }
+                    else
+                    {
+                        MessageBox.Show(
+                            "Não foi possível eliminar o ticket.",
+                            "Erro",
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Error);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    $"Erro ao eliminar ticket: {ex.Message}",
+                    "Erro",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
+            }
+        }
         #endregion
     }
 }

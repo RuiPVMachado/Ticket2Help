@@ -1,0 +1,42 @@
+\doxysection{Utilizador\+Service.\+cs}
+\hypertarget{_utilizador_service_8cs_source}{}\label{_utilizador_service_8cs_source}\index{BLL/Services/UtilizadorService.cs@{BLL/Services/UtilizadorService.cs}}
+\mbox{\hyperlink{_utilizador_service_8cs}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_utilizador_service_8cs_source_l00001}00001\ \textcolor{keyword}{using\ }System;}
+\DoxyCodeLine{\Hypertarget{_utilizador_service_8cs_source_l00002}00002\ \textcolor{keyword}{using\ }System.Collections.Generic;}
+\DoxyCodeLine{\Hypertarget{_utilizador_service_8cs_source_l00003}00003\ \textcolor{keyword}{using\ }System.Linq;}
+\DoxyCodeLine{\Hypertarget{_utilizador_service_8cs_source_l00004}00004\ \textcolor{keyword}{using\ }System.Text;}
+\DoxyCodeLine{\Hypertarget{_utilizador_service_8cs_source_l00005}00005\ \textcolor{keyword}{using\ }System.Threading.Tasks;}
+\DoxyCodeLine{\Hypertarget{_utilizador_service_8cs_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{_utilizador_service_8cs_source_l00007}00007\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_b_l_l_1_1_interfaces}{BLL.Interfaces}};}
+\DoxyCodeLine{\Hypertarget{_utilizador_service_8cs_source_l00008}00008\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_d_a_l_1_1_interfaces}{DAL.Interfaces}};}
+\DoxyCodeLine{\Hypertarget{_utilizador_service_8cs_source_l00009}00009\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_m_o_d_e_l_s}{MODELS}};}
+\DoxyCodeLine{\Hypertarget{_utilizador_service_8cs_source_l00010}00010\ \textcolor{keyword}{using\ }System.Collections.Generic;}
+\DoxyCodeLine{\Hypertarget{_utilizador_service_8cs_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{_utilizador_service_8cs_source_l00012}00012\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_b_l_l_1_1_services}{BLL.Services}}}
+\DoxyCodeLine{\Hypertarget{_utilizador_service_8cs_source_l00013}00013\ \{}
+\DoxyCodeLine{\Hypertarget{_utilizador_service_8cs_source_l00017}\mbox{\hyperlink{class_b_l_l_1_1_services_1_1_utilizador_service}{00017}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_b_l_l_1_1_services_1_1_utilizador_service_aac5f0e4fb874c9f0ced32b26d6075df8}{UtilizadorService}}\ :\ \mbox{\hyperlink{interface_b_l_l_1_1_interfaces_1_1_i_utilizador_service}{IUtilizadorService}}}
+\DoxyCodeLine{\Hypertarget{_utilizador_service_8cs_source_l00018}00018\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_utilizador_service_8cs_source_l00019}\mbox{\hyperlink{class_b_l_l_1_1_services_1_1_utilizador_service_ac18825074efc3dce29c8fb45a59cb0dd}{00019}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ readonly\ \mbox{\hyperlink{interface_d_a_l_1_1_interfaces_1_1_i_utilizador_repository}{IUtilizadorRepository}}\ \mbox{\hyperlink{class_b_l_l_1_1_services_1_1_utilizador_service_ac18825074efc3dce29c8fb45a59cb0dd}{\_repo}};}
+\DoxyCodeLine{\Hypertarget{_utilizador_service_8cs_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{_utilizador_service_8cs_source_l00025}\mbox{\hyperlink{class_b_l_l_1_1_services_1_1_utilizador_service_aac5f0e4fb874c9f0ced32b26d6075df8}{00025}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_b_l_l_1_1_services_1_1_utilizador_service_aac5f0e4fb874c9f0ced32b26d6075df8}{UtilizadorService}}(\mbox{\hyperlink{interface_d_a_l_1_1_interfaces_1_1_i_utilizador_repository}{IUtilizadorRepository}}\ repo)}
+\DoxyCodeLine{\Hypertarget{_utilizador_service_8cs_source_l00026}00026\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_utilizador_service_8cs_source_l00027}00027\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_b_l_l_1_1_services_1_1_utilizador_service_ac18825074efc3dce29c8fb45a59cb0dd}{\_repo}}\ =\ repo;}
+\DoxyCodeLine{\Hypertarget{_utilizador_service_8cs_source_l00028}00028\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_utilizador_service_8cs_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{_utilizador_service_8cs_source_l00031}\mbox{\hyperlink{class_b_l_l_1_1_services_1_1_utilizador_service_aa7267dd04986ebaae8645929ee1bcd33}{00031}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_m_o_d_e_l_s_1_1_utilizador}{Utilizador}}\ \mbox{\hyperlink{class_b_l_l_1_1_services_1_1_utilizador_service_aa7267dd04986ebaae8645929ee1bcd33}{ValidarLogin}}(\textcolor{keywordtype}{string}\ username,\ \textcolor{keywordtype}{string}\ password)}
+\DoxyCodeLine{\Hypertarget{_utilizador_service_8cs_source_l00032}00032\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_utilizador_service_8cs_source_l00033}00033\ \ \ \ \ \ \ \ \ \ \ \ \ var\ user\ =\ \mbox{\hyperlink{class_b_l_l_1_1_services_1_1_utilizador_service_ac18825074efc3dce29c8fb45a59cb0dd}{\_repo}}.ObterPorUsername(username);}
+\DoxyCodeLine{\Hypertarget{_utilizador_service_8cs_source_l00034}00034\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (user\ !=\ \textcolor{keyword}{null}\ \&\&\ user.PasswordHash\ ==\ password)}
+\DoxyCodeLine{\Hypertarget{_utilizador_service_8cs_source_l00035}00035\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ user;}
+\DoxyCodeLine{\Hypertarget{_utilizador_service_8cs_source_l00036}00036\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_utilizador_service_8cs_source_l00037}00037\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_utilizador_service_8cs_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{_utilizador_service_8cs_source_l00040}\mbox{\hyperlink{class_b_l_l_1_1_services_1_1_utilizador_service_a3c7a2739a8edfdae1b1c19eb8c7602e2}{00040}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ List<Utilizador>\ \mbox{\hyperlink{class_b_l_l_1_1_services_1_1_utilizador_service_a3c7a2739a8edfdae1b1c19eb8c7602e2}{ObterTodos}}()}
+\DoxyCodeLine{\Hypertarget{_utilizador_service_8cs_source_l00041}00041\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_utilizador_service_8cs_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_b_l_l_1_1_services_1_1_utilizador_service_ac18825074efc3dce29c8fb45a59cb0dd}{\_repo}}.ObterTodos();}
+\DoxyCodeLine{\Hypertarget{_utilizador_service_8cs_source_l00043}00043\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_utilizador_service_8cs_source_l00044}00044\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_utilizador_service_8cs_source_l00045}00045\ \}}
+
+\end{DoxyCode}

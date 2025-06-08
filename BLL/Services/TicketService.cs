@@ -14,6 +14,7 @@ namespace BLL.Services
 {
     /// <summary>
     /// Serviço responsável pela lógica de negócio associada aos tickets.
+    /// Utiliza o TicketFactory para criação consistente de tickets.
     /// </summary>
     public class TicketService : ITicketService
     {
@@ -35,6 +36,84 @@ namespace BLL.Services
         }
 
         /// <inheritdoc />
+        public int CriarTicketHardware(string titulo, string descricao, Prioridade prioridade,
+            int colaboradorId, string equipamento, string avaria, int criadoPorId, bool criadoPorTecnico = false)
+        {
+            try
+            {
+                // Utiliza o factory para criar o ticket e detalhes
+                var (ticket, detalhes) = TicketFactory.CriarTicketHardware(
+                    titulo, descricao, prioridade, colaboradorId, equipamento, avaria, criadoPorId, criadoPorTecnico);
+
+                // Persiste o ticket
+                int ticketId = _ticketRepo.Criar(ticket);
+
+                // Define o ID do ticket nos detalhes e persiste
+                detalhes.TicketId = ticketId;
+                _hwRepo.Criar(detalhes);
+
+                return ticketId;
+            }
+            catch (ArgumentException)
+            {
+                // Re-lança exceções de validação do factory
+                throw;
+            }
+            catch (Exception ex)
+            {
+                throw new InvalidOperationException("Erro ao criar ticket de hardware", ex);
+            }
+        }
+
+        /// <inheritdoc />
+        public int CriarTicketSoftware(string titulo, string descricao, Prioridade prioridade,
+            int colaboradorId, string aplicacao, string necessidade, int criadoPorId, bool criadoPorTecnico = false)
+        {
+            try
+            {
+                // Utiliza o factory para criar o ticket e detalhes
+                var (ticket, detalhes) = TicketFactory.CriarTicketSoftware(
+                    titulo, descricao, prioridade, colaboradorId, aplicacao, necessidade, criadoPorId, criadoPorTecnico);
+
+                // Persiste o ticket
+                int ticketId = _ticketRepo.Criar(ticket);
+
+                // Define o ID do ticket nos detalhes e persiste
+                detalhes.TicketId = ticketId;
+                _swRepo.Criar(detalhes);
+
+                return ticketId;
+            }
+            catch (ArgumentException)
+            {
+                // Re-lança exceções de validação do factory
+                throw;
+            }
+            catch (Exception ex)
+            {
+                throw new InvalidOperationException("Erro ao criar ticket de software", ex);
+            }
+        }
+
+        /// <summary>
+        /// Métodos de compatibilidade - mantêm a assinatura original para não quebrar código existente
+        /// </summary>
+        public int CriarTicketHardware(string titulo, string descricao, Prioridade prioridade,
+            int colaboradorId, string equipamento, string avaria)
+        {
+            return CriarTicketHardware(titulo, descricao, prioridade, colaboradorId,
+                                     equipamento, avaria, colaboradorId, false);
+        }
+
+        public int CriarTicketSoftware(string titulo, string descricao, Prioridade prioridade,
+            int colaboradorId, string aplicacao, string necessidade)
+        {
+            return CriarTicketSoftware(titulo, descricao, prioridade, colaboradorId,
+                                     aplicacao, necessidade, colaboradorId, false);
+        }
+
+        /// <inheritdoc />
+        [Obsolete("Use CriarTicketHardware ou CriarTicketSoftware com o factory pattern")]
         public int CriarTicket(Ticket ticket, object detalhes)
         {
             int ticketId = _ticketRepo.Criar(ticket);
@@ -56,28 +135,39 @@ namespace BLL.Services
         /// <inheritdoc />
         public bool AtualizarEstado(int ticketId, EstadoTicket novoEstado, SubEstadoAtendimento? subEstado, int tecnicoId, object? detalhes = null)
         {
-            bool atualizado = _ticketRepo.AtualizarEstado(ticketId, novoEstado, subEstado, tecnicoId);
-
-            if (!atualizado || novoEstado != EstadoTicket.Atendido)
-                return atualizado;
-
-            if (detalhes is DetalhesHardware hw)
+            try
             {
-                hw.TicketId = ticketId;
-                return _hwRepo.Atualizar(hw);
-            }
-            else if (detalhes is DetalhesSoftware sw)
-            {
-                sw.TicketId = ticketId;
-                return _swRepo.Atualizar(sw);
-            }
+                bool atualizado = _ticketRepo.AtualizarEstado(ticketId, novoEstado, subEstado, tecnicoId);
 
-            return true;
+                if (!atualizado || novoEstado != EstadoTicket.Atendido)
+                    return atualizado;
+
+                // Atualiza detalhes específicos se fornecidos
+                if (detalhes is DetalhesHardware hw)
+                {
+                    hw.TicketId = ticketId;
+                    return _hwRepo.Atualizar(hw);
+                }
+                else if (detalhes is DetalhesSoftware sw)
+                {
+                    sw.TicketId = ticketId;
+                    return _swRepo.Atualizar(sw);
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new InvalidOperationException($"Erro ao atualizar estado do ticket {ticketId}", ex);
+            }
         }
 
         /// <inheritdoc />
         public Ticket ObterPorId(int id)
         {
+            if (id <= 0)
+                throw new ArgumentException("ID deve ser válido", nameof(id));
+
             return _ticketRepo.ObterPorId(id);
         }
 
@@ -91,6 +181,19 @@ namespace BLL.Services
         public List<Ticket> ObterPorEstado(EstadoTicket estado)
         {
             return _ticketRepo.ObterPorEstado(estado);
+        }
+
+        public bool EliminarTicket(int ticketId)
+        {
+            // Validar se o ticket existe
+            var ticket = _ticketRepo.ObterPorId(ticketId);
+            if (ticket == null)
+                return false;
+
+            if (ticket.Estado == EstadoTicket.Atendido)
+                return false;
+
+            return _ticketRepo.Eliminar(ticketId);
         }
     }
 }

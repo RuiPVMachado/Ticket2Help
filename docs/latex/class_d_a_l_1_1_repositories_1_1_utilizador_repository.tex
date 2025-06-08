@@ -1,0 +1,118 @@
+\doxysection{DAL.\+Repositories.\+Utilizador\+Repository Class Reference}
+\hypertarget{class_d_a_l_1_1_repositories_1_1_utilizador_repository}{}\label{class_d_a_l_1_1_repositories_1_1_utilizador_repository}\index{DAL.Repositories.UtilizadorRepository@{DAL.Repositories.UtilizadorRepository}}
+
+
+Inheritance diagram for DAL.\+Repositories.\+Utilizador\+Repository\+:
+% FIG 0
+
+
+Collaboration diagram for DAL.\+Repositories.\+Utilizador\+Repository\+:
+% FIG 1
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_m_o_d_e_l_s_1_1_utilizador}{Utilizador}} \mbox{\hyperlink{class_d_a_l_1_1_repositories_1_1_utilizador_repository_a65c5fc3a0c534d2630876860728ff11c}{Obter\+Por\+Username}} (string username)
+\item 
+List$<$ \mbox{\hyperlink{class_m_o_d_e_l_s_1_1_utilizador}{Utilizador}} $>$ \mbox{\hyperlink{class_d_a_l_1_1_repositories_1_1_utilizador_repository_a4abdec0adc9031534fdf97fedf48985b}{Obter\+Todos}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{_utilizador_repository_8cs_source_l00010}{10}} of file \mbox{\hyperlink{_utilizador_repository_8cs_source}{Utilizador\+Repository.\+cs}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_d_a_l_1_1_repositories_1_1_utilizador_repository_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_d_a_l_1_1_repositories_1_1_utilizador_repository_a65c5fc3a0c534d2630876860728ff11c}\index{DAL.Repositories.UtilizadorRepository@{DAL.Repositories.UtilizadorRepository}!ObterPorUsername@{ObterPorUsername}}
+\index{ObterPorUsername@{ObterPorUsername}!DAL.Repositories.UtilizadorRepository@{DAL.Repositories.UtilizadorRepository}}
+\doxysubsubsection{\texorpdfstring{ObterPorUsername()}{ObterPorUsername()}}
+{\footnotesize\ttfamily \label{class_d_a_l_1_1_repositories_1_1_utilizador_repository_a65c5fc3a0c534d2630876860728ff11c} 
+\mbox{\hyperlink{class_m_o_d_e_l_s_1_1_utilizador}{Utilizador}} DAL.\+Repositories.\+Utilizador\+Repository.\+Obter\+Por\+Username (\begin{DoxyParamCaption}\item[{string}]{username}{}\end{DoxyParamCaption})}
+
+
+
+Implements \mbox{\hyperlink{interface_d_a_l_1_1_interfaces_1_1_i_utilizador_repository_a8687bd890e26ebb04e5e4100679950cc}{DAL.\+Interfaces.\+IUtilizador\+Repository}}.
+
+
+
+Definition at line \mbox{\hyperlink{_utilizador_repository_8cs_source_l00012}{12}} of file \mbox{\hyperlink{_utilizador_repository_8cs_source}{Utilizador\+Repository.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }var\ conn\ =\ \textcolor{keyword}{new}\ SqlConnection(DatabaseConfig.ConnectionString);}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \ \ \ \ conn.Open();}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ query\ =\ \textcolor{stringliteral}{@"{}SELECT\ *\ FROM\ Utilizadores\ WHERE\ Username\ =\ @Username"{}};}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }var\ cmd\ =\ \textcolor{keyword}{new}\ SqlCommand(query,\ conn);}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \ \ \ \ cmd.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@Username"{}},\ username);}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }var\ reader\ =\ cmd.ExecuteReader();}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (reader.Read())}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Utilizador}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Id\ =\ (int)reader[\textcolor{stringliteral}{"{}Id"{}}],}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Nome\ =\ reader[\textcolor{stringliteral}{"{}Nome"{}}].ToString(),}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Username\ =\ reader[\textcolor{stringliteral}{"{}Username"{}}].ToString(),}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PasswordHash\ =\ reader[\textcolor{stringliteral}{"{}PasswordHash"{}}].ToString(),}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Tipo\ =\ Enum.Parse<\mbox{\hyperlink{namespace_m_o_d_e_l_s_ac04c81076ae3b32dd8f5138c270c377c}{TipoUtilizador}}>(reader[\textcolor{stringliteral}{"{}TipoUtilizador"{}}].ToString()),}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DataCriacao\ =\ Convert.ToDateTime(reader[\textcolor{stringliteral}{"{}DataCriacao"{}}])}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{null};}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_d_a_l_1_1_repositories_1_1_utilizador_repository_a4abdec0adc9031534fdf97fedf48985b}\index{DAL.Repositories.UtilizadorRepository@{DAL.Repositories.UtilizadorRepository}!ObterTodos@{ObterTodos}}
+\index{ObterTodos@{ObterTodos}!DAL.Repositories.UtilizadorRepository@{DAL.Repositories.UtilizadorRepository}}
+\doxysubsubsection{\texorpdfstring{ObterTodos()}{ObterTodos()}}
+{\footnotesize\ttfamily \label{class_d_a_l_1_1_repositories_1_1_utilizador_repository_a4abdec0adc9031534fdf97fedf48985b} 
+List$<$ \mbox{\hyperlink{class_m_o_d_e_l_s_1_1_utilizador}{Utilizador}} $>$ DAL.\+Repositories.\+Utilizador\+Repository.\+Obter\+Todos (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Implements \mbox{\hyperlink{interface_d_a_l_1_1_interfaces_1_1_i_utilizador_repository_ac917ccf303ba25ef5ee959af95b1df85}{DAL.\+Interfaces.\+IUtilizador\+Repository}}.
+
+
+
+Definition at line \mbox{\hyperlink{_utilizador_repository_8cs_source_l00038}{38}} of file \mbox{\hyperlink{_utilizador_repository_8cs_source}{Utilizador\+Repository.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ var\ lista\ =\ \textcolor{keyword}{new}\ List<Utilizador>();}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }var\ conn\ =\ \textcolor{keyword}{new}\ SqlConnection(DatabaseConfig.ConnectionString);}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ conn.Open();}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ query\ =\ \textcolor{stringliteral}{@"{}SELECT\ *\ FROM\ Utilizadores"{}};}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }var\ cmd\ =\ \textcolor{keyword}{new}\ SqlCommand(query,\ conn);}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }var\ reader\ =\ cmd.ExecuteReader();}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (reader.Read())}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lista.Add(\textcolor{keyword}{new}\ Utilizador}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Id\ =\ (int)reader[\textcolor{stringliteral}{"{}Id"{}}],}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Nome\ =\ reader[\textcolor{stringliteral}{"{}Nome"{}}].ToString(),}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Username\ =\ reader[\textcolor{stringliteral}{"{}Username"{}}].ToString(),}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PasswordHash\ =\ reader[\textcolor{stringliteral}{"{}PasswordHash"{}}].ToString(),}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Tipo\ =\ Enum.Parse<\mbox{\hyperlink{namespace_m_o_d_e_l_s_ac04c81076ae3b32dd8f5138c270c377c}{TipoUtilizador}}>(reader[\textcolor{stringliteral}{"{}TipoUtilizador"{}}].ToString()),}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DataCriacao\ =\ Convert.ToDateTime(reader[\textcolor{stringliteral}{"{}DataCriacao"{}}])}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ lista;}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+DAL/\+Repositories/\mbox{\hyperlink{_utilizador_repository_8cs}{Utilizador\+Repository.\+cs}}\end{DoxyCompactItemize}

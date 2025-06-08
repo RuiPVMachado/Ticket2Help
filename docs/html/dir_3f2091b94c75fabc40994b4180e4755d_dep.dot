@@ -1,0 +1,12 @@
+digraph "BLL/Interfaces"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  compound=true
+  subgraph clusterdir_e8f6fd30abac7d76f6e91e0e1c844340 {
+    graph [ bgcolor="#edf0f7", pencolor="grey25", label="BLL", fontname=Helvetica,fontsize=10 style="filled,dashed", URL="dir_e8f6fd30abac7d76f6e91e0e1c844340.html",tooltip=""]
+  dir_3f2091b94c75fabc40994b4180e4755d [label="Interfaces", fillcolor="#edf0f7", color="grey25", style="filled,bold", URL="dir_3f2091b94c75fabc40994b4180e4755d.html",tooltip=""];
+  }
+}

@@ -220,6 +220,27 @@
                                  Margin="0,0,0,15"/>
                     </StackPanel>
                 </Border>
+                <!-- Seleção de Colaborador (visível apenas para Técnicos) -->
+                <Border x:Name="pnlColaborador"
+        Background="White"
+        CornerRadius="8"
+        Padding="20"
+        Margin="0,0,0,20"
+        BorderBrush="#E0E0E0"
+        BorderThickness="1"
+        Visibility="Collapsed">
+                    <StackPanel>
+                        <TextBlock Text="Colaborador *"
+                   FontSize="12"
+                   Foreground="#666"
+                   Margin="0,0,0,5"/>
+                        <ComboBox x:Name="cbColaborador"
+                  Height="35"
+                  FontSize="14"
+                  BorderBrush="#DDD"
+                  BorderThickness="1"/>
+                    </StackPanel>
+                </Border>
 
                 <!-- Mensagem de Erro -->
                 <Border x:Name="pnlError" 
