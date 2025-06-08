@@ -1,0 +1,147 @@
+\doxysection{DAL.\+Repositories.\+Detalhes\+Software\+Repository Class Reference}
+\hypertarget{class_d_a_l_1_1_repositories_1_1_detalhes_software_repository}{}\label{class_d_a_l_1_1_repositories_1_1_detalhes_software_repository}\index{DAL.Repositories.DetalhesSoftwareRepository@{DAL.Repositories.DetalhesSoftwareRepository}}
+
+
+Inheritance diagram for DAL.\+Repositories.\+Detalhes\+Software\+Repository\+:
+% FIG 0
+
+
+Collaboration diagram for DAL.\+Repositories.\+Detalhes\+Software\+Repository\+:
+% FIG 1
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{class_d_a_l_1_1_repositories_1_1_detalhes_software_repository_a2e4735896ba8d908ea7fb46ef56b0b47}{Criar}} (\mbox{\hyperlink{class_m_o_d_e_l_s_1_1_detalhes_software}{Detalhes\+Software}} detalhes)
+\item 
+\mbox{\hyperlink{class_m_o_d_e_l_s_1_1_detalhes_software}{Detalhes\+Software}} \mbox{\hyperlink{class_d_a_l_1_1_repositories_1_1_detalhes_software_repository_a3fc790de419adcea63369f3cb99116d3}{Obter\+Por\+Ticket\+Id}} (int ticket\+Id)
+\item 
+bool \mbox{\hyperlink{class_d_a_l_1_1_repositories_1_1_detalhes_software_repository_a357cf79c029d63016981e019b8153bf9}{Atualizar}} (\mbox{\hyperlink{class_m_o_d_e_l_s_1_1_detalhes_software}{Detalhes\+Software}} detalhes)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{_detalhes_software_repository_8cs_source_l00013}{13}} of file \mbox{\hyperlink{_detalhes_software_repository_8cs_source}{Detalhes\+Software\+Repository.\+cs}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_d_a_l_1_1_repositories_1_1_detalhes_software_repository_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_d_a_l_1_1_repositories_1_1_detalhes_software_repository_a357cf79c029d63016981e019b8153bf9}\index{DAL.Repositories.DetalhesSoftwareRepository@{DAL.Repositories.DetalhesSoftwareRepository}!Atualizar@{Atualizar}}
+\index{Atualizar@{Atualizar}!DAL.Repositories.DetalhesSoftwareRepository@{DAL.Repositories.DetalhesSoftwareRepository}}
+\doxysubsubsection{\texorpdfstring{Atualizar()}{Atualizar()}}
+{\footnotesize\ttfamily \label{class_d_a_l_1_1_repositories_1_1_detalhes_software_repository_a357cf79c029d63016981e019b8153bf9} 
+bool DAL.\+Repositories.\+Detalhes\+Software\+Repository.\+Atualizar (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_m_o_d_e_l_s_1_1_detalhes_software}{Detalhes\+Software}}}]{detalhes}{}\end{DoxyParamCaption})}
+
+
+
+Implements \mbox{\hyperlink{interface_d_a_l_1_1_interfaces_1_1_i_detalhes_software_repository_ad27a860b32469041d4c5c3d005c6e99e}{DAL.\+Interfaces.\+IDetalhes\+Software\+Repository}}.
+
+
+
+Definition at line \mbox{\hyperlink{_detalhes_software_repository_8cs_source_l00057}{57}} of file \mbox{\hyperlink{_detalhes_software_repository_8cs_source}{Detalhes\+Software\+Repository.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ sql\ =\ \textcolor{stringliteral}{@"{}}}
+\DoxyCodeLine{00060\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UPDATE\ DetalhesSoftware }}
+\DoxyCodeLine{00061\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SET\ Aplicacao\ =\ @Aplicacao, }}
+\DoxyCodeLine{00062\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DescricaoNecessidade\ =\ @DescricaoNecessidade, }}
+\DoxyCodeLine{00063\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SolucaoAplicada\ =\ @SolucaoAplicada }}
+\DoxyCodeLine{00064\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WHERE\ TicketId\ =\ @TicketId }}
+\DoxyCodeLine{00065\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ "{}};}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }var\ conn\ =\ \textcolor{keyword}{new}\ SqlConnection(DatabaseConfig.ConnectionString);}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ conn.Open();}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }var\ cmd\ =\ \textcolor{keyword}{new}\ SqlCommand(sql,\ conn);}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ cmd.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@Aplicacao"{}},\ detalhes.\mbox{\hyperlink{class_m_o_d_e_l_s_1_1_detalhes_software_a0d91dd4648dcc6c9d84f040f80d0d008}{Aplicacao}});}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ cmd.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@DescricaoNecessidade"{}},\ detalhes.\mbox{\hyperlink{class_m_o_d_e_l_s_1_1_detalhes_software_a4e8be8e9686ae497843227ceaef77bc6}{DescricaoNecessidade}});}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ cmd.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@SolucaoAplicada"{}},\ (\textcolor{keywordtype}{object}?)detalhes.\mbox{\hyperlink{class_m_o_d_e_l_s_1_1_detalhes_software_a2dd9d29cd82c763c686a6d1431be1d57}{SolucaoAplicada}}\ ??\ DBNull.Value);}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ cmd.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@TicketId"{}},\ detalhes.\mbox{\hyperlink{class_m_o_d_e_l_s_1_1_detalhes_software_a20ee42c15dba826b86951034cbe42bfa}{TicketId}});}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ cmd.ExecuteNonQuery()\ >\ 0;}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_d_a_l_1_1_repositories_1_1_detalhes_software_repository_a2e4735896ba8d908ea7fb46ef56b0b47}\index{DAL.Repositories.DetalhesSoftwareRepository@{DAL.Repositories.DetalhesSoftwareRepository}!Criar@{Criar}}
+\index{Criar@{Criar}!DAL.Repositories.DetalhesSoftwareRepository@{DAL.Repositories.DetalhesSoftwareRepository}}
+\doxysubsubsection{\texorpdfstring{Criar()}{Criar()}}
+{\footnotesize\ttfamily \label{class_d_a_l_1_1_repositories_1_1_detalhes_software_repository_a2e4735896ba8d908ea7fb46ef56b0b47} 
+int DAL.\+Repositories.\+Detalhes\+Software\+Repository.\+Criar (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_m_o_d_e_l_s_1_1_detalhes_software}{Detalhes\+Software}}}]{detalhes}{}\end{DoxyParamCaption})}
+
+
+
+Implements \mbox{\hyperlink{interface_d_a_l_1_1_interfaces_1_1_i_detalhes_software_repository_ac785bf49322310525cc911856dc3e5fb}{DAL.\+Interfaces.\+IDetalhes\+Software\+Repository}}.
+
+
+
+Definition at line \mbox{\hyperlink{_detalhes_software_repository_8cs_source_l00015}{15}} of file \mbox{\hyperlink{_detalhes_software_repository_8cs_source}{Detalhes\+Software\+Repository.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ sql\ =\ \textcolor{stringliteral}{@"{}}}
+\DoxyCodeLine{00018\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ INSERT\ INTO\ DetalhesSoftware }}
+\DoxyCodeLine{00019\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (TicketId,\ Aplicacao,\ DescricaoNecessidade,\ SolucaoAplicada) }}
+\DoxyCodeLine{00020\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ OUTPUT\ INSERTED.Id }}
+\DoxyCodeLine{00021\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ VALUES }}
+\DoxyCodeLine{00022\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (@TicketId,\ @Aplicacao,\ @DescricaoNecessidade,\ @SolucaoAplicada); }}
+\DoxyCodeLine{00023\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ "{}};}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }var\ conn\ =\ \textcolor{keyword}{new}\ SqlConnection(DatabaseConfig.ConnectionString);}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ conn.Open();}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }var\ cmd\ =\ \textcolor{keyword}{new}\ SqlCommand(sql,\ conn);}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ cmd.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@TicketId"{}},\ detalhes.\mbox{\hyperlink{class_m_o_d_e_l_s_1_1_detalhes_software_a20ee42c15dba826b86951034cbe42bfa}{TicketId}});}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ cmd.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@Aplicacao"{}},\ detalhes.\mbox{\hyperlink{class_m_o_d_e_l_s_1_1_detalhes_software_a0d91dd4648dcc6c9d84f040f80d0d008}{Aplicacao}});}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ cmd.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@DescricaoNecessidade"{}},\ detalhes.\mbox{\hyperlink{class_m_o_d_e_l_s_1_1_detalhes_software_a4e8be8e9686ae497843227ceaef77bc6}{DescricaoNecessidade}});}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ cmd.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@SolucaoAplicada"{}},\ (\textcolor{keywordtype}{object}?)detalhes.\mbox{\hyperlink{class_m_o_d_e_l_s_1_1_detalhes_software_a2dd9d29cd82c763c686a6d1431be1d57}{SolucaoAplicada}}\ ??\ DBNull.Value);}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keywordtype}{int})cmd.ExecuteScalar();}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_d_a_l_1_1_repositories_1_1_detalhes_software_repository_a3fc790de419adcea63369f3cb99116d3}\index{DAL.Repositories.DetalhesSoftwareRepository@{DAL.Repositories.DetalhesSoftwareRepository}!ObterPorTicketId@{ObterPorTicketId}}
+\index{ObterPorTicketId@{ObterPorTicketId}!DAL.Repositories.DetalhesSoftwareRepository@{DAL.Repositories.DetalhesSoftwareRepository}}
+\doxysubsubsection{\texorpdfstring{ObterPorTicketId()}{ObterPorTicketId()}}
+{\footnotesize\ttfamily \label{class_d_a_l_1_1_repositories_1_1_detalhes_software_repository_a3fc790de419adcea63369f3cb99116d3} 
+\mbox{\hyperlink{class_m_o_d_e_l_s_1_1_detalhes_software}{Detalhes\+Software}} DAL.\+Repositories.\+Detalhes\+Software\+Repository.\+Obter\+Por\+Ticket\+Id (\begin{DoxyParamCaption}\item[{int}]{ticket\+Id}{}\end{DoxyParamCaption})}
+
+
+
+Implements \mbox{\hyperlink{interface_d_a_l_1_1_interfaces_1_1_i_detalhes_software_repository_a8a13a09cd13a1f57b8953ba1cc4e8dc9}{DAL.\+Interfaces.\+IDetalhes\+Software\+Repository}}.
+
+
+
+Definition at line \mbox{\hyperlink{_detalhes_software_repository_8cs_source_l00036}{36}} of file \mbox{\hyperlink{_detalhes_software_repository_8cs_source}{Detalhes\+Software\+Repository.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ sql\ =\ \textcolor{stringliteral}{"{}SELECT\ *\ FROM\ DetalhesSoftware\ WHERE\ TicketId\ =\ @TicketId"{}};}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }var\ conn\ =\ \textcolor{keyword}{new}\ SqlConnection(DatabaseConfig.ConnectionString);}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ conn.Open();}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }var\ cmd\ =\ \textcolor{keyword}{new}\ SqlCommand(sql,\ conn);}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ cmd.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@TicketId"{}},\ ticketId);}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }var\ reader\ =\ cmd.ExecuteReader();}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!reader.Read())\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{null};}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ DetalhesSoftware}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Id\ =\ (int)reader[\textcolor{stringliteral}{"{}Id"{}}],}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ TicketId\ =\ (\textcolor{keywordtype}{int})reader[\textcolor{stringliteral}{"{}TicketId"{}}],}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Aplicacao\ =\ reader[\textcolor{stringliteral}{"{}Aplicacao"{}}].ToString(),}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DescricaoNecessidade\ =\ reader[\textcolor{stringliteral}{"{}DescricaoNecessidade"{}}].ToString(),}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SolucaoAplicada\ =\ reader[\textcolor{stringliteral}{"{}SolucaoAplicada"{}}]\ as\ \textcolor{keywordtype}{string}}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+DAL/\+Repositories/\mbox{\hyperlink{_detalhes_software_repository_8cs}{Detalhes\+Software\+Repository.\+cs}}\end{DoxyCompactItemize}

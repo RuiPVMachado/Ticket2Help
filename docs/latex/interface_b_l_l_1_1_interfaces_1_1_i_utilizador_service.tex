@@ -1,0 +1,76 @@
+\doxysection{BLL.\+Interfaces.\+IUtilizador\+Service Interface Reference}
+\hypertarget{interface_b_l_l_1_1_interfaces_1_1_i_utilizador_service}{}\label{interface_b_l_l_1_1_interfaces_1_1_i_utilizador_service}\index{BLL.Interfaces.IUtilizadorService@{BLL.Interfaces.IUtilizadorService}}
+
+
+Define as operações relacionadas com utilizadores.  
+
+
+
+
+Inheritance diagram for BLL.\+Interfaces.\+IUtilizador\+Service\+:
+% FIG 0
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_m_o_d_e_l_s_1_1_utilizador}{Utilizador}} \mbox{\hyperlink{interface_b_l_l_1_1_interfaces_1_1_i_utilizador_service_a5f76243c9f4397dbe56bd797a0c628ab}{Validar\+Login}} (string username, string password)
+\begin{DoxyCompactList}\small\item\em Valida um login com base no username e password. \end{DoxyCompactList}\item 
+List$<$ \mbox{\hyperlink{class_m_o_d_e_l_s_1_1_utilizador}{Utilizador}} $>$ \mbox{\hyperlink{interface_b_l_l_1_1_interfaces_1_1_i_utilizador_service_a575e6c8542bc787a3c353fde3d2c55e0}{Obter\+Todos}} ()
+\begin{DoxyCompactList}\small\item\em Lista todos os utilizadores do sistema. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Define as operações relacionadas com utilizadores. 
+
+Definition at line \mbox{\hyperlink{_i_utilizador_service_8cs_source_l00015}{15}} of file \mbox{\hyperlink{_i_utilizador_service_8cs_source}{IUtilizador\+Service.\+cs}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{interface_b_l_l_1_1_interfaces_1_1_i_utilizador_service_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{interface_b_l_l_1_1_interfaces_1_1_i_utilizador_service_a575e6c8542bc787a3c353fde3d2c55e0}\index{BLL.Interfaces.IUtilizadorService@{BLL.Interfaces.IUtilizadorService}!ObterTodos@{ObterTodos}}
+\index{ObterTodos@{ObterTodos}!BLL.Interfaces.IUtilizadorService@{BLL.Interfaces.IUtilizadorService}}
+\doxysubsubsection{\texorpdfstring{ObterTodos()}{ObterTodos()}}
+{\footnotesize\ttfamily \label{interface_b_l_l_1_1_interfaces_1_1_i_utilizador_service_a575e6c8542bc787a3c353fde3d2c55e0} 
+List$<$ \mbox{\hyperlink{class_m_o_d_e_l_s_1_1_utilizador}{Utilizador}} $>$ BLL.\+Interfaces.\+IUtilizador\+Service.\+Obter\+Todos (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Lista todos os utilizadores do sistema. 
+
+\begin{DoxyReturn}{Returns}
+Lista de utilizadores.
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{class_b_l_l_1_1_services_1_1_utilizador_service_a3c7a2739a8edfdae1b1c19eb8c7602e2}{BLL.\+Services.\+Utilizador\+Service}}.
+
+\Hypertarget{interface_b_l_l_1_1_interfaces_1_1_i_utilizador_service_a5f76243c9f4397dbe56bd797a0c628ab}\index{BLL.Interfaces.IUtilizadorService@{BLL.Interfaces.IUtilizadorService}!ValidarLogin@{ValidarLogin}}
+\index{ValidarLogin@{ValidarLogin}!BLL.Interfaces.IUtilizadorService@{BLL.Interfaces.IUtilizadorService}}
+\doxysubsubsection{\texorpdfstring{ValidarLogin()}{ValidarLogin()}}
+{\footnotesize\ttfamily \label{interface_b_l_l_1_1_interfaces_1_1_i_utilizador_service_a5f76243c9f4397dbe56bd797a0c628ab} 
+\mbox{\hyperlink{class_m_o_d_e_l_s_1_1_utilizador}{Utilizador}} BLL.\+Interfaces.\+IUtilizador\+Service.\+Validar\+Login (\begin{DoxyParamCaption}\item[{string}]{username}{, }\item[{string}]{password}{}\end{DoxyParamCaption})}
+
+
+
+Valida um login com base no username e password. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em username} & Username do utilizador.\\
+\hline
+{\em password} & Password introduzida.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxylink{class_m_o_d_e_l_s_1_1_utilizador}{Utilizador} válido ou null.
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{class_b_l_l_1_1_services_1_1_utilizador_service_aa7267dd04986ebaae8645929ee1bcd33}{BLL.\+Services.\+Utilizador\+Service}}.
+
+
+
+The documentation for this interface was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+BLL/\+Interfaces/\mbox{\hyperlink{_i_utilizador_service_8cs}{IUtilizador\+Service.\+cs}}\end{DoxyCompactItemize}

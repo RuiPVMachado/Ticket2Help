@@ -1,0 +1,296 @@
+\doxysection{BLL.\+Ticket\+Factory Class Reference}
+\hypertarget{class_b_l_l_1_1_ticket_factory}{}\label{class_b_l_l_1_1_ticket_factory}\index{BLL.TicketFactory@{BLL.TicketFactory}}
+
+
+Factory responsável pela criação de tickets seguindo o padrão Factory. Centraliza a lógica de criação e garante consistência na inicialização.  
+
+
+
+
+Collaboration diagram for BLL.\+Ticket\+Factory\+:
+% FIG 0
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_m_o_d_e_l_s_1_1_ticket}{Ticket}} \mbox{\hyperlink{class_b_l_l_1_1_ticket_factory_a281511e6beb655c81a2d1d2ca6be2d90}{Criar\+Ticket}} (\mbox{\hyperlink{namespace_m_o_d_e_l_s_a4372778b4bc973caa684eb995f794f4a}{Tipo\+Ticket}} tipo, string titulo, string descricao, \mbox{\hyperlink{namespace_m_o_d_e_l_s_a0abe9be3f332911e48c25f1aa1be6ade}{Prioridade}} prioridade, int colaborador\+Id, int criado\+Por\+Id, bool criado\+Por\+Tecnico=false)
+\begin{DoxyCompactList}\small\item\em Cria um novo ticket com os valores padrão definidos. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{class_m_o_d_e_l_s_1_1_ticket}{Ticket}} \mbox{\hyperlink{class_m_o_d_e_l_s_1_1_detalhes_hardware}{Detalhes\+Hardware}} detalhes \mbox{\hyperlink{class_b_l_l_1_1_ticket_factory_a8c0d53808a2efec102fc5e7fd1460011}{Criar\+Ticket\+Hardware}} (string titulo, string descricao, \mbox{\hyperlink{namespace_m_o_d_e_l_s_a0abe9be3f332911e48c25f1aa1be6ade}{Prioridade}} prioridade, int colaborador\+Id, string equipamento, string avaria, int criado\+Por\+Id, bool criado\+Por\+Tecnico=false)
+\item 
+static \mbox{\hyperlink{class_m_o_d_e_l_s_1_1_ticket}{Ticket}} \mbox{\hyperlink{class_m_o_d_e_l_s_1_1_detalhes_software}{Detalhes\+Software}} detalhes \mbox{\hyperlink{class_b_l_l_1_1_ticket_factory_ac87da98273f22c66393de97f57845e24}{Criar\+Ticket\+Software}} (string titulo, string descricao, \mbox{\hyperlink{namespace_m_o_d_e_l_s_a0abe9be3f332911e48c25f1aa1be6ade}{Prioridade}} prioridade, int colaborador\+Id, string aplicacao, string necessidade, int criado\+Por\+Id, bool criado\+Por\+Tecnico=false)
+\item 
+static \mbox{\hyperlink{class_m_o_d_e_l_s_1_1_ticket}{Ticket}} \mbox{\hyperlink{class_b_l_l_1_1_ticket_factory_ae55dc2a0d6d147535f2300509d0d2906}{Criar\+Ticket}} (\mbox{\hyperlink{namespace_m_o_d_e_l_s_a4372778b4bc973caa684eb995f794f4a}{Tipo\+Ticket}} tipo, string titulo, string descricao, \mbox{\hyperlink{namespace_m_o_d_e_l_s_a0abe9be3f332911e48c25f1aa1be6ade}{Prioridade}} prioridade, int colaborador\+Id)
+\begin{DoxyCompactList}\small\item\em Métodos de compatibilidade para criação por colaboradores (sem mudanças na assinatura existente) \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{class_m_o_d_e_l_s_1_1_ticket}{Ticket}} \mbox{\hyperlink{class_m_o_d_e_l_s_1_1_detalhes_hardware}{Detalhes\+Hardware}} detalhes \mbox{\hyperlink{class_b_l_l_1_1_ticket_factory_a36f591eadd2d02c69630054ca513f8d4}{Criar\+Ticket\+Hardware}} (string titulo, string descricao, \mbox{\hyperlink{namespace_m_o_d_e_l_s_a0abe9be3f332911e48c25f1aa1be6ade}{Prioridade}} prioridade, int colaborador\+Id, string equipamento, string avaria)
+\item 
+static \mbox{\hyperlink{class_m_o_d_e_l_s_1_1_ticket}{Ticket}} \mbox{\hyperlink{class_m_o_d_e_l_s_1_1_detalhes_software}{Detalhes\+Software}} detalhes \mbox{\hyperlink{class_b_l_l_1_1_ticket_factory_a474925ec0fa04c5be275f57e68655365}{Criar\+Ticket\+Software}} (string titulo, string descricao, \mbox{\hyperlink{namespace_m_o_d_e_l_s_a0abe9be3f332911e48c25f1aa1be6ade}{Prioridade}} prioridade, int colaborador\+Id, string aplicacao, string necessidade)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_m_o_d_e_l_s_1_1_ticket}{Ticket}} \mbox{\hyperlink{class_b_l_l_1_1_ticket_factory_a7815657af560f22c6a37e24b45408d98}{ticket}}
+\begin{DoxyCompactList}\small\item\em Cria um ticket de hardware com detalhes específicos. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Factory responsável pela criação de tickets seguindo o padrão Factory. Centraliza a lógica de criação e garante consistência na inicialização. 
+
+Definition at line \mbox{\hyperlink{_factory_8cs_source_l00010}{10}} of file \mbox{\hyperlink{_factory_8cs_source}{Factory.\+cs}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_b_l_l_1_1_ticket_factory_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_b_l_l_1_1_ticket_factory_ae55dc2a0d6d147535f2300509d0d2906}\index{BLL.TicketFactory@{BLL.TicketFactory}!CriarTicket@{CriarTicket}}
+\index{CriarTicket@{CriarTicket}!BLL.TicketFactory@{BLL.TicketFactory}}
+\doxysubsubsection{\texorpdfstring{CriarTicket()}{CriarTicket()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_b_l_l_1_1_ticket_factory_ae55dc2a0d6d147535f2300509d0d2906} 
+\mbox{\hyperlink{class_m_o_d_e_l_s_1_1_ticket}{Ticket}} BLL.\+Ticket\+Factory.\+Criar\+Ticket (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_m_o_d_e_l_s_a4372778b4bc973caa684eb995f794f4a}{Tipo\+Ticket}}}]{tipo}{, }\item[{string}]{titulo}{, }\item[{string}]{descricao}{, }\item[{\mbox{\hyperlink{namespace_m_o_d_e_l_s_a0abe9be3f332911e48c25f1aa1be6ade}{Prioridade}}}]{prioridade}{, }\item[{int}]{colaborador\+Id}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Métodos de compatibilidade para criação por colaboradores (sem mudanças na assinatura existente) 
+
+
+
+Definition at line \mbox{\hyperlink{_factory_8cs_source_l00137}{137}} of file \mbox{\hyperlink{_factory_8cs_source}{Factory.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ CriarTicket(tipo,\ titulo,\ descricao,\ prioridade,\ colaboradorId,\ colaboradorId,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_b_l_l_1_1_ticket_factory_a281511e6beb655c81a2d1d2ca6be2d90}\index{BLL.TicketFactory@{BLL.TicketFactory}!CriarTicket@{CriarTicket}}
+\index{CriarTicket@{CriarTicket}!BLL.TicketFactory@{BLL.TicketFactory}}
+\doxysubsubsection{\texorpdfstring{CriarTicket()}{CriarTicket()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_b_l_l_1_1_ticket_factory_a281511e6beb655c81a2d1d2ca6be2d90} 
+\mbox{\hyperlink{class_m_o_d_e_l_s_1_1_ticket}{Ticket}} BLL.\+Ticket\+Factory.\+Criar\+Ticket (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_m_o_d_e_l_s_a4372778b4bc973caa684eb995f794f4a}{Tipo\+Ticket}}}]{tipo}{, }\item[{string}]{titulo}{, }\item[{string}]{descricao}{, }\item[{\mbox{\hyperlink{namespace_m_o_d_e_l_s_a0abe9be3f332911e48c25f1aa1be6ade}{Prioridade}}}]{prioridade}{, }\item[{int}]{colaborador\+Id}{, }\item[{int}]{criado\+Por\+Id}{, }\item[{bool}]{criado\+Por\+Tecnico}{ = {\ttfamily false}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Cria um novo ticket com os valores padrão definidos. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tipo} & Tipo do ticket (Hardware ou Software)\\
+\hline
+{\em titulo} & Título do ticket\\
+\hline
+{\em descricao} & Descrição do problema/necessidade\\
+\hline
+{\em prioridade} & \doxylink{namespace_m_o_d_e_l_s_a0abe9be3f332911e48c25f1aa1be6ade}{Prioridade} do ticket\\
+\hline
+{\em colaborador\+Id} & ID do colaborador que tem o problema\\
+\hline
+{\em criado\+Por\+Id} & ID do utilizador que está a criar o ticket (pode ser técnico ou colaborador)\\
+\hline
+{\em criado\+Por\+Tecnico} & Indica se foi criado por técnico (padrão\+: false)\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Novo ticket inicializado
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_factory_8cs_source_l00023}{23}} of file \mbox{\hyperlink{_factory_8cs_source}{Factory.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Validações\ básicas}}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keywordtype}{string}.IsNullOrWhiteSpace(titulo))}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentException(\textcolor{stringliteral}{"{}Título\ não\ pode\ estar\ vazio"{}},\ nameof(titulo));}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keywordtype}{string}.IsNullOrWhiteSpace(descricao))}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentException(\textcolor{stringliteral}{"{}Descrição\ não\ pode\ estar\ vazia"{}},\ nameof(descricao));}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (colaboradorId\ <=\ 0)}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentException(\textcolor{stringliteral}{"{}ID\ do\ colaborador\ deve\ ser\ válido"{}},\ nameof(colaboradorId));}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (criadoPorId\ <=\ 0)}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentException(\textcolor{stringliteral}{"{}ID\ de\ quem\ cria\ deve\ ser\ válido"{}},\ nameof(criadoPorId));}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Ticket}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Tipo\ =\ tipo,}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Titulo\ =\ titulo,}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Descricao\ =\ descricao,}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_m_o_d_e_l_s_a0abe9be3f332911e48c25f1aa1be6ade}{Prioridade}}\ =\ prioridade,}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ IdColaborador\ =\ colaboradorId,}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Se\ criado\ por\ técnico,\ já\ pode\ ficar\ em\ atendimento\ e\ ter\ técnico\ atribuído}}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Estado\ =\ criadoPorTecnico\ ?\ EstadoTicket.EmAtendimento\ :\ \mbox{\hyperlink{namespace_m_o_d_e_l_s_ac6c57d118921219af7a865da77f4fd61}{EstadoTicket}}.PorAtender,}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DataCriacao\ =\ DateTime.Now,}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DataAtendimento\ =\ criadoPorTecnico\ ?\ DateTime.Now\ :\ (DateTime?)\textcolor{keyword}{null},}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ IdTecnico\ =\ criadoPorTecnico\ ?\ criadoPorId\ :\ (int?)null,}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SubEstado\ =\ null}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_b_l_l_1_1_ticket_factory_a36f591eadd2d02c69630054ca513f8d4}\index{BLL.TicketFactory@{BLL.TicketFactory}!CriarTicketHardware@{CriarTicketHardware}}
+\index{CriarTicketHardware@{CriarTicketHardware}!BLL.TicketFactory@{BLL.TicketFactory}}
+\doxysubsubsection{\texorpdfstring{CriarTicketHardware()}{CriarTicketHardware()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_b_l_l_1_1_ticket_factory_a36f591eadd2d02c69630054ca513f8d4} 
+\mbox{\hyperlink{class_m_o_d_e_l_s_1_1_ticket}{Ticket}} \mbox{\hyperlink{class_m_o_d_e_l_s_1_1_detalhes_hardware}{Detalhes\+Hardware}} detalhes BLL.\+Ticket\+Factory.\+Criar\+Ticket\+Hardware (\begin{DoxyParamCaption}\item[{string}]{titulo}{, }\item[{string}]{descricao}{, }\item[{\mbox{\hyperlink{namespace_m_o_d_e_l_s_a0abe9be3f332911e48c25f1aa1be6ade}{Prioridade}}}]{prioridade}{, }\item[{int}]{colaborador\+Id}{, }\item[{string}]{equipamento}{, }\item[{string}]{avaria}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{_factory_8cs_source_l00147}{147}} of file \mbox{\hyperlink{_factory_8cs_source}{Factory.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ CriarTicketHardware(titulo,\ descricao,\ prioridade,\ colaboradorId,}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ equipamento,\ avaria,\ colaboradorId,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_b_l_l_1_1_ticket_factory_a8c0d53808a2efec102fc5e7fd1460011}\index{BLL.TicketFactory@{BLL.TicketFactory}!CriarTicketHardware@{CriarTicketHardware}}
+\index{CriarTicketHardware@{CriarTicketHardware}!BLL.TicketFactory@{BLL.TicketFactory}}
+\doxysubsubsection{\texorpdfstring{CriarTicketHardware()}{CriarTicketHardware()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_b_l_l_1_1_ticket_factory_a8c0d53808a2efec102fc5e7fd1460011} 
+\mbox{\hyperlink{class_m_o_d_e_l_s_1_1_ticket}{Ticket}} \mbox{\hyperlink{class_m_o_d_e_l_s_1_1_detalhes_hardware}{Detalhes\+Hardware}} detalhes BLL.\+Ticket\+Factory.\+Criar\+Ticket\+Hardware (\begin{DoxyParamCaption}\item[{string}]{titulo}{, }\item[{string}]{descricao}{, }\item[{\mbox{\hyperlink{namespace_m_o_d_e_l_s_a0abe9be3f332911e48c25f1aa1be6ade}{Prioridade}}}]{prioridade}{, }\item[{int}]{colaborador\+Id}{, }\item[{string}]{equipamento}{, }\item[{string}]{avaria}{, }\item[{int}]{criado\+Por\+Id}{, }\item[{bool}]{criado\+Por\+Tecnico}{ = {\ttfamily false}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{_factory_8cs_source_l00073}{73}} of file \mbox{\hyperlink{_factory_8cs_source}{Factory.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ var\ ticket\ =\ CriarTicket(\mbox{\hyperlink{namespace_m_o_d_e_l_s_a4372778b4bc973caa684eb995f794f4a}{TipoTicket}}.Hardware,\ titulo,\ descricao,\ prioridade,}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ colaboradorId,\ criadoPorId,\ criadoPorTecnico);}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ var\ detalhes\ =\ \textcolor{keyword}{new}\ DetalhesHardware}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Equipamento\ =\ equipamento\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentException(\textcolor{stringliteral}{"{}Equipamento\ não\ pode\ estar\ vazio"{}}),}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Avaria\ =\ avaria\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentException(\textcolor{stringliteral}{"{}Avaria\ não\ pode\ estar\ vazia"{}}),}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Campos\ preenchidos\ durante\ atendimento}}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PecaSubstituida\ =\ \textcolor{keyword}{null},}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DescricaoReparacao\ =\ \textcolor{keyword}{null}}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (ticket,\ detalhes);}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_b_l_l_1_1_ticket_factory_a474925ec0fa04c5be275f57e68655365}\index{BLL.TicketFactory@{BLL.TicketFactory}!CriarTicketSoftware@{CriarTicketSoftware}}
+\index{CriarTicketSoftware@{CriarTicketSoftware}!BLL.TicketFactory@{BLL.TicketFactory}}
+\doxysubsubsection{\texorpdfstring{CriarTicketSoftware()}{CriarTicketSoftware()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_b_l_l_1_1_ticket_factory_a474925ec0fa04c5be275f57e68655365} 
+\mbox{\hyperlink{class_m_o_d_e_l_s_1_1_ticket}{Ticket}} \mbox{\hyperlink{class_m_o_d_e_l_s_1_1_detalhes_software}{Detalhes\+Software}} detalhes BLL.\+Ticket\+Factory.\+Criar\+Ticket\+Software (\begin{DoxyParamCaption}\item[{string}]{titulo}{, }\item[{string}]{descricao}{, }\item[{\mbox{\hyperlink{namespace_m_o_d_e_l_s_a0abe9be3f332911e48c25f1aa1be6ade}{Prioridade}}}]{prioridade}{, }\item[{int}]{colaborador\+Id}{, }\item[{string}]{aplicacao}{, }\item[{string}]{necessidade}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{_factory_8cs_source_l00159}{159}} of file \mbox{\hyperlink{_factory_8cs_source}{Factory.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ CriarTicketSoftware(titulo,\ descricao,\ prioridade,\ colaboradorId,}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ aplicacao,\ necessidade,\ colaboradorId,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_b_l_l_1_1_ticket_factory_ac87da98273f22c66393de97f57845e24}\index{BLL.TicketFactory@{BLL.TicketFactory}!CriarTicketSoftware@{CriarTicketSoftware}}
+\index{CriarTicketSoftware@{CriarTicketSoftware}!BLL.TicketFactory@{BLL.TicketFactory}}
+\doxysubsubsection{\texorpdfstring{CriarTicketSoftware()}{CriarTicketSoftware()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_b_l_l_1_1_ticket_factory_ac87da98273f22c66393de97f57845e24} 
+\mbox{\hyperlink{class_m_o_d_e_l_s_1_1_ticket}{Ticket}} \mbox{\hyperlink{class_m_o_d_e_l_s_1_1_detalhes_software}{Detalhes\+Software}} detalhes BLL.\+Ticket\+Factory.\+Criar\+Ticket\+Software (\begin{DoxyParamCaption}\item[{string}]{titulo}{, }\item[{string}]{descricao}{, }\item[{\mbox{\hyperlink{namespace_m_o_d_e_l_s_a0abe9be3f332911e48c25f1aa1be6ade}{Prioridade}}}]{prioridade}{, }\item[{int}]{colaborador\+Id}{, }\item[{string}]{aplicacao}{, }\item[{string}]{necessidade}{, }\item[{int}]{criado\+Por\+Id}{, }\item[{bool}]{criado\+Por\+Tecnico}{ = {\ttfamily false}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{_factory_8cs_source_l00110}{110}} of file \mbox{\hyperlink{_factory_8cs_source}{Factory.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ var\ ticket\ =\ CriarTicket(\mbox{\hyperlink{namespace_m_o_d_e_l_s_a4372778b4bc973caa684eb995f794f4a}{TipoTicket}}.Software,\ titulo,\ descricao,\ prioridade,}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ colaboradorId,\ criadoPorId,\ criadoPorTecnico);}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ var\ detalhes\ =\ \textcolor{keyword}{new}\ DetalhesSoftware}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Aplicacao\ =\ aplicacao\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentException(\textcolor{stringliteral}{"{}Aplicação\ não\ pode\ estar\ vazia"{}}),}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DescricaoNecessidade\ =\ necessidade\ ??\ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentException(\textcolor{stringliteral}{"{}Necessidade\ não\ pode\ estar\ vazia"{}}),}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Campo\ preenchido\ durante\ atendimento}}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SolucaoAplicada\ =\ \textcolor{keyword}{null}}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (ticket,\ detalhes);}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+\label{doc-variable-members}
+\Hypertarget{class_b_l_l_1_1_ticket_factory_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_b_l_l_1_1_ticket_factory_a7815657af560f22c6a37e24b45408d98}\index{BLL.TicketFactory@{BLL.TicketFactory}!ticket@{ticket}}
+\index{ticket@{ticket}!BLL.TicketFactory@{BLL.TicketFactory}}
+\doxysubsubsection{\texorpdfstring{ticket}{ticket}}
+{\footnotesize\ttfamily \label{class_b_l_l_1_1_ticket_factory_a7815657af560f22c6a37e24b45408d98} 
+\mbox{\hyperlink{class_m_o_d_e_l_s_1_1_ticket}{Ticket}} BLL.\+Ticket\+Factory.\+ticket\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Cria um ticket de hardware com detalhes específicos. 
+
+Cria um ticket de software com detalhes específicos.
+
+
+\begin{DoxyParams}{Parameters}
+{\em titulo} & Título do ticket\\
+\hline
+{\em descricao} & Descrição geral\\
+\hline
+{\em prioridade} & \doxylink{namespace_m_o_d_e_l_s_a0abe9be3f332911e48c25f1aa1be6ade}{Prioridade}\\
+\hline
+{\em colaborador\+Id} & ID do colaborador com o problema\\
+\hline
+{\em equipamento} & Equipamento com problema\\
+\hline
+{\em avaria} & Descrição da avaria\\
+\hline
+{\em criado\+Por\+Id} & ID de quem está a criar o ticket\\
+\hline
+{\em criado\+Por\+Tecnico} & Se foi criado por técnico\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Tupla com ticket e detalhes de hardware
+\end{DoxyReturn}
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em titulo} & Título do ticket\\
+\hline
+{\em descricao} & Descrição geral\\
+\hline
+{\em prioridade} & \doxylink{namespace_m_o_d_e_l_s_a0abe9be3f332911e48c25f1aa1be6ade}{Prioridade}\\
+\hline
+{\em colaborador\+Id} & ID do colaborador com a necessidade\\
+\hline
+{\em aplicacao} & Software/aplicação em questão\\
+\hline
+{\em necessidade} & Descrição da necessidade\\
+\hline
+{\em criado\+Por\+Id} & ID de quem está a criar o ticket\\
+\hline
+{\em criado\+Por\+Tecnico} & Se foi criado por técnico\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Tupla com ticket e detalhes de software
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_factory_8cs_source_l00073}{73}} of file \mbox{\hyperlink{_factory_8cs_source}{Factory.\+cs}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+BLL/\mbox{\hyperlink{_factory_8cs}{Factory.\+cs}}\end{DoxyCompactItemize}

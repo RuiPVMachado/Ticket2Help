@@ -1,0 +1,70 @@
+\doxysection{Utilizador\+Repository.\+cs}
+\hypertarget{_utilizador_repository_8cs_source}{}\label{_utilizador_repository_8cs_source}\index{DAL/Repositories/UtilizadorRepository.cs@{DAL/Repositories/UtilizadorRepository.cs}}
+\mbox{\hyperlink{_utilizador_repository_8cs}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_utilizador_repository_8cs_source_l00001}00001\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_d_a_l}{DAL}};}
+\DoxyCodeLine{\Hypertarget{_utilizador_repository_8cs_source_l00002}00002\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_d_a_l_1_1_interfaces}{DAL.Interfaces}};}
+\DoxyCodeLine{\Hypertarget{_utilizador_repository_8cs_source_l00003}00003\ \textcolor{keyword}{using\ }Microsoft.Data.SqlClient;}
+\DoxyCodeLine{\Hypertarget{_utilizador_repository_8cs_source_l00004}00004\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_m_o_d_e_l_s}{MODELS}};}
+\DoxyCodeLine{\Hypertarget{_utilizador_repository_8cs_source_l00005}00005\ \textcolor{keyword}{using\ }System;}
+\DoxyCodeLine{\Hypertarget{_utilizador_repository_8cs_source_l00006}00006\ \textcolor{keyword}{using\ }System.Collections.Generic;}
+\DoxyCodeLine{\Hypertarget{_utilizador_repository_8cs_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{_utilizador_repository_8cs_source_l00008}00008\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_d_a_l_1_1_repositories}{DAL.Repositories}}}
+\DoxyCodeLine{\Hypertarget{_utilizador_repository_8cs_source_l00009}00009\ \{}
+\DoxyCodeLine{\Hypertarget{_utilizador_repository_8cs_source_l00010}\mbox{\hyperlink{class_d_a_l_1_1_repositories_1_1_utilizador_repository}{00010}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_d_a_l_1_1_repositories_1_1_utilizador_repository}{UtilizadorRepository}}\ :\ \mbox{\hyperlink{interface_d_a_l_1_1_interfaces_1_1_i_utilizador_repository}{IUtilizadorRepository}}}
+\DoxyCodeLine{\Hypertarget{_utilizador_repository_8cs_source_l00011}00011\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_utilizador_repository_8cs_source_l00012}\mbox{\hyperlink{class_d_a_l_1_1_repositories_1_1_utilizador_repository_a65c5fc3a0c534d2630876860728ff11c}{00012}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_m_o_d_e_l_s_1_1_utilizador}{Utilizador}}\ \mbox{\hyperlink{class_d_a_l_1_1_repositories_1_1_utilizador_repository_a65c5fc3a0c534d2630876860728ff11c}{ObterPorUsername}}(\textcolor{keywordtype}{string}\ username)}
+\DoxyCodeLine{\Hypertarget{_utilizador_repository_8cs_source_l00013}00013\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_utilizador_repository_8cs_source_l00014}00014\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }var\ conn\ =\ \textcolor{keyword}{new}\ SqlConnection(\mbox{\hyperlink{class_d_a_l_1_1_database_config}{DatabaseConfig}}.\mbox{\hyperlink{class_d_a_l_1_1_database_config_ae64116d64756522d35fb45670540926d}{ConnectionString}});}
+\DoxyCodeLine{\Hypertarget{_utilizador_repository_8cs_source_l00015}00015\ \ \ \ \ \ \ \ \ \ \ \ \ conn.Open();}
+\DoxyCodeLine{\Hypertarget{_utilizador_repository_8cs_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{_utilizador_repository_8cs_source_l00017}00017\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ query\ =\ \textcolor{stringliteral}{@"{}SELECT\ *\ FROM\ Utilizadores\ WHERE\ Username\ =\ @Username"{}};}
+\DoxyCodeLine{\Hypertarget{_utilizador_repository_8cs_source_l00018}00018\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }var\ cmd\ =\ \textcolor{keyword}{new}\ SqlCommand(query,\ conn);}
+\DoxyCodeLine{\Hypertarget{_utilizador_repository_8cs_source_l00019}00019\ \ \ \ \ \ \ \ \ \ \ \ \ cmd.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@Username"{}},\ username);}
+\DoxyCodeLine{\Hypertarget{_utilizador_repository_8cs_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{_utilizador_repository_8cs_source_l00021}00021\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }var\ reader\ =\ cmd.ExecuteReader();}
+\DoxyCodeLine{\Hypertarget{_utilizador_repository_8cs_source_l00022}00022\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (reader.Read())}
+\DoxyCodeLine{\Hypertarget{_utilizador_repository_8cs_source_l00023}00023\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_utilizador_repository_8cs_source_l00024}00024\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_m_o_d_e_l_s_1_1_utilizador}{Utilizador}}}
+\DoxyCodeLine{\Hypertarget{_utilizador_repository_8cs_source_l00025}00025\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_utilizador_repository_8cs_source_l00026}00026\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Id\ =\ (int)reader[\textcolor{stringliteral}{"{}Id"{}}],}
+\DoxyCodeLine{\Hypertarget{_utilizador_repository_8cs_source_l00027}00027\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Nome\ =\ reader[\textcolor{stringliteral}{"{}Nome"{}}].ToString(),}
+\DoxyCodeLine{\Hypertarget{_utilizador_repository_8cs_source_l00028}00028\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Username\ =\ reader[\textcolor{stringliteral}{"{}Username"{}}].ToString(),}
+\DoxyCodeLine{\Hypertarget{_utilizador_repository_8cs_source_l00029}00029\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PasswordHash\ =\ reader[\textcolor{stringliteral}{"{}PasswordHash"{}}].ToString(),}
+\DoxyCodeLine{\Hypertarget{_utilizador_repository_8cs_source_l00030}00030\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Tipo\ =\ Enum.Parse<\mbox{\hyperlink{namespace_m_o_d_e_l_s_ac04c81076ae3b32dd8f5138c270c377c}{TipoUtilizador}}>(reader[\textcolor{stringliteral}{"{}TipoUtilizador"{}}].ToString()),}
+\DoxyCodeLine{\Hypertarget{_utilizador_repository_8cs_source_l00031}00031\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DataCriacao\ =\ Convert.ToDateTime(reader[\textcolor{stringliteral}{"{}DataCriacao"{}}])}
+\DoxyCodeLine{\Hypertarget{_utilizador_repository_8cs_source_l00032}00032\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{_utilizador_repository_8cs_source_l00033}00033\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_utilizador_repository_8cs_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{_utilizador_repository_8cs_source_l00035}00035\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_utilizador_repository_8cs_source_l00036}00036\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_utilizador_repository_8cs_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{_utilizador_repository_8cs_source_l00038}\mbox{\hyperlink{class_d_a_l_1_1_repositories_1_1_utilizador_repository_a4abdec0adc9031534fdf97fedf48985b}{00038}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ List<Utilizador>\ \mbox{\hyperlink{class_d_a_l_1_1_repositories_1_1_utilizador_repository_a4abdec0adc9031534fdf97fedf48985b}{ObterTodos}}()}
+\DoxyCodeLine{\Hypertarget{_utilizador_repository_8cs_source_l00039}00039\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_utilizador_repository_8cs_source_l00040}00040\ \ \ \ \ \ \ \ \ \ \ \ \ var\ lista\ =\ \textcolor{keyword}{new}\ List<Utilizador>();}
+\DoxyCodeLine{\Hypertarget{_utilizador_repository_8cs_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }var\ conn\ =\ \textcolor{keyword}{new}\ SqlConnection(\mbox{\hyperlink{class_d_a_l_1_1_database_config}{DatabaseConfig}}.\mbox{\hyperlink{class_d_a_l_1_1_database_config_ae64116d64756522d35fb45670540926d}{ConnectionString}});}
+\DoxyCodeLine{\Hypertarget{_utilizador_repository_8cs_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ \ \ conn.Open();}
+\DoxyCodeLine{\Hypertarget{_utilizador_repository_8cs_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{_utilizador_repository_8cs_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ query\ =\ \textcolor{stringliteral}{@"{}SELECT\ *\ FROM\ Utilizadores"{}};}
+\DoxyCodeLine{\Hypertarget{_utilizador_repository_8cs_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }var\ cmd\ =\ \textcolor{keyword}{new}\ SqlCommand(query,\ conn);}
+\DoxyCodeLine{\Hypertarget{_utilizador_repository_8cs_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }var\ reader\ =\ cmd.ExecuteReader();}
+\DoxyCodeLine{\Hypertarget{_utilizador_repository_8cs_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{_utilizador_repository_8cs_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (reader.Read())}
+\DoxyCodeLine{\Hypertarget{_utilizador_repository_8cs_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_utilizador_repository_8cs_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lista.Add(\textcolor{keyword}{new}\ \mbox{\hyperlink{class_m_o_d_e_l_s_1_1_utilizador}{Utilizador}}}
+\DoxyCodeLine{\Hypertarget{_utilizador_repository_8cs_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_utilizador_repository_8cs_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Id\ =\ (int)reader[\textcolor{stringliteral}{"{}Id"{}}],}
+\DoxyCodeLine{\Hypertarget{_utilizador_repository_8cs_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Nome\ =\ reader[\textcolor{stringliteral}{"{}Nome"{}}].ToString(),}
+\DoxyCodeLine{\Hypertarget{_utilizador_repository_8cs_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Username\ =\ reader[\textcolor{stringliteral}{"{}Username"{}}].ToString(),}
+\DoxyCodeLine{\Hypertarget{_utilizador_repository_8cs_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PasswordHash\ =\ reader[\textcolor{stringliteral}{"{}PasswordHash"{}}].ToString(),}
+\DoxyCodeLine{\Hypertarget{_utilizador_repository_8cs_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Tipo\ =\ Enum.Parse<\mbox{\hyperlink{namespace_m_o_d_e_l_s_ac04c81076ae3b32dd8f5138c270c377c}{TipoUtilizador}}>(reader[\textcolor{stringliteral}{"{}TipoUtilizador"{}}].ToString()),}
+\DoxyCodeLine{\Hypertarget{_utilizador_repository_8cs_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DataCriacao\ =\ Convert.ToDateTime(reader[\textcolor{stringliteral}{"{}DataCriacao"{}}])}
+\DoxyCodeLine{\Hypertarget{_utilizador_repository_8cs_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{_utilizador_repository_8cs_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_utilizador_repository_8cs_source_l00060}00060\ }
+\DoxyCodeLine{\Hypertarget{_utilizador_repository_8cs_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ lista;}
+\DoxyCodeLine{\Hypertarget{_utilizador_repository_8cs_source_l00062}00062\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_utilizador_repository_8cs_source_l00063}00063\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_utilizador_repository_8cs_source_l00064}00064\ \}}
+
+\end{DoxyCode}

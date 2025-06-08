@@ -1,0 +1,98 @@
+\doxysection{DAL.\+Interfaces.\+ITicket\+Repository Interface Reference}
+\hypertarget{interface_d_a_l_1_1_interfaces_1_1_i_ticket_repository}{}\label{interface_d_a_l_1_1_interfaces_1_1_i_ticket_repository}\index{DAL.Interfaces.ITicketRepository@{DAL.Interfaces.ITicketRepository}}
+
+
+Inheritance diagram for DAL.\+Interfaces.\+ITicket\+Repository\+:
+% FIG 0
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{interface_d_a_l_1_1_interfaces_1_1_i_ticket_repository_a55058ea4a984fca0ac2559cac5a2a1d2}{Criar}} (\mbox{\hyperlink{class_m_o_d_e_l_s_1_1_ticket}{Ticket}} ticket)
+\item 
+\mbox{\hyperlink{class_m_o_d_e_l_s_1_1_ticket}{Ticket}} \mbox{\hyperlink{interface_d_a_l_1_1_interfaces_1_1_i_ticket_repository_a09d6cabfc85bd5f798c4a1d1f9ec0332}{Obter\+Por\+Id}} (int id)
+\item 
+List$<$ \mbox{\hyperlink{class_m_o_d_e_l_s_1_1_ticket}{Ticket}} $>$ \mbox{\hyperlink{interface_d_a_l_1_1_interfaces_1_1_i_ticket_repository_ab0360b75190800d6286c88b893c81e41}{Obter\+Todos}} ()
+\item 
+List$<$ \mbox{\hyperlink{class_m_o_d_e_l_s_1_1_ticket}{Ticket}} $>$ \mbox{\hyperlink{interface_d_a_l_1_1_interfaces_1_1_i_ticket_repository_a657132f7290a52809758e3491c0ad12d}{Obter\+Por\+Estado}} (\mbox{\hyperlink{namespace_m_o_d_e_l_s_ac6c57d118921219af7a865da77f4fd61}{Estado\+Ticket}} estado)
+\item 
+bool \mbox{\hyperlink{interface_d_a_l_1_1_interfaces_1_1_i_ticket_repository_adbaf433605f755f3f650fb292fbd3a9e}{Atualizar\+Estado}} (int ticket\+Id, \mbox{\hyperlink{namespace_m_o_d_e_l_s_ac6c57d118921219af7a865da77f4fd61}{Estado\+Ticket}} novo\+Estado, \mbox{\hyperlink{namespace_m_o_d_e_l_s_ad2812b97c4926c0be1844d9165eef801}{Sub\+Estado\+Atendimento}}? sub\+Estado, int? tecnico\+Id=null)
+\item 
+bool \mbox{\hyperlink{interface_d_a_l_1_1_interfaces_1_1_i_ticket_repository_ad37468e3f2aa6f2c01873c8124cd8b8b}{Eliminar}} (int ticket\+Id)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{_i_ticket_repository_8cs_source_l00012}{12}} of file \mbox{\hyperlink{_i_ticket_repository_8cs_source}{ITicket\+Repository.\+cs}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{interface_d_a_l_1_1_interfaces_1_1_i_ticket_repository_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{interface_d_a_l_1_1_interfaces_1_1_i_ticket_repository_adbaf433605f755f3f650fb292fbd3a9e}\index{DAL.Interfaces.ITicketRepository@{DAL.Interfaces.ITicketRepository}!AtualizarEstado@{AtualizarEstado}}
+\index{AtualizarEstado@{AtualizarEstado}!DAL.Interfaces.ITicketRepository@{DAL.Interfaces.ITicketRepository}}
+\doxysubsubsection{\texorpdfstring{AtualizarEstado()}{AtualizarEstado()}}
+{\footnotesize\ttfamily \label{interface_d_a_l_1_1_interfaces_1_1_i_ticket_repository_adbaf433605f755f3f650fb292fbd3a9e} 
+bool DAL.\+Interfaces.\+ITicket\+Repository.\+Atualizar\+Estado (\begin{DoxyParamCaption}\item[{int}]{ticket\+Id}{, }\item[{\mbox{\hyperlink{namespace_m_o_d_e_l_s_ac6c57d118921219af7a865da77f4fd61}{Estado\+Ticket}}}]{novo\+Estado}{, }\item[{\mbox{\hyperlink{namespace_m_o_d_e_l_s_ad2812b97c4926c0be1844d9165eef801}{Sub\+Estado\+Atendimento}}?}]{sub\+Estado}{, }\item[{int?}]{tecnico\+Id}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+
+
+Implemented in \mbox{\hyperlink{class_d_a_l_1_1_repositories_1_1_ticket_repository_ab7e2d43043472d83b26d07ce9339db4e}{DAL.\+Repositories.\+Ticket\+Repository}}.
+
+\Hypertarget{interface_d_a_l_1_1_interfaces_1_1_i_ticket_repository_a55058ea4a984fca0ac2559cac5a2a1d2}\index{DAL.Interfaces.ITicketRepository@{DAL.Interfaces.ITicketRepository}!Criar@{Criar}}
+\index{Criar@{Criar}!DAL.Interfaces.ITicketRepository@{DAL.Interfaces.ITicketRepository}}
+\doxysubsubsection{\texorpdfstring{Criar()}{Criar()}}
+{\footnotesize\ttfamily \label{interface_d_a_l_1_1_interfaces_1_1_i_ticket_repository_a55058ea4a984fca0ac2559cac5a2a1d2} 
+int DAL.\+Interfaces.\+ITicket\+Repository.\+Criar (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_m_o_d_e_l_s_1_1_ticket}{Ticket}}}]{ticket}{}\end{DoxyParamCaption})}
+
+
+
+Implemented in \mbox{\hyperlink{class_d_a_l_1_1_repositories_1_1_ticket_repository_a97af271c956258a273c52a118c00f756}{DAL.\+Repositories.\+Ticket\+Repository}}.
+
+\Hypertarget{interface_d_a_l_1_1_interfaces_1_1_i_ticket_repository_ad37468e3f2aa6f2c01873c8124cd8b8b}\index{DAL.Interfaces.ITicketRepository@{DAL.Interfaces.ITicketRepository}!Eliminar@{Eliminar}}
+\index{Eliminar@{Eliminar}!DAL.Interfaces.ITicketRepository@{DAL.Interfaces.ITicketRepository}}
+\doxysubsubsection{\texorpdfstring{Eliminar()}{Eliminar()}}
+{\footnotesize\ttfamily \label{interface_d_a_l_1_1_interfaces_1_1_i_ticket_repository_ad37468e3f2aa6f2c01873c8124cd8b8b} 
+bool DAL.\+Interfaces.\+ITicket\+Repository.\+Eliminar (\begin{DoxyParamCaption}\item[{int}]{ticket\+Id}{}\end{DoxyParamCaption})}
+
+
+
+Implemented in \mbox{\hyperlink{class_d_a_l_1_1_repositories_1_1_ticket_repository_a6a427e18b2ad261f67a0587015678ff6}{DAL.\+Repositories.\+Ticket\+Repository}}.
+
+\Hypertarget{interface_d_a_l_1_1_interfaces_1_1_i_ticket_repository_a657132f7290a52809758e3491c0ad12d}\index{DAL.Interfaces.ITicketRepository@{DAL.Interfaces.ITicketRepository}!ObterPorEstado@{ObterPorEstado}}
+\index{ObterPorEstado@{ObterPorEstado}!DAL.Interfaces.ITicketRepository@{DAL.Interfaces.ITicketRepository}}
+\doxysubsubsection{\texorpdfstring{ObterPorEstado()}{ObterPorEstado()}}
+{\footnotesize\ttfamily \label{interface_d_a_l_1_1_interfaces_1_1_i_ticket_repository_a657132f7290a52809758e3491c0ad12d} 
+List$<$ \mbox{\hyperlink{class_m_o_d_e_l_s_1_1_ticket}{Ticket}} $>$ DAL.\+Interfaces.\+ITicket\+Repository.\+Obter\+Por\+Estado (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_m_o_d_e_l_s_ac6c57d118921219af7a865da77f4fd61}{Estado\+Ticket}}}]{estado}{}\end{DoxyParamCaption})}
+
+
+
+Implemented in \mbox{\hyperlink{class_d_a_l_1_1_repositories_1_1_ticket_repository_aec4d5b2fbe2a8a76e68254343bc75311}{DAL.\+Repositories.\+Ticket\+Repository}}.
+
+\Hypertarget{interface_d_a_l_1_1_interfaces_1_1_i_ticket_repository_a09d6cabfc85bd5f798c4a1d1f9ec0332}\index{DAL.Interfaces.ITicketRepository@{DAL.Interfaces.ITicketRepository}!ObterPorId@{ObterPorId}}
+\index{ObterPorId@{ObterPorId}!DAL.Interfaces.ITicketRepository@{DAL.Interfaces.ITicketRepository}}
+\doxysubsubsection{\texorpdfstring{ObterPorId()}{ObterPorId()}}
+{\footnotesize\ttfamily \label{interface_d_a_l_1_1_interfaces_1_1_i_ticket_repository_a09d6cabfc85bd5f798c4a1d1f9ec0332} 
+\mbox{\hyperlink{class_m_o_d_e_l_s_1_1_ticket}{Ticket}} DAL.\+Interfaces.\+ITicket\+Repository.\+Obter\+Por\+Id (\begin{DoxyParamCaption}\item[{int}]{id}{}\end{DoxyParamCaption})}
+
+
+
+Implemented in \mbox{\hyperlink{class_d_a_l_1_1_repositories_1_1_ticket_repository_a2a9dc5d8758304cda26ec73bcfc27f6d}{DAL.\+Repositories.\+Ticket\+Repository}}.
+
+\Hypertarget{interface_d_a_l_1_1_interfaces_1_1_i_ticket_repository_ab0360b75190800d6286c88b893c81e41}\index{DAL.Interfaces.ITicketRepository@{DAL.Interfaces.ITicketRepository}!ObterTodos@{ObterTodos}}
+\index{ObterTodos@{ObterTodos}!DAL.Interfaces.ITicketRepository@{DAL.Interfaces.ITicketRepository}}
+\doxysubsubsection{\texorpdfstring{ObterTodos()}{ObterTodos()}}
+{\footnotesize\ttfamily \label{interface_d_a_l_1_1_interfaces_1_1_i_ticket_repository_ab0360b75190800d6286c88b893c81e41} 
+List$<$ \mbox{\hyperlink{class_m_o_d_e_l_s_1_1_ticket}{Ticket}} $>$ DAL.\+Interfaces.\+ITicket\+Repository.\+Obter\+Todos (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Implemented in \mbox{\hyperlink{class_d_a_l_1_1_repositories_1_1_ticket_repository_ab50cf0a01e152a26f8c09588fe5c9664}{DAL.\+Repositories.\+Ticket\+Repository}}.
+
+
+
+The documentation for this interface was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+DAL/\+Interfaces/\mbox{\hyperlink{_i_ticket_repository_8cs}{ITicket\+Repository.\+cs}}\end{DoxyCompactItemize}

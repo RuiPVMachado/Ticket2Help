@@ -1,0 +1,174 @@
+\doxysection{Ticket\+Repository.\+cs}
+\hypertarget{_ticket_repository_8cs_source}{}\label{_ticket_repository_8cs_source}\index{DAL/Repositories/TicketRepository.cs@{DAL/Repositories/TicketRepository.cs}}
+\mbox{\hyperlink{_ticket_repository_8cs}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00001}00001\ \textcolor{keyword}{using\ }System;}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00002}00002\ \textcolor{keyword}{using\ }System.Collections.Generic;}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00003}00003\ \textcolor{keyword}{using\ }System.Linq;}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00004}00004\ \textcolor{keyword}{using\ }System.Text;}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00005}00005\ \textcolor{keyword}{using\ }System.Threading.Tasks;}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00007}00007\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_d_a_l_1_1_interfaces}{DAL.Interfaces}};}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00008}00008\ \textcolor{keyword}{using\ }Microsoft.Data.SqlClient;}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00009}00009\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_m_o_d_e_l_s}{MODELS}};}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00010}00010\ \textcolor{keyword}{using\ }System;}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00011}00011\ \textcolor{keyword}{using\ }System.Collections.Generic;}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00013}00013\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_d_a_l_1_1_repositories}{DAL.Repositories}}}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00014}00014\ \{}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00015}\mbox{\hyperlink{class_d_a_l_1_1_repositories_1_1_ticket_repository}{00015}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_d_a_l_1_1_repositories_1_1_ticket_repository}{TicketRepository}}\ :\ \mbox{\hyperlink{interface_d_a_l_1_1_interfaces_1_1_i_ticket_repository}{ITicketRepository}}}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00016}00016\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00017}\mbox{\hyperlink{class_d_a_l_1_1_repositories_1_1_ticket_repository_a97af271c956258a273c52a118c00f756}{00017}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_d_a_l_1_1_repositories_1_1_ticket_repository_a97af271c956258a273c52a118c00f756}{Criar}}(\mbox{\hyperlink{class_m_o_d_e_l_s_1_1_ticket}{Ticket}}\ ticket)}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00018}00018\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00019}00019\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ sql\ =\ \textcolor{stringliteral}{@"{}}}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00020}00020\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ INSERT\ INTO\ Tickets}}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00021}00021\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (Titulo,\ Descricao,\ Prioridade,\ Tipo,\ IdColaborador)}}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00022}00022\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ OUTPUT\ INSERTED.Id}}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00023}00023\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ VALUES}}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00024}00024\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (@Titulo,\ @Descricao,\ @Prioridade,\ @Tipo,\ @IdColaborador);}}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00025}00025\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ "{}};}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00027}00027\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }var\ conn\ =\ \textcolor{keyword}{new}\ SqlConnection(\mbox{\hyperlink{class_d_a_l_1_1_database_config}{DatabaseConfig}}.\mbox{\hyperlink{class_d_a_l_1_1_database_config_ae64116d64756522d35fb45670540926d}{ConnectionString}});}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00028}00028\ \ \ \ \ \ \ \ \ \ \ \ \ conn.Open();}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00029}00029\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }var\ cmd\ =\ \textcolor{keyword}{new}\ SqlCommand(sql,\ conn);}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00030}00030\ \ \ \ \ \ \ \ \ \ \ \ \ cmd.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@Titulo"{}},\ ticket.\mbox{\hyperlink{class_m_o_d_e_l_s_1_1_ticket_a62cb13de315ad944f522fc0ddb4155c6}{Titulo}});}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00031}00031\ \ \ \ \ \ \ \ \ \ \ \ \ cmd.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@Descricao"{}},\ ticket.\mbox{\hyperlink{class_m_o_d_e_l_s_1_1_ticket_a4a2fb5ba32a612ab03931a70ea571ea7}{Descricao}});}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00032}00032\ \ \ \ \ \ \ \ \ \ \ \ \ cmd.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@Prioridade"{}},\ ticket.\mbox{\hyperlink{class_m_o_d_e_l_s_1_1_ticket_a45adbdab4a226d1641079a7254d9f491}{Prioridade}}.ToString());}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00033}00033\ \ \ \ \ \ \ \ \ \ \ \ \ cmd.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@Tipo"{}},\ ticket.\mbox{\hyperlink{class_m_o_d_e_l_s_1_1_ticket_aa5745258838dd0b821e636238bce18f2}{Tipo}}.ToString());}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00034}00034\ \ \ \ \ \ \ \ \ \ \ \ \ cmd.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@IdColaborador"{}},\ ticket.\mbox{\hyperlink{class_m_o_d_e_l_s_1_1_ticket_ab15f17964839ecbca892ebaf7c33996b}{IdColaborador}});}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00036}00036\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keywordtype}{int})cmd.ExecuteScalar();}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00037}00037\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00039}\mbox{\hyperlink{class_d_a_l_1_1_repositories_1_1_ticket_repository_a2a9dc5d8758304cda26ec73bcfc27f6d}{00039}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_m_o_d_e_l_s_1_1_ticket}{Ticket}}\ \mbox{\hyperlink{class_d_a_l_1_1_repositories_1_1_ticket_repository_a2a9dc5d8758304cda26ec73bcfc27f6d}{ObterPorId}}(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id})}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00040}00040\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ sql\ =\ \textcolor{stringliteral}{"{}SELECT\ *\ FROM\ Tickets\ WHERE\ Id\ =\ @Id"{}};}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }var\ conn\ =\ \textcolor{keyword}{new}\ SqlConnection(\mbox{\hyperlink{class_d_a_l_1_1_database_config}{DatabaseConfig}}.\mbox{\hyperlink{class_d_a_l_1_1_database_config_ae64116d64756522d35fb45670540926d}{ConnectionString}});}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ conn.Open();}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }var\ cmd\ =\ \textcolor{keyword}{new}\ SqlCommand(sql,\ conn);}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ cmd.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@Id"{}},\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00047}00047\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }var\ reader\ =\ cmd.ExecuteReader();}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!reader.Read())\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_d_a_l_1_1_repositories_1_1_ticket_repository_a3e948ee0889b07966657a22f0b156ccc}{LerTicket}}(reader);}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00051}00051\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00053}\mbox{\hyperlink{class_d_a_l_1_1_repositories_1_1_ticket_repository_ab50cf0a01e152a26f8c09588fe5c9664}{00053}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ List<Ticket>\ \mbox{\hyperlink{class_d_a_l_1_1_repositories_1_1_ticket_repository_ab50cf0a01e152a26f8c09588fe5c9664}{ObterTodos}}()}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00054}00054\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ sql\ =\ \textcolor{stringliteral}{"{}SELECT\ *\ FROM\ Tickets"{}};}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ var\ lista\ =\ \textcolor{keyword}{new}\ List<Ticket>();}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }var\ conn\ =\ \textcolor{keyword}{new}\ SqlConnection(\mbox{\hyperlink{class_d_a_l_1_1_database_config}{DatabaseConfig}}.\mbox{\hyperlink{class_d_a_l_1_1_database_config_ae64116d64756522d35fb45670540926d}{ConnectionString}});}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ conn.Open();}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }var\ cmd\ =\ \textcolor{keyword}{new}\ SqlCommand(sql,\ conn);}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }var\ reader\ =\ cmd.ExecuteReader();}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (reader.Read())}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lista.Add(\mbox{\hyperlink{class_d_a_l_1_1_repositories_1_1_ticket_repository_a3e948ee0889b07966657a22f0b156ccc}{LerTicket}}(reader));}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00065}00065\ }
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ lista;}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00067}00067\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00068}00068\ }
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00069}\mbox{\hyperlink{class_d_a_l_1_1_repositories_1_1_ticket_repository_aec4d5b2fbe2a8a76e68254343bc75311}{00069}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ List<Ticket>\ \mbox{\hyperlink{class_d_a_l_1_1_repositories_1_1_ticket_repository_aec4d5b2fbe2a8a76e68254343bc75311}{ObterPorEstado}}(\mbox{\hyperlink{namespace_m_o_d_e_l_s_ac6c57d118921219af7a865da77f4fd61}{EstadoTicket}}\ estado)}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00070}00070\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00071}00071\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ sql\ =\ \textcolor{stringliteral}{"{}SELECT\ *\ FROM\ Tickets\ WHERE\ Estado\ =\ @Estado"{}};}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \ \ var\ lista\ =\ \textcolor{keyword}{new}\ List<Ticket>();}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00073}00073\ }
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }var\ conn\ =\ \textcolor{keyword}{new}\ SqlConnection(\mbox{\hyperlink{class_d_a_l_1_1_database_config}{DatabaseConfig}}.\mbox{\hyperlink{class_d_a_l_1_1_database_config_ae64116d64756522d35fb45670540926d}{ConnectionString}});}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ conn.Open();}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }var\ cmd\ =\ \textcolor{keyword}{new}\ SqlCommand(sql,\ conn);}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00077}00077\ \ \ \ \ \ \ \ \ \ \ \ \ cmd.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@Estado"{}},\ estado.ToString());}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00078}00078\ }
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00079}00079\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }var\ reader\ =\ cmd.ExecuteReader();}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (reader.Read())}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lista.Add(\mbox{\hyperlink{class_d_a_l_1_1_repositories_1_1_ticket_repository_a3e948ee0889b07966657a22f0b156ccc}{LerTicket}}(reader));}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00082}00082\ }
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ lista;}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00084}00084\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00085}00085\ }
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00086}\mbox{\hyperlink{class_d_a_l_1_1_repositories_1_1_ticket_repository_ab7e2d43043472d83b26d07ce9339db4e}{00086}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_d_a_l_1_1_repositories_1_1_ticket_repository_ab7e2d43043472d83b26d07ce9339db4e}{AtualizarEstado}}(\textcolor{keywordtype}{int}\ ticketId,\ \mbox{\hyperlink{namespace_m_o_d_e_l_s_ac6c57d118921219af7a865da77f4fd61}{EstadoTicket}}\ novoEstado,\ \mbox{\hyperlink{namespace_m_o_d_e_l_s_ad2812b97c4926c0be1844d9165eef801}{SubEstadoAtendimento}}?\ subEstado,\ \textcolor{keywordtype}{int}?\ tecnicoId\ =\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00087}00087\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ sql\ =\ \textcolor{stringliteral}{@"{}}}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00089}00089\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UPDATE\ Tickets}}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00090}00090\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SET\ Estado\ =\ @Estado,}}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00091}00091\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SubEstadoAtendimento\ =\ @SubEstado,}}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00092}00092\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DataAtendimento\ =\ GETDATE(),}}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00093}00093\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ IdTecnico\ =\ @IdTecnico}}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00094}00094\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WHERE\ Id\ =\ @Id}}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00095}00095\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ "{}};}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00096}00096\ }
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }var\ conn\ =\ \textcolor{keyword}{new}\ SqlConnection(\mbox{\hyperlink{class_d_a_l_1_1_database_config}{DatabaseConfig}}.\mbox{\hyperlink{class_d_a_l_1_1_database_config_ae64116d64756522d35fb45670540926d}{ConnectionString}});}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ conn.Open();}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00099}00099\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }var\ cmd\ =\ \textcolor{keyword}{new}\ SqlCommand(sql,\ conn);}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ cmd.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@Estado"{}},\ novoEstado.ToString());}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ cmd.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@SubEstado"{}},\ (\textcolor{keywordtype}{object}?)subEstado?.ToString()\ ??\ DBNull.Value);}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ cmd.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@IdTecnico"{}},\ (\textcolor{keywordtype}{object}?)tecnicoId\ ??\ DBNull.Value);}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ cmd.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@Id"{}},\ ticketId);}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00104}00104\ }
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ cmd.ExecuteNonQuery()\ >\ 0;}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00106}00106\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00107}00107\ }
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00108}\mbox{\hyperlink{class_d_a_l_1_1_repositories_1_1_ticket_repository_a6a427e18b2ad261f67a0587015678ff6}{00108}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_d_a_l_1_1_repositories_1_1_ticket_repository_a6a427e18b2ad261f67a0587015678ff6}{Eliminar}}(\textcolor{keywordtype}{int}\ ticketId)}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00109}00109\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }var\ conn\ =\ \textcolor{keyword}{new}\ SqlConnection(\mbox{\hyperlink{class_d_a_l_1_1_database_config}{DatabaseConfig}}.\mbox{\hyperlink{class_d_a_l_1_1_database_config_ae64116d64756522d35fb45670540926d}{ConnectionString}});}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ conn.Open();}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }var\ transaction\ =\ conn.BeginTransaction();}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00113}00113\ }
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00115}00115\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Eliminar\ primeiro\ os\ detalhes\ (referências)}}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00117}00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ deleteHwSql\ =\ \textcolor{stringliteral}{"{}DELETE\ FROM\ DetalhesHardware\ WHERE\ TicketId\ =\ @TicketId"{}};}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00118}00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }var\ cmdHw\ =\ \textcolor{keyword}{new}\ SqlCommand(deleteHwSql,\ conn,\ transaction);}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00119}00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cmdHw.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@TicketId"{}},\ ticketId);}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00120}00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cmdHw.ExecuteNonQuery();}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00121}00121\ }
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00122}00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ deleteSwSql\ =\ \textcolor{stringliteral}{"{}DELETE\ FROM\ DetalhesSoftware\ WHERE\ TicketId\ =\ @TicketId"{}};}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00123}00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }var\ cmdSw\ =\ \textcolor{keyword}{new}\ SqlCommand(deleteSwSql,\ conn,\ transaction);}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cmdSw.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@TicketId"{}},\ ticketId);}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cmdSw.ExecuteNonQuery();}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00126}00126\ }
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Eliminar\ o\ ticket}}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ deleteTicketSql\ =\ \textcolor{stringliteral}{"{}DELETE\ FROM\ Tickets\ WHERE\ Id\ =\ @Id"{}};}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }var\ cmdTicket\ =\ \textcolor{keyword}{new}\ SqlCommand(deleteTicketSql,\ conn,\ transaction);}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00130}00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cmdTicket.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@Id"{}},\ ticketId);}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ rowsAffected\ =\ cmdTicket.ExecuteNonQuery();}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00132}00132\ }
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00133}00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ transaction.Commit();}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00134}00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ rowsAffected\ >\ 0;}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00135}00135\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00136}00136\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00138}00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ transaction.Rollback();}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00139}00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00140}00140\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00141}00141\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00142}00142\ }
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00143}00143\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Método\ auxiliar\ para\ ler\ um\ Ticket\ do\ reader}}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00144}\mbox{\hyperlink{class_d_a_l_1_1_repositories_1_1_ticket_repository_a3e948ee0889b07966657a22f0b156ccc}{00144}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \mbox{\hyperlink{class_m_o_d_e_l_s_1_1_ticket}{Ticket}}\ \mbox{\hyperlink{class_d_a_l_1_1_repositories_1_1_ticket_repository_a3e948ee0889b07966657a22f0b156ccc}{LerTicket}}(SqlDataReader\ reader)}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00145}00145\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00146}00146\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_m_o_d_e_l_s_1_1_ticket}{Ticket}}}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00147}00147\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00148}00148\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Id\ =\ (int)reader[\textcolor{stringliteral}{"{}Id"{}}],}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00149}00149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Titulo\ =\ reader[\textcolor{stringliteral}{"{}Titulo"{}}].ToString(),}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00150}00150\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Descricao\ =\ reader[\textcolor{stringliteral}{"{}Descricao"{}}].ToString(),}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00151}00151\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_m_o_d_e_l_s_a0abe9be3f332911e48c25f1aa1be6ade}{Prioridade}}\ =\ Enum.Parse<\mbox{\hyperlink{namespace_m_o_d_e_l_s_a0abe9be3f332911e48c25f1aa1be6ade}{Prioridade}}>(reader[\textcolor{stringliteral}{"{}Prioridade"{}}].ToString()),}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00152}00152\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Tipo\ =\ Enum.Parse<\mbox{\hyperlink{namespace_m_o_d_e_l_s_a4372778b4bc973caa684eb995f794f4a}{TipoTicket}}>(reader[\textcolor{stringliteral}{"{}Tipo"{}}].ToString()),}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00153}00153\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Estado\ =\ Enum.Parse<\mbox{\hyperlink{namespace_m_o_d_e_l_s_ac6c57d118921219af7a865da77f4fd61}{EstadoTicket}}>(reader[\textcolor{stringliteral}{"{}Estado"{}}].ToString()),}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00154}00154\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SubEstado\ =\ reader[\textcolor{stringliteral}{"{}SubEstadoAtendimento"{}}]\ ==\ DBNull.Value}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00155}00155\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ?\ null}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00156}00156\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ Enum.Parse<\mbox{\hyperlink{namespace_m_o_d_e_l_s_ad2812b97c4926c0be1844d9165eef801}{SubEstadoAtendimento}}>(reader[\textcolor{stringliteral}{"{}SubEstadoAtendimento"{}}].ToString()),}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00157}00157\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DataCriacao\ =\ Convert.ToDateTime(reader[\textcolor{stringliteral}{"{}DataCriacao"{}}]),}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00158}00158\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DataAtendimento\ =\ reader[\textcolor{stringliteral}{"{}DataAtendimento"{}}]\ ==\ DBNull.Value}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00159}00159\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ?\ (DateTime?)\textcolor{keyword}{null}}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00160}00160\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ Convert.ToDateTime(reader[\textcolor{stringliteral}{"{}DataAtendimento"{}}]),}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00161}00161\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ IdColaborador\ =\ (int)reader[\textcolor{stringliteral}{"{}IdColaborador"{}}],}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00162}00162\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ IdTecnico\ =\ reader[\textcolor{stringliteral}{"{}IdTecnico"{}}]\ ==\ DBNull.Value}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00163}00163\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ?\ (\textcolor{keywordtype}{int}?)null}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00164}00164\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ (int)reader[\textcolor{stringliteral}{"{}IdTecnico"{}}]}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00165}00165\ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00166}00166\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00167}00167\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_ticket_repository_8cs_source_l00168}00168\ \}}
+
+\end{DoxyCode}
