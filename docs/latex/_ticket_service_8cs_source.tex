@@ -1,0 +1,188 @@
+\doxysection{Ticket\+Service.\+cs}
+\hypertarget{_ticket_service_8cs_source}{}\label{_ticket_service_8cs_source}\index{BLL/Services/TicketService.cs@{BLL/Services/TicketService.cs}}
+\mbox{\hyperlink{_ticket_service_8cs}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00001}00001\ \textcolor{keyword}{using\ }System;}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00002}00002\ \textcolor{keyword}{using\ }System.Collections.Generic;}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00003}00003\ \textcolor{keyword}{using\ }System.Linq;}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00004}00004\ \textcolor{keyword}{using\ }System.Text;}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00005}00005\ \textcolor{keyword}{using\ }System.Threading.Tasks;}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00007}00007\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_b_l_l_1_1_interfaces}{BLL.Interfaces}};}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00008}00008\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_d_a_l_1_1_interfaces}{DAL.Interfaces}};}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00009}00009\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_m_o_d_e_l_s}{MODELS}};}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00010}00010\ \textcolor{keyword}{using\ }System;}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00011}00011\ \textcolor{keyword}{using\ }System.Collections.Generic;}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00013}\mbox{\hyperlink{namespace_b_l_l_1_1_services}{00013}}\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_b_l_l_1_1_services}{BLL.Services}}}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00014}00014\ \{}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00019}\mbox{\hyperlink{class_b_l_l_1_1_services_1_1_ticket_service}{00019}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_b_l_l_1_1_services_1_1_ticket_service_a7280eede5c2c2753be46bd5a1500bf6d}{TicketService}}\ :\ \mbox{\hyperlink{interface_b_l_l_1_1_interfaces_1_1_i_ticket_service}{ITicketService}}}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00020}00020\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00021}\mbox{\hyperlink{class_b_l_l_1_1_services_1_1_ticket_service_a3319415f20d0167f558d0fccbe49be4c}{00021}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ readonly\ \mbox{\hyperlink{interface_d_a_l_1_1_interfaces_1_1_i_ticket_repository}{ITicketRepository}}\ \mbox{\hyperlink{class_b_l_l_1_1_services_1_1_ticket_service_a3319415f20d0167f558d0fccbe49be4c}{\_ticketRepo}};}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00022}\mbox{\hyperlink{class_b_l_l_1_1_services_1_1_ticket_service_a1f19345bd71b494a87f2252fca1284d8}{00022}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ readonly\ \mbox{\hyperlink{interface_d_a_l_1_1_interfaces_1_1_i_detalhes_hardware_repository}{IDetalhesHardwareRepository}}\ \mbox{\hyperlink{class_b_l_l_1_1_services_1_1_ticket_service_a1f19345bd71b494a87f2252fca1284d8}{\_hwRepo}};}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00023}\mbox{\hyperlink{class_b_l_l_1_1_services_1_1_ticket_service_a5afc0eaa0d46f826b1767c07ee0dafb1}{00023}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ readonly\ \mbox{\hyperlink{interface_d_a_l_1_1_interfaces_1_1_i_detalhes_software_repository}{IDetalhesSoftwareRepository}}\ \mbox{\hyperlink{class_b_l_l_1_1_services_1_1_ticket_service_a5afc0eaa0d46f826b1767c07ee0dafb1}{\_swRepo}};}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00028}\mbox{\hyperlink{class_b_l_l_1_1_services_1_1_ticket_service_a7280eede5c2c2753be46bd5a1500bf6d}{00028}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_b_l_l_1_1_services_1_1_ticket_service_a7280eede5c2c2753be46bd5a1500bf6d}{TicketService}}(}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00029}00029\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{interface_d_a_l_1_1_interfaces_1_1_i_ticket_repository}{ITicketRepository}}\ ticketRepo,}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00030}00030\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{interface_d_a_l_1_1_interfaces_1_1_i_detalhes_hardware_repository}{IDetalhesHardwareRepository}}\ hwRepo,}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00031}00031\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{interface_d_a_l_1_1_interfaces_1_1_i_detalhes_software_repository}{IDetalhesSoftwareRepository}}\ swRepo)}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00032}00032\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00033}00033\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_b_l_l_1_1_services_1_1_ticket_service_a3319415f20d0167f558d0fccbe49be4c}{\_ticketRepo}}\ =\ ticketRepo;}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00034}00034\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_b_l_l_1_1_services_1_1_ticket_service_a1f19345bd71b494a87f2252fca1284d8}{\_hwRepo}}\ =\ hwRepo;}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00035}00035\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_b_l_l_1_1_services_1_1_ticket_service_a5afc0eaa0d46f826b1767c07ee0dafb1}{\_swRepo}}\ =\ swRepo;}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00036}00036\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00039}\mbox{\hyperlink{class_b_l_l_1_1_services_1_1_ticket_service_a393d74c7a512da854754dcd89f3dae0b}{00039}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_b_l_l_1_1_services_1_1_ticket_service_a393d74c7a512da854754dcd89f3dae0b}{CriarTicketHardware}}(\textcolor{keywordtype}{string}\ titulo,\ \textcolor{keywordtype}{string}\ descricao,\ \mbox{\hyperlink{namespace_m_o_d_e_l_s_a0abe9be3f332911e48c25f1aa1be6ade}{Prioridade}}\ prioridade,}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00040}00040\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ colaboradorId,\ \textcolor{keywordtype}{string}\ equipamento,\ \textcolor{keywordtype}{string}\ avaria,\ \textcolor{keywordtype}{int}\ criadoPorId,\ \textcolor{keywordtype}{bool}\ criadoPorTecnico\ =\ \textcolor{keyword}{false})}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00041}00041\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Utiliza\ o\ factory\ para\ criar\ o\ ticket\ e\ detalhes}}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ (ticket,\ detalhes)\ =\ \mbox{\hyperlink{class_b_l_l_1_1_ticket_factory}{TicketFactory}}.\mbox{\hyperlink{class_b_l_l_1_1_ticket_factory_a8c0d53808a2efec102fc5e7fd1460011}{CriarTicketHardware}}(}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ titulo,\ descricao,\ prioridade,\ colaboradorId,\ equipamento,\ avaria,\ criadoPorId,\ criadoPorTecnico);}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Persiste\ o\ ticket}}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ ticketId\ =\ \mbox{\hyperlink{class_b_l_l_1_1_services_1_1_ticket_service_a3319415f20d0167f558d0fccbe49be4c}{\_ticketRepo}}.Criar(ticket);}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Define\ o\ ID\ do\ ticket\ nos\ detalhes\ e\ persiste}}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ detalhes.TicketId\ =\ ticketId;}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_b_l_l_1_1_services_1_1_ticket_service_a1f19345bd71b494a87f2252fca1284d8}{\_hwRepo}}.Criar(detalhes);}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ticketId;}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (ArgumentException)}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Re-\/lança\ exceções\ de\ validação\ do\ factory}}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw};}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ InvalidOperationException(\textcolor{stringliteral}{"{}Erro\ ao\ criar\ ticket\ de\ hardware"{}},\ ex);}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00065}00065\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00066}00066\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00067}00067\ }
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00069}\mbox{\hyperlink{class_b_l_l_1_1_services_1_1_ticket_service_a3e5553dd4011f2e4200dd5befd322cde}{00069}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_b_l_l_1_1_services_1_1_ticket_service_a3e5553dd4011f2e4200dd5befd322cde}{CriarTicketSoftware}}(\textcolor{keywordtype}{string}\ titulo,\ \textcolor{keywordtype}{string}\ descricao,\ \mbox{\hyperlink{namespace_m_o_d_e_l_s_a0abe9be3f332911e48c25f1aa1be6ade}{Prioridade}}\ prioridade,}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00070}00070\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ colaboradorId,\ \textcolor{keywordtype}{string}\ aplicacao,\ \textcolor{keywordtype}{string}\ necessidade,\ \textcolor{keywordtype}{int}\ criadoPorId,\ \textcolor{keywordtype}{bool}\ criadoPorTecnico\ =\ \textcolor{keyword}{false})}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00071}00071\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00073}00073\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Utiliza\ o\ factory\ para\ criar\ o\ ticket\ e\ detalhes}}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ (ticket,\ detalhes)\ =\ \mbox{\hyperlink{class_b_l_l_1_1_ticket_factory}{TicketFactory}}.\mbox{\hyperlink{class_b_l_l_1_1_ticket_factory_ac87da98273f22c66393de97f57845e24}{CriarTicketSoftware}}(}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ titulo,\ descricao,\ prioridade,\ colaboradorId,\ aplicacao,\ necessidade,\ criadoPorId,\ criadoPorTecnico);}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00077}00077\ }
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00078}00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Persiste\ o\ ticket}}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00079}00079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ ticketId\ =\ \mbox{\hyperlink{class_b_l_l_1_1_services_1_1_ticket_service_a3319415f20d0167f558d0fccbe49be4c}{\_ticketRepo}}.Criar(ticket);}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00080}00080\ }
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Define\ o\ ID\ do\ ticket\ nos\ detalhes\ e\ persiste}}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ detalhes.TicketId\ =\ ticketId;}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_b_l_l_1_1_services_1_1_ticket_service_a5afc0eaa0d46f826b1767c07ee0dafb1}{\_swRepo}}.Criar(detalhes);}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00084}00084\ }
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ticketId;}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (ArgumentException)}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Re-\/lança\ exceções\ de\ validação\ do\ factory}}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw};}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ InvalidOperationException(\textcolor{stringliteral}{"{}Erro\ ao\ criar\ ticket\ de\ software"{}},\ ex);}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00096}00096\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00097}00097\ }
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00101}\mbox{\hyperlink{class_b_l_l_1_1_services_1_1_ticket_service_af3f09276a112df2bcb741d4dcf5f946a}{00101}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_b_l_l_1_1_services_1_1_ticket_service_af3f09276a112df2bcb741d4dcf5f946a}{CriarTicketHardware}}(\textcolor{keywordtype}{string}\ titulo,\ \textcolor{keywordtype}{string}\ descricao,\ \mbox{\hyperlink{namespace_m_o_d_e_l_s_a0abe9be3f332911e48c25f1aa1be6ade}{Prioridade}}\ prioridade,}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ colaboradorId,\ \textcolor{keywordtype}{string}\ equipamento,\ \textcolor{keywordtype}{string}\ avaria)}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00103}00103\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_b_l_l_1_1_services_1_1_ticket_service_a393d74c7a512da854754dcd89f3dae0b}{CriarTicketHardware}}(titulo,\ descricao,\ prioridade,\ colaboradorId,}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ equipamento,\ avaria,\ colaboradorId,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00106}00106\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00107}00107\ }
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00108}\mbox{\hyperlink{class_b_l_l_1_1_services_1_1_ticket_service_ac3707913716f8c0193ffe20c8ba35646}{00108}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_b_l_l_1_1_services_1_1_ticket_service_ac3707913716f8c0193ffe20c8ba35646}{CriarTicketSoftware}}(\textcolor{keywordtype}{string}\ titulo,\ \textcolor{keywordtype}{string}\ descricao,\ \mbox{\hyperlink{namespace_m_o_d_e_l_s_a0abe9be3f332911e48c25f1aa1be6ade}{Prioridade}}\ prioridade,}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ colaboradorId,\ \textcolor{keywordtype}{string}\ aplicacao,\ \textcolor{keywordtype}{string}\ necessidade)}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00110}00110\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_b_l_l_1_1_services_1_1_ticket_service_a3e5553dd4011f2e4200dd5befd322cde}{CriarTicketSoftware}}(titulo,\ descricao,\ prioridade,\ colaboradorId,}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ aplicacao,\ necessidade,\ colaboradorId,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00113}00113\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00114}00114\ }
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00116}00116\ \ \ \ \ \ \ \ \ [Obsolete(\textcolor{stringliteral}{"{}Use\ CriarTicketHardware\ ou\ CriarTicketSoftware\ com\ o\ factory\ pattern"{}})]}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00117}\mbox{\hyperlink{class_b_l_l_1_1_services_1_1_ticket_service_ab8bfb9786e22d67f3252aa8046989d7f}{00117}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_b_l_l_1_1_services_1_1_ticket_service_ab8bfb9786e22d67f3252aa8046989d7f}{CriarTicket}}(\mbox{\hyperlink{class_m_o_d_e_l_s_1_1_ticket}{Ticket}}\ ticket,\ \textcolor{keywordtype}{object}\ detalhes)}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00118}00118\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00119}00119\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ ticketId\ =\ \mbox{\hyperlink{class_b_l_l_1_1_services_1_1_ticket_service_a3319415f20d0167f558d0fccbe49be4c}{\_ticketRepo}}.Criar(ticket);}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00120}00120\ }
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00121}00121\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ticket.\mbox{\hyperlink{class_m_o_d_e_l_s_1_1_ticket_aa5745258838dd0b821e636238bce18f2}{Tipo}}\ ==\ \mbox{\hyperlink{namespace_m_o_d_e_l_s_a4372778b4bc973caa684eb995f794f4a}{TipoTicket}}.Hardware\ \&\&\ detalhes\ is\ \mbox{\hyperlink{class_m_o_d_e_l_s_1_1_detalhes_hardware}{DetalhesHardware}}\ hw)}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00122}00122\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00123}00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ hw.TicketId\ =\ ticketId;}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_b_l_l_1_1_services_1_1_ticket_service_a1f19345bd71b494a87f2252fca1284d8}{\_hwRepo}}.Criar(hw);}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (ticket.\mbox{\hyperlink{class_m_o_d_e_l_s_1_1_ticket_aa5745258838dd0b821e636238bce18f2}{Tipo}}\ ==\ \mbox{\hyperlink{namespace_m_o_d_e_l_s_a4372778b4bc973caa684eb995f794f4a}{TipoTicket}}.Software\ \&\&\ detalhes\ is\ \mbox{\hyperlink{class_m_o_d_e_l_s_1_1_detalhes_software}{DetalhesSoftware}}\ sw)}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sw.TicketId\ =\ ticketId;}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_b_l_l_1_1_services_1_1_ticket_service_a5afc0eaa0d46f826b1767c07ee0dafb1}{\_swRepo}}.Criar(sw);}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00130}00130\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00131}00131\ }
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ticketId;}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00133}00133\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00134}00134\ }
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00136}\mbox{\hyperlink{class_b_l_l_1_1_services_1_1_ticket_service_aeb67a33c58115a5535ff897454d07cdc}{00136}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_b_l_l_1_1_services_1_1_ticket_service_aeb67a33c58115a5535ff897454d07cdc}{AtualizarEstado}}(\textcolor{keywordtype}{int}\ ticketId,\ \mbox{\hyperlink{namespace_m_o_d_e_l_s_ac6c57d118921219af7a865da77f4fd61}{EstadoTicket}}\ novoEstado,\ \mbox{\hyperlink{namespace_m_o_d_e_l_s_ad2812b97c4926c0be1844d9165eef801}{SubEstadoAtendimento}}?\ subEstado,\ \textcolor{keywordtype}{int}\ tecnicoId,\ \textcolor{keywordtype}{object}?\ detalhes\ =\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00137}00137\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00138}00138\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00139}00139\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00140}00140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ atualizado\ =\ \mbox{\hyperlink{class_b_l_l_1_1_services_1_1_ticket_service_a3319415f20d0167f558d0fccbe49be4c}{\_ticketRepo}}.AtualizarEstado(ticketId,\ novoEstado,\ subEstado,\ tecnicoId);}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00141}00141\ }
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00142}00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!atualizado\ ||\ novoEstado\ !=\ \mbox{\hyperlink{namespace_m_o_d_e_l_s_ac6c57d118921219af7a865da77f4fd61}{EstadoTicket}}.Atendido)}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00143}00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ atualizado;}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00144}00144\ }
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00145}00145\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Atualiza\ detalhes\ específicos\ se\ fornecidos}}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00146}00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (detalhes\ is\ \mbox{\hyperlink{class_m_o_d_e_l_s_1_1_detalhes_hardware}{DetalhesHardware}}\ hw)}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00147}00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00148}00148\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ hw.TicketId\ =\ ticketId;}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00149}00149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_b_l_l_1_1_services_1_1_ticket_service_a1f19345bd71b494a87f2252fca1284d8}{\_hwRepo}}.Atualizar(hw);}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00150}00150\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00151}00151\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (detalhes\ is\ \mbox{\hyperlink{class_m_o_d_e_l_s_1_1_detalhes_software}{DetalhesSoftware}}\ sw)}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00152}00152\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00153}00153\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sw.TicketId\ =\ ticketId;}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00154}00154\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_b_l_l_1_1_services_1_1_ticket_service_a5afc0eaa0d46f826b1767c07ee0dafb1}{\_swRepo}}.Atualizar(sw);}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00155}00155\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00156}00156\ }
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00157}00157\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00158}00158\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00159}00159\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00160}00160\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00161}00161\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ InvalidOperationException(\$\textcolor{stringliteral}{"{}Erro\ ao\ atualizar\ estado\ do\ ticket\ \{ticketId\}"{}},\ ex);}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00162}00162\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00163}00163\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00164}00164\ }
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00166}\mbox{\hyperlink{class_b_l_l_1_1_services_1_1_ticket_service_adbcf3f705dda7b5c6e28bd685cad55bc}{00166}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_m_o_d_e_l_s_1_1_ticket}{Ticket}}\ \mbox{\hyperlink{class_b_l_l_1_1_services_1_1_ticket_service_adbcf3f705dda7b5c6e28bd685cad55bc}{ObterPorId}}(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id})}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00167}00167\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00168}00168\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keywordtype}{id}\ <=\ 0)}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00169}00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentException(\textcolor{stringliteral}{"{}ID\ deve\ ser\ válido"{}},\ nameof(\textcolor{keywordtype}{id}));}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00170}00170\ }
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00171}00171\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_b_l_l_1_1_services_1_1_ticket_service_a3319415f20d0167f558d0fccbe49be4c}{\_ticketRepo}}.ObterPorId(\textcolor{keywordtype}{id});}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00172}00172\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00173}00173\ }
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00175}\mbox{\hyperlink{class_b_l_l_1_1_services_1_1_ticket_service_a1e984d0391c771c9ee06f7229a36b7a1}{00175}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ List<Ticket>\ \mbox{\hyperlink{class_b_l_l_1_1_services_1_1_ticket_service_a1e984d0391c771c9ee06f7229a36b7a1}{ObterTodos}}()}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00176}00176\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00177}00177\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_b_l_l_1_1_services_1_1_ticket_service_a3319415f20d0167f558d0fccbe49be4c}{\_ticketRepo}}.ObterTodos();}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00178}00178\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00179}00179\ }
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00181}\mbox{\hyperlink{class_b_l_l_1_1_services_1_1_ticket_service_aee71332a9bcd126a4e1a2aeeeeb22f3c}{00181}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ List<Ticket>\ \mbox{\hyperlink{class_b_l_l_1_1_services_1_1_ticket_service_aee71332a9bcd126a4e1a2aeeeeb22f3c}{ObterPorEstado}}(\mbox{\hyperlink{namespace_m_o_d_e_l_s_ac6c57d118921219af7a865da77f4fd61}{EstadoTicket}}\ estado)}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00182}00182\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00183}00183\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_b_l_l_1_1_services_1_1_ticket_service_a3319415f20d0167f558d0fccbe49be4c}{\_ticketRepo}}.ObterPorEstado(estado);}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00184}00184\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00185}00185\ }
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00186}\mbox{\hyperlink{class_b_l_l_1_1_services_1_1_ticket_service_aecf0de9f1ab1598d65d95f6ab009c894}{00186}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_b_l_l_1_1_services_1_1_ticket_service_aecf0de9f1ab1598d65d95f6ab009c894}{EliminarTicket}}(\textcolor{keywordtype}{int}\ ticketId)}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00187}00187\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00188}00188\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Validar\ se\ o\ ticket\ existe}}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00189}00189\ \ \ \ \ \ \ \ \ \ \ \ \ var\ ticket\ =\ \mbox{\hyperlink{class_b_l_l_1_1_services_1_1_ticket_service_a3319415f20d0167f558d0fccbe49be4c}{\_ticketRepo}}.ObterPorId(ticketId);}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00190}00190\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ticket\ ==\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00191}00191\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00192}00192\ }
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00193}00193\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ticket.Estado\ ==\ \mbox{\hyperlink{namespace_m_o_d_e_l_s_ac6c57d118921219af7a865da77f4fd61}{EstadoTicket}}.Atendido)}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00194}00194\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00195}00195\ }
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00196}00196\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_b_l_l_1_1_services_1_1_ticket_service_a3319415f20d0167f558d0fccbe49be4c}{\_ticketRepo}}.Eliminar(ticketId);}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00197}00197\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00198}00198\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_ticket_service_8cs_source_l00199}00199\ \}}
+
+\end{DoxyCode}

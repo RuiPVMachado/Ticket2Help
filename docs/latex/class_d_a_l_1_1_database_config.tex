@@ -1,0 +1,70 @@
+\doxysection{DAL.\+Database\+Config Class Reference}
+\hypertarget{class_d_a_l_1_1_database_config}{}\label{class_d_a_l_1_1_database_config}\index{DAL.DatabaseConfig@{DAL.DatabaseConfig}}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static bool \mbox{\hyperlink{class_d_a_l_1_1_database_config_a9a0c88b9d828a9d2823b6706ef7bbd57}{Test\+Connection}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+static string \mbox{\hyperlink{class_d_a_l_1_1_database_config_ae64116d64756522d35fb45670540926d}{Connection\+String}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{_database_config_8cs_source_l00005}{5}} of file \mbox{\hyperlink{_database_config_8cs_source}{Database\+Config.\+cs}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_d_a_l_1_1_database_config_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_d_a_l_1_1_database_config_a9a0c88b9d828a9d2823b6706ef7bbd57}\index{DAL.DatabaseConfig@{DAL.DatabaseConfig}!TestConnection@{TestConnection}}
+\index{TestConnection@{TestConnection}!DAL.DatabaseConfig@{DAL.DatabaseConfig}}
+\doxysubsubsection{\texorpdfstring{TestConnection()}{TestConnection()}}
+{\footnotesize\ttfamily \label{class_d_a_l_1_1_database_config_a9a0c88b9d828a9d2823b6706ef7bbd57} 
+bool DAL.\+Database\+Config.\+Test\+Connection (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{_database_config_8cs_source_l00010}{10}} of file \mbox{\hyperlink{_database_config_8cs_source}{Database\+Config.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00011\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }var\ connection\ =\ \textcolor{keyword}{new}\ SqlConnection(ConnectionString);}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ connection.Open();}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+\label{doc-property-members}
+\Hypertarget{class_d_a_l_1_1_database_config_doc-property-members}
+\doxysubsection{Property Documentation}
+\Hypertarget{class_d_a_l_1_1_database_config_ae64116d64756522d35fb45670540926d}\index{DAL.DatabaseConfig@{DAL.DatabaseConfig}!ConnectionString@{ConnectionString}}
+\index{ConnectionString@{ConnectionString}!DAL.DatabaseConfig@{DAL.DatabaseConfig}}
+\doxysubsubsection{\texorpdfstring{ConnectionString}{ConnectionString}}
+{\footnotesize\ttfamily \label{class_d_a_l_1_1_database_config_ae64116d64756522d35fb45670540926d} 
+string DAL.\+Database\+Config.\+Connection\+String\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}}
+
+
+
+Definition at line \mbox{\hyperlink{_database_config_8cs_source_l00007}{7}} of file \mbox{\hyperlink{_database_config_8cs_source}{Database\+Config.\+cs}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+DAL/\mbox{\hyperlink{_database_config_8cs}{Database\+Config.\+cs}}\end{DoxyCompactItemize}

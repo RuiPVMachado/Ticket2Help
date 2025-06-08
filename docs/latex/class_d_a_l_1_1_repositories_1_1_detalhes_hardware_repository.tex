@@ -1,0 +1,151 @@
+\doxysection{DAL.\+Repositories.\+Detalhes\+Hardware\+Repository Class Reference}
+\hypertarget{class_d_a_l_1_1_repositories_1_1_detalhes_hardware_repository}{}\label{class_d_a_l_1_1_repositories_1_1_detalhes_hardware_repository}\index{DAL.Repositories.DetalhesHardwareRepository@{DAL.Repositories.DetalhesHardwareRepository}}
+
+
+Inheritance diagram for DAL.\+Repositories.\+Detalhes\+Hardware\+Repository\+:
+% FIG 0
+
+
+Collaboration diagram for DAL.\+Repositories.\+Detalhes\+Hardware\+Repository\+:
+% FIG 1
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{class_d_a_l_1_1_repositories_1_1_detalhes_hardware_repository_a7ee738975611ae922af0ab194acf6c37}{Criar}} (\mbox{\hyperlink{class_m_o_d_e_l_s_1_1_detalhes_hardware}{Detalhes\+Hardware}} detalhes)
+\item 
+\mbox{\hyperlink{class_m_o_d_e_l_s_1_1_detalhes_hardware}{Detalhes\+Hardware}} \mbox{\hyperlink{class_d_a_l_1_1_repositories_1_1_detalhes_hardware_repository_a1f0ecc537b087befc5caa9fbad7d6a02}{Obter\+Por\+Ticket\+Id}} (int ticket\+Id)
+\item 
+bool \mbox{\hyperlink{class_d_a_l_1_1_repositories_1_1_detalhes_hardware_repository_a348dca69293032de33c49e6c0a0f08ef}{Atualizar}} (\mbox{\hyperlink{class_m_o_d_e_l_s_1_1_detalhes_hardware}{Detalhes\+Hardware}} detalhes)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{_detalhes_hardware_repository_8cs_source_l00013}{13}} of file \mbox{\hyperlink{_detalhes_hardware_repository_8cs_source}{Detalhes\+Hardware\+Repository.\+cs}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_d_a_l_1_1_repositories_1_1_detalhes_hardware_repository_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_d_a_l_1_1_repositories_1_1_detalhes_hardware_repository_a348dca69293032de33c49e6c0a0f08ef}\index{DAL.Repositories.DetalhesHardwareRepository@{DAL.Repositories.DetalhesHardwareRepository}!Atualizar@{Atualizar}}
+\index{Atualizar@{Atualizar}!DAL.Repositories.DetalhesHardwareRepository@{DAL.Repositories.DetalhesHardwareRepository}}
+\doxysubsubsection{\texorpdfstring{Atualizar()}{Atualizar()}}
+{\footnotesize\ttfamily \label{class_d_a_l_1_1_repositories_1_1_detalhes_hardware_repository_a348dca69293032de33c49e6c0a0f08ef} 
+bool DAL.\+Repositories.\+Detalhes\+Hardware\+Repository.\+Atualizar (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_m_o_d_e_l_s_1_1_detalhes_hardware}{Detalhes\+Hardware}}}]{detalhes}{}\end{DoxyParamCaption})}
+
+
+
+Implements \mbox{\hyperlink{interface_d_a_l_1_1_interfaces_1_1_i_detalhes_hardware_repository_af561a186753388f04c721c658ea6c630}{DAL.\+Interfaces.\+IDetalhes\+Hardware\+Repository}}.
+
+
+
+Definition at line \mbox{\hyperlink{_detalhes_hardware_repository_8cs_source_l00059}{59}} of file \mbox{\hyperlink{_detalhes_hardware_repository_8cs_source}{Detalhes\+Hardware\+Repository.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ sql\ =\ \textcolor{stringliteral}{@"{}}}
+\DoxyCodeLine{00062\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UPDATE\ DetalhesHardware }}
+\DoxyCodeLine{00063\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SET\ Equipamento\ =\ @Equipamento, }}
+\DoxyCodeLine{00064\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Avaria\ =\ @Avaria, }}
+\DoxyCodeLine{00065\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PecaSubstituida\ =\ @PecaSubstituida, }}
+\DoxyCodeLine{00066\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DescricaoReparacao\ =\ @DescricaoReparacao }}
+\DoxyCodeLine{00067\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WHERE\ TicketId\ =\ @TicketId }}
+\DoxyCodeLine{00068\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ "{}};}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }var\ conn\ =\ \textcolor{keyword}{new}\ SqlConnection(DatabaseConfig.ConnectionString);}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ conn.Open();}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }var\ cmd\ =\ \textcolor{keyword}{new}\ SqlCommand(sql,\ conn);}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ cmd.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@Equipamento"{}},\ detalhes.\mbox{\hyperlink{class_m_o_d_e_l_s_1_1_detalhes_hardware_aad56f62510f6d6df4017f98e310f1fd4}{Equipamento}});}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ cmd.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@Avaria"{}},\ detalhes.\mbox{\hyperlink{class_m_o_d_e_l_s_1_1_detalhes_hardware_ab0c7a08ff4da10f55673c26069137c55}{Avaria}});}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ cmd.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@PecaSubstituida"{}},\ (\textcolor{keywordtype}{object}?)detalhes.\mbox{\hyperlink{class_m_o_d_e_l_s_1_1_detalhes_hardware_ac1790b867f94c254f8879533d79ff822}{PecaSubstituida}}\ ??\ DBNull.Value);}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ cmd.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@DescricaoReparacao"{}},\ (\textcolor{keywordtype}{object}?)detalhes.\mbox{\hyperlink{class_m_o_d_e_l_s_1_1_detalhes_hardware_a7b6ef9e6a3e6488b685405ef9eb516e5}{DescricaoReparacao}}\ ??\ DBNull.Value);}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ cmd.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@TicketId"{}},\ detalhes.\mbox{\hyperlink{class_m_o_d_e_l_s_1_1_detalhes_hardware_a57cc5eb593be8bc4d90d3e80945b85fc}{TicketId}});}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ cmd.ExecuteNonQuery()\ >\ 0;}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_d_a_l_1_1_repositories_1_1_detalhes_hardware_repository_a7ee738975611ae922af0ab194acf6c37}\index{DAL.Repositories.DetalhesHardwareRepository@{DAL.Repositories.DetalhesHardwareRepository}!Criar@{Criar}}
+\index{Criar@{Criar}!DAL.Repositories.DetalhesHardwareRepository@{DAL.Repositories.DetalhesHardwareRepository}}
+\doxysubsubsection{\texorpdfstring{Criar()}{Criar()}}
+{\footnotesize\ttfamily \label{class_d_a_l_1_1_repositories_1_1_detalhes_hardware_repository_a7ee738975611ae922af0ab194acf6c37} 
+int DAL.\+Repositories.\+Detalhes\+Hardware\+Repository.\+Criar (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_m_o_d_e_l_s_1_1_detalhes_hardware}{Detalhes\+Hardware}}}]{detalhes}{}\end{DoxyParamCaption})}
+
+
+
+Implements \mbox{\hyperlink{interface_d_a_l_1_1_interfaces_1_1_i_detalhes_hardware_repository_adf0337c99b6ddaa506e4f479c60a8a2d}{DAL.\+Interfaces.\+IDetalhes\+Hardware\+Repository}}.
+
+
+
+Definition at line \mbox{\hyperlink{_detalhes_hardware_repository_8cs_source_l00015}{15}} of file \mbox{\hyperlink{_detalhes_hardware_repository_8cs_source}{Detalhes\+Hardware\+Repository.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ sql\ =\ \textcolor{stringliteral}{@"{}}}
+\DoxyCodeLine{00018\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ INSERT\ INTO\ DetalhesHardware }}
+\DoxyCodeLine{00019\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (TicketId,\ Equipamento,\ Avaria,\ PecaSubstituida,\ DescricaoReparacao) }}
+\DoxyCodeLine{00020\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ OUTPUT\ INSERTED.Id }}
+\DoxyCodeLine{00021\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ VALUES }}
+\DoxyCodeLine{00022\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (@TicketId,\ @Equipamento,\ @Avaria,\ @PecaSubstituida,\ @DescricaoReparacao); }}
+\DoxyCodeLine{00023\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ "{}};}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }var\ conn\ =\ \textcolor{keyword}{new}\ SqlConnection(DatabaseConfig.ConnectionString);}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ conn.Open();}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }var\ cmd\ =\ \textcolor{keyword}{new}\ SqlCommand(sql,\ conn);}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ cmd.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@TicketId"{}},\ detalhes.\mbox{\hyperlink{class_m_o_d_e_l_s_1_1_detalhes_hardware_a57cc5eb593be8bc4d90d3e80945b85fc}{TicketId}});}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ cmd.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@Equipamento"{}},\ detalhes.\mbox{\hyperlink{class_m_o_d_e_l_s_1_1_detalhes_hardware_aad56f62510f6d6df4017f98e310f1fd4}{Equipamento}});}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ cmd.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@Avaria"{}},\ detalhes.\mbox{\hyperlink{class_m_o_d_e_l_s_1_1_detalhes_hardware_ab0c7a08ff4da10f55673c26069137c55}{Avaria}});}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ cmd.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@PecaSubstituida"{}},\ (\textcolor{keywordtype}{object}?)detalhes.\mbox{\hyperlink{class_m_o_d_e_l_s_1_1_detalhes_hardware_ac1790b867f94c254f8879533d79ff822}{PecaSubstituida}}\ ??\ DBNull.Value);}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ cmd.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@DescricaoReparacao"{}},\ (\textcolor{keywordtype}{object}?)detalhes.\mbox{\hyperlink{class_m_o_d_e_l_s_1_1_detalhes_hardware_a7b6ef9e6a3e6488b685405ef9eb516e5}{DescricaoReparacao}}\ ??\ DBNull.Value);}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keywordtype}{int})cmd.ExecuteScalar();}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_d_a_l_1_1_repositories_1_1_detalhes_hardware_repository_a1f0ecc537b087befc5caa9fbad7d6a02}\index{DAL.Repositories.DetalhesHardwareRepository@{DAL.Repositories.DetalhesHardwareRepository}!ObterPorTicketId@{ObterPorTicketId}}
+\index{ObterPorTicketId@{ObterPorTicketId}!DAL.Repositories.DetalhesHardwareRepository@{DAL.Repositories.DetalhesHardwareRepository}}
+\doxysubsubsection{\texorpdfstring{ObterPorTicketId()}{ObterPorTicketId()}}
+{\footnotesize\ttfamily \label{class_d_a_l_1_1_repositories_1_1_detalhes_hardware_repository_a1f0ecc537b087befc5caa9fbad7d6a02} 
+\mbox{\hyperlink{class_m_o_d_e_l_s_1_1_detalhes_hardware}{Detalhes\+Hardware}} DAL.\+Repositories.\+Detalhes\+Hardware\+Repository.\+Obter\+Por\+Ticket\+Id (\begin{DoxyParamCaption}\item[{int}]{ticket\+Id}{}\end{DoxyParamCaption})}
+
+
+
+Implements \mbox{\hyperlink{interface_d_a_l_1_1_interfaces_1_1_i_detalhes_hardware_repository_a6682a8ec0f342538c1a243f4c4fdb7d8}{DAL.\+Interfaces.\+IDetalhes\+Hardware\+Repository}}.
+
+
+
+Definition at line \mbox{\hyperlink{_detalhes_hardware_repository_8cs_source_l00037}{37}} of file \mbox{\hyperlink{_detalhes_hardware_repository_8cs_source}{Detalhes\+Hardware\+Repository.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ sql\ =\ \textcolor{stringliteral}{"{}SELECT\ *\ FROM\ DetalhesHardware\ WHERE\ TicketId\ =\ @TicketId"{}};}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }var\ conn\ =\ \textcolor{keyword}{new}\ SqlConnection(DatabaseConfig.ConnectionString);}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ conn.Open();}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }var\ cmd\ =\ \textcolor{keyword}{new}\ SqlCommand(sql,\ conn);}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ cmd.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@TicketId"{}},\ ticketId);}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }var\ reader\ =\ cmd.ExecuteReader();}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!reader.Read())\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{null};}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ DetalhesHardware}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Id\ =\ (int)reader[\textcolor{stringliteral}{"{}Id"{}}],}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ TicketId\ =\ (\textcolor{keywordtype}{int})reader[\textcolor{stringliteral}{"{}TicketId"{}}],}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Equipamento\ =\ reader[\textcolor{stringliteral}{"{}Equipamento"{}}].ToString(),}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Avaria\ =\ reader[\textcolor{stringliteral}{"{}Avaria"{}}].ToString(),}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PecaSubstituida\ =\ reader[\textcolor{stringliteral}{"{}PecaSubstituida"{}}]\ as\ string,}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DescricaoReparacao\ =\ reader[\textcolor{stringliteral}{"{}DescricaoReparacao"{}}]\ as\ \textcolor{keywordtype}{string}}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+DAL/\+Repositories/\mbox{\hyperlink{_detalhes_hardware_repository_8cs}{Detalhes\+Hardware\+Repository.\+cs}}\end{DoxyCompactItemize}

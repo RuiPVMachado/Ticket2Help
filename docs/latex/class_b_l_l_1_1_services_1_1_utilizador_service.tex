@@ -1,0 +1,179 @@
+\doxysection{BLL.\+Services.\+Utilizador\+Service Class Reference}
+\hypertarget{class_b_l_l_1_1_services_1_1_utilizador_service}{}\label{class_b_l_l_1_1_services_1_1_utilizador_service}\index{BLL.Services.UtilizadorService@{BLL.Services.UtilizadorService}}
+
+
+Serviço responsável pela lógica de utilizadores.  
+
+
+
+
+Inheritance diagram for BLL.\+Services.\+Utilizador\+Service\+:
+% FIG 0
+
+
+Collaboration diagram for BLL.\+Services.\+Utilizador\+Service\+:
+% FIG 1
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_b_l_l_1_1_services_1_1_utilizador_service_aac5f0e4fb874c9f0ced32b26d6075df8}{Utilizador\+Service}} (\mbox{\hyperlink{interface_d_a_l_1_1_interfaces_1_1_i_utilizador_repository}{IUtilizador\+Repository}} repo)
+\begin{DoxyCompactList}\small\item\em Construtor com injeção do repositório de utilizadores. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_m_o_d_e_l_s_1_1_utilizador}{Utilizador}} \mbox{\hyperlink{class_b_l_l_1_1_services_1_1_utilizador_service_aa7267dd04986ebaae8645929ee1bcd33}{Validar\+Login}} (string username, string password)
+\begin{DoxyCompactList}\small\item\em Valida um login com base no username e password.
+
+
+\begin{DoxyParams}{Parameters}
+{\em username} & Username do utilizador.\\
+\hline
+{\em password} & Password introduzida.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxylink{class_m_o_d_e_l_s_1_1_utilizador}{Utilizador} válido ou null.
+\end{DoxyReturn}
+ \end{DoxyCompactList}\item 
+List$<$ \mbox{\hyperlink{class_m_o_d_e_l_s_1_1_utilizador}{Utilizador}} $>$ \mbox{\hyperlink{class_b_l_l_1_1_services_1_1_utilizador_service_a3c7a2739a8edfdae1b1c19eb8c7602e2}{Obter\+Todos}} ()
+\begin{DoxyCompactList}\small\item\em Lista todos os utilizadores do sistema.
+
+\begin{DoxyReturn}{Returns}
+Lista de utilizadores.
+\end{DoxyReturn}
+ \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+readonly \mbox{\hyperlink{interface_d_a_l_1_1_interfaces_1_1_i_utilizador_repository}{IUtilizador\+Repository}} \mbox{\hyperlink{class_b_l_l_1_1_services_1_1_utilizador_service_ac18825074efc3dce29c8fb45a59cb0dd}{\+\_\+repo}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Serviço responsável pela lógica de utilizadores. 
+
+Definition at line \mbox{\hyperlink{_utilizador_service_8cs_source_l00017}{17}} of file \mbox{\hyperlink{_utilizador_service_8cs_source}{Utilizador\+Service.\+cs}}.
+
+
+
+\label{doc-constructors}
+\Hypertarget{class_b_l_l_1_1_services_1_1_utilizador_service_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_b_l_l_1_1_services_1_1_utilizador_service_aac5f0e4fb874c9f0ced32b26d6075df8}\index{BLL.Services.UtilizadorService@{BLL.Services.UtilizadorService}!UtilizadorService@{UtilizadorService}}
+\index{UtilizadorService@{UtilizadorService}!BLL.Services.UtilizadorService@{BLL.Services.UtilizadorService}}
+\doxysubsubsection{\texorpdfstring{UtilizadorService()}{UtilizadorService()}}
+{\footnotesize\ttfamily \label{class_b_l_l_1_1_services_1_1_utilizador_service_aac5f0e4fb874c9f0ced32b26d6075df8} 
+BLL.\+Services.\+Utilizador\+Service.\+Utilizador\+Service (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{interface_d_a_l_1_1_interfaces_1_1_i_utilizador_repository}{IUtilizador\+Repository}}}]{repo}{}\end{DoxyParamCaption})}
+
+
+
+Construtor com injeção do repositório de utilizadores. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em repo} & Implementação de \doxylink{interface_d_a_l_1_1_interfaces_1_1_i_utilizador_repository}{IUtilizador\+Repository}.\\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_utilizador_service_8cs_source_l00025}{25}} of file \mbox{\hyperlink{_utilizador_service_8cs_source}{Utilizador\+Service.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ \_repo\ =\ repo;}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+\label{doc-func-members}
+\Hypertarget{class_b_l_l_1_1_services_1_1_utilizador_service_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_b_l_l_1_1_services_1_1_utilizador_service_a3c7a2739a8edfdae1b1c19eb8c7602e2}\index{BLL.Services.UtilizadorService@{BLL.Services.UtilizadorService}!ObterTodos@{ObterTodos}}
+\index{ObterTodos@{ObterTodos}!BLL.Services.UtilizadorService@{BLL.Services.UtilizadorService}}
+\doxysubsubsection{\texorpdfstring{ObterTodos()}{ObterTodos()}}
+{\footnotesize\ttfamily \label{class_b_l_l_1_1_services_1_1_utilizador_service_a3c7a2739a8edfdae1b1c19eb8c7602e2} 
+List$<$ \mbox{\hyperlink{class_m_o_d_e_l_s_1_1_utilizador}{Utilizador}} $>$ BLL.\+Services.\+Utilizador\+Service.\+Obter\+Todos (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Lista todos os utilizadores do sistema.
+
+\begin{DoxyReturn}{Returns}
+Lista de utilizadores.
+\end{DoxyReturn}
+ 
+
+
+
+Implements \mbox{\hyperlink{interface_b_l_l_1_1_interfaces_1_1_i_utilizador_service_a575e6c8542bc787a3c353fde3d2c55e0}{BLL.\+Interfaces.\+IUtilizador\+Service}}.
+
+
+
+Definition at line \mbox{\hyperlink{_utilizador_service_8cs_source_l00040}{40}} of file \mbox{\hyperlink{_utilizador_service_8cs_source}{Utilizador\+Service.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_repo.ObterTodos();}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_b_l_l_1_1_services_1_1_utilizador_service_aa7267dd04986ebaae8645929ee1bcd33}\index{BLL.Services.UtilizadorService@{BLL.Services.UtilizadorService}!ValidarLogin@{ValidarLogin}}
+\index{ValidarLogin@{ValidarLogin}!BLL.Services.UtilizadorService@{BLL.Services.UtilizadorService}}
+\doxysubsubsection{\texorpdfstring{ValidarLogin()}{ValidarLogin()}}
+{\footnotesize\ttfamily \label{class_b_l_l_1_1_services_1_1_utilizador_service_aa7267dd04986ebaae8645929ee1bcd33} 
+\mbox{\hyperlink{class_m_o_d_e_l_s_1_1_utilizador}{Utilizador}} BLL.\+Services.\+Utilizador\+Service.\+Validar\+Login (\begin{DoxyParamCaption}\item[{string}]{username}{, }\item[{string}]{password}{}\end{DoxyParamCaption})}
+
+
+
+Valida um login com base no username e password.
+
+
+\begin{DoxyParams}{Parameters}
+{\em username} & Username do utilizador.\\
+\hline
+{\em password} & Password introduzida.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxylink{class_m_o_d_e_l_s_1_1_utilizador}{Utilizador} válido ou null.
+\end{DoxyReturn}
+ 
+
+
+
+Implements \mbox{\hyperlink{interface_b_l_l_1_1_interfaces_1_1_i_utilizador_service_a5f76243c9f4397dbe56bd797a0c628ab}{BLL.\+Interfaces.\+IUtilizador\+Service}}.
+
+
+
+Definition at line \mbox{\hyperlink{_utilizador_service_8cs_source_l00031}{31}} of file \mbox{\hyperlink{_utilizador_service_8cs_source}{Utilizador\+Service.\+cs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ var\ user\ =\ \_repo.ObterPorUsername(username);}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (user\ !=\ \textcolor{keyword}{null}\ \&\&\ user.PasswordHash\ ==\ password)}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ user;}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{null};}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+\label{doc-variable-members}
+\Hypertarget{class_b_l_l_1_1_services_1_1_utilizador_service_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_b_l_l_1_1_services_1_1_utilizador_service_ac18825074efc3dce29c8fb45a59cb0dd}\index{BLL.Services.UtilizadorService@{BLL.Services.UtilizadorService}!\_repo@{\_repo}}
+\index{\_repo@{\_repo}!BLL.Services.UtilizadorService@{BLL.Services.UtilizadorService}}
+\doxysubsubsection{\texorpdfstring{\_repo}{\_repo}}
+{\footnotesize\ttfamily \label{class_b_l_l_1_1_services_1_1_utilizador_service_ac18825074efc3dce29c8fb45a59cb0dd} 
+readonly \mbox{\hyperlink{interface_d_a_l_1_1_interfaces_1_1_i_utilizador_repository}{IUtilizador\+Repository}} BLL.\+Services.\+Utilizador\+Service.\+\_\+repo\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{_utilizador_service_8cs_source_l00019}{19}} of file \mbox{\hyperlink{_utilizador_service_8cs_source}{Utilizador\+Service.\+cs}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+BLL/\+Services/\mbox{\hyperlink{_utilizador_service_8cs}{Utilizador\+Service.\+cs}}\end{DoxyCompactItemize}

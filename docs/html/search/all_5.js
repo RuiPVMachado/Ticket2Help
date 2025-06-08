@@ -1,0 +1,23 @@
+var searchData=
+[
+  ['dal_0',['DAL',['../namespace_d_a_l.html',1,'']]],
+  ['dal_2eassemblyinfo_2ecs_1',['DAL.AssemblyInfo.cs',['../_d_a_l_8_assembly_info_8cs.html',1,'']]],
+  ['dal_2eglobalusings_2eg_2ecs_2',['DAL.GlobalUsings.g.cs',['../_d_a_l_8_global_usings_8g_8cs.html',1,'']]],
+  ['dal_3a_3ainterfaces_3',['Interfaces',['../namespace_d_a_l_1_1_interfaces.html',1,'DAL']]],
+  ['dal_3a_3arepositories_4',['Repositories',['../namespace_d_a_l_1_1_repositories.html',1,'DAL']]],
+  ['dataatendimento_5',['DataAtendimento',['../class_m_o_d_e_l_s_1_1_ticket.html#a92fe2e8e618436f0e8bcf067957b70d0',1,'MODELS::Ticket']]],
+  ['databaseconfig_6',['DatabaseConfig',['../class_d_a_l_1_1_database_config.html',1,'DAL']]],
+  ['databaseconfig_2ecs_7',['DatabaseConfig.cs',['../_database_config_8cs.html',1,'']]],
+  ['datacriacao_8',['DataCriacao',['../class_m_o_d_e_l_s_1_1_ticket.html#ae5d0dfabad70a2ffe21060f1d5c596d3',1,'MODELS.Ticket.DataCriacao'],['../class_m_o_d_e_l_s_1_1_utilizador.html#ab4f933bbdff12412e34244d49dd8e36d',1,'MODELS.Utilizador.DataCriacao']]],
+  ['descricao_9',['Descricao',['../class_m_o_d_e_l_s_1_1_ticket.html#a4a2fb5ba32a612ab03931a70ea571ea7',1,'MODELS::Ticket']]],
+  ['descricaonecessidade_10',['DescricaoNecessidade',['../class_m_o_d_e_l_s_1_1_detalhes_software.html#a4e8be8e9686ae497843227ceaef77bc6',1,'MODELS::DetalhesSoftware']]],
+  ['descricaoreparacao_11',['DescricaoReparacao',['../class_m_o_d_e_l_s_1_1_detalhes_hardware.html#a7b6ef9e6a3e6488b685405ef9eb516e5',1,'MODELS::DetalhesHardware']]],
+  ['detalheshardware_12',['DetalhesHardware',['../class_m_o_d_e_l_s_1_1_detalhes_hardware.html',1,'MODELS']]],
+  ['detalheshardware_2ecs_13',['DetalhesHardware.cs',['../_detalhes_hardware_8cs.html',1,'']]],
+  ['detalheshardwarerepository_14',['DetalhesHardwareRepository',['../class_d_a_l_1_1_repositories_1_1_detalhes_hardware_repository.html',1,'DAL::Repositories']]],
+  ['detalheshardwarerepository_2ecs_15',['DetalhesHardwareRepository.cs',['../_detalhes_hardware_repository_8cs.html',1,'']]],
+  ['detalhessoftware_16',['DetalhesSoftware',['../class_m_o_d_e_l_s_1_1_detalhes_software.html',1,'MODELS']]],
+  ['detalhessoftware_2ecs_17',['DetalhesSoftware.cs',['../_detalhes_software_8cs.html',1,'']]],
+  ['detalhessoftwarerepository_18',['DetalhesSoftwareRepository',['../class_d_a_l_1_1_repositories_1_1_detalhes_software_repository.html',1,'DAL::Repositories']]],
+  ['detalhessoftwarerepository_2ecs_19',['DetalhesSoftwareRepository.cs',['../_detalhes_software_repository_8cs.html',1,'']]]
+];

@@ -1,0 +1,28 @@
+\doxysection{ITicket\+Repository.\+cs}
+\hypertarget{_i_ticket_repository_8cs_source}{}\label{_i_ticket_repository_8cs_source}\index{DAL/Interfaces/ITicketRepository.cs@{DAL/Interfaces/ITicketRepository.cs}}
+\mbox{\hyperlink{_i_ticket_repository_8cs}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_i_ticket_repository_8cs_source_l00001}00001\ \textcolor{keyword}{using\ }System;}
+\DoxyCodeLine{\Hypertarget{_i_ticket_repository_8cs_source_l00002}00002\ \textcolor{keyword}{using\ }System.Collections.Generic;}
+\DoxyCodeLine{\Hypertarget{_i_ticket_repository_8cs_source_l00003}00003\ \textcolor{keyword}{using\ }System.Linq;}
+\DoxyCodeLine{\Hypertarget{_i_ticket_repository_8cs_source_l00004}00004\ \textcolor{keyword}{using\ }System.Text;}
+\DoxyCodeLine{\Hypertarget{_i_ticket_repository_8cs_source_l00005}00005\ \textcolor{keyword}{using\ }System.Threading.Tasks;}
+\DoxyCodeLine{\Hypertarget{_i_ticket_repository_8cs_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{_i_ticket_repository_8cs_source_l00007}00007\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_m_o_d_e_l_s}{MODELS}};}
+\DoxyCodeLine{\Hypertarget{_i_ticket_repository_8cs_source_l00008}00008\ \textcolor{keyword}{using\ }System.Collections.Generic;}
+\DoxyCodeLine{\Hypertarget{_i_ticket_repository_8cs_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{_i_ticket_repository_8cs_source_l00010}00010\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_d_a_l_1_1_interfaces}{DAL.Interfaces}}}
+\DoxyCodeLine{\Hypertarget{_i_ticket_repository_8cs_source_l00011}00011\ \{}
+\DoxyCodeLine{\Hypertarget{_i_ticket_repository_8cs_source_l00012}\mbox{\hyperlink{interface_d_a_l_1_1_interfaces_1_1_i_ticket_repository}{00012}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{interface\ }\mbox{\hyperlink{interface_d_a_l_1_1_interfaces_1_1_i_ticket_repository}{ITicketRepository}}}
+\DoxyCodeLine{\Hypertarget{_i_ticket_repository_8cs_source_l00013}00013\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_i_ticket_repository_8cs_source_l00014}\mbox{\hyperlink{interface_d_a_l_1_1_interfaces_1_1_i_ticket_repository_a55058ea4a984fca0ac2559cac5a2a1d2}{00014}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{interface_d_a_l_1_1_interfaces_1_1_i_ticket_repository_a55058ea4a984fca0ac2559cac5a2a1d2}{Criar}}(\mbox{\hyperlink{class_m_o_d_e_l_s_1_1_ticket}{Ticket}}\ ticket);}
+\DoxyCodeLine{\Hypertarget{_i_ticket_repository_8cs_source_l00015}\mbox{\hyperlink{interface_d_a_l_1_1_interfaces_1_1_i_ticket_repository_a09d6cabfc85bd5f798c4a1d1f9ec0332}{00015}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_m_o_d_e_l_s_1_1_ticket}{Ticket}}\ \mbox{\hyperlink{interface_d_a_l_1_1_interfaces_1_1_i_ticket_repository_a09d6cabfc85bd5f798c4a1d1f9ec0332}{ObterPorId}}(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{\Hypertarget{_i_ticket_repository_8cs_source_l00016}\mbox{\hyperlink{interface_d_a_l_1_1_interfaces_1_1_i_ticket_repository_ab0360b75190800d6286c88b893c81e41}{00016}}\ \ \ \ \ \ \ \ \ List<Ticket>\ \mbox{\hyperlink{interface_d_a_l_1_1_interfaces_1_1_i_ticket_repository_ab0360b75190800d6286c88b893c81e41}{ObterTodos}}();}
+\DoxyCodeLine{\Hypertarget{_i_ticket_repository_8cs_source_l00017}\mbox{\hyperlink{interface_d_a_l_1_1_interfaces_1_1_i_ticket_repository_a657132f7290a52809758e3491c0ad12d}{00017}}\ \ \ \ \ \ \ \ \ List<Ticket>\ \mbox{\hyperlink{interface_d_a_l_1_1_interfaces_1_1_i_ticket_repository_a657132f7290a52809758e3491c0ad12d}{ObterPorEstado}}(\mbox{\hyperlink{namespace_m_o_d_e_l_s_ac6c57d118921219af7a865da77f4fd61}{EstadoTicket}}\ estado);}
+\DoxyCodeLine{\Hypertarget{_i_ticket_repository_8cs_source_l00018}\mbox{\hyperlink{interface_d_a_l_1_1_interfaces_1_1_i_ticket_repository_adbaf433605f755f3f650fb292fbd3a9e}{00018}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{interface_d_a_l_1_1_interfaces_1_1_i_ticket_repository_adbaf433605f755f3f650fb292fbd3a9e}{AtualizarEstado}}(\textcolor{keywordtype}{int}\ ticketId,\ \mbox{\hyperlink{namespace_m_o_d_e_l_s_ac6c57d118921219af7a865da77f4fd61}{EstadoTicket}}\ novoEstado,\ \mbox{\hyperlink{namespace_m_o_d_e_l_s_ad2812b97c4926c0be1844d9165eef801}{SubEstadoAtendimento}}?\ subEstado,\ \textcolor{keywordtype}{int}?\ tecnicoId\ =\ \textcolor{keyword}{null});}
+\DoxyCodeLine{\Hypertarget{_i_ticket_repository_8cs_source_l00019}\mbox{\hyperlink{interface_d_a_l_1_1_interfaces_1_1_i_ticket_repository_ad37468e3f2aa6f2c01873c8124cd8b8b}{00019}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{interface_d_a_l_1_1_interfaces_1_1_i_ticket_repository_ad37468e3f2aa6f2c01873c8124cd8b8b}{Eliminar}}(\textcolor{keywordtype}{int}\ ticketId);}
+\DoxyCodeLine{\Hypertarget{_i_ticket_repository_8cs_source_l00020}00020\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_i_ticket_repository_8cs_source_l00021}00021\ \}}
+\DoxyCodeLine{\Hypertarget{_i_ticket_repository_8cs_source_l00022}00022\ }
+
+\end{DoxyCode}
