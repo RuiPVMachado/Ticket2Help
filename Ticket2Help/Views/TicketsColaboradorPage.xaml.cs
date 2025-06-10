@@ -98,40 +98,76 @@ namespace Ticket2Help.Views
         /// </summary>
         private void AplicarFiltros()
         {
-            _ticketsFiltrados = _todosTickets.ToList();
+            if (_todosTickets == null)
+            {
+                _ticketsFiltrados = new List<Ticket>();
+                if (dgTickets != null)
+                {
+                    dgTickets.ItemsSource = _ticketsFiltrados;
+                }
+                AtualizarTotalTickets();
+                return;
+            }
+
+            var tickets = _todosTickets.AsEnumerable();
 
             // Filtro por estado
-            var estadoSelecionado = (cmbFiltroEstado.SelectedItem as ComboBoxItem)?.Content.ToString();
-            if (!string.IsNullOrEmpty(estadoSelecionado) && estadoSelecionado != "Todos")
+            var estadoSelecionado = (cmbFiltroEstado?.SelectedItem as ComboBoxItem)?.Content?.ToString();
+            switch (estadoSelecionado)
             {
-                switch (estadoSelecionado)
-                {
-                    case "Por Atender":
-                        _ticketsFiltrados = _ticketsFiltrados.Where(t => t.Estado == EstadoTicket.PorAtender).ToList();
-                        break;
-                    case "Em Atendimento":
-                        _ticketsFiltrados = _ticketsFiltrados.Where(t => t.Estado == EstadoTicket.EmAtendimento).ToList();
-                        break;
-                    case "Atendido":
-                        _ticketsFiltrados = _ticketsFiltrados.Where(t => t.Estado == EstadoTicket.Atendido).ToList();
-                        break;
-                }
+                case "Por Atender":
+                    tickets = tickets.Where(t => t.Estado == EstadoTicket.PorAtender);
+                    break;
+                case "Em Atendimento":
+                    tickets = tickets.Where(t => t.Estado == EstadoTicket.EmAtendimento);
+                    break;
+                case "Atendido":
+                    tickets = tickets.Where(t => t.Estado == EstadoTicket.Atendido);
+                    break;
+                    // "Todos" não aplica filtro
             }
 
             // Filtro por prioridade
-            var prioridadeSelecionada = (cmbFiltroPrioridade.SelectedItem as ComboBoxItem)?.Content.ToString();
-            if (!string.IsNullOrEmpty(prioridadeSelecionada) && prioridadeSelecionada != "Todas")
+            var prioridadeSelecionada = (cmbFiltroPrioridade?.SelectedItem as ComboBoxItem)?.Content?.ToString();
+            switch (prioridadeSelecionada)
             {
-                var prioridade = Enum.Parse<Prioridade>(prioridadeSelecionada);
-                _ticketsFiltrados = _ticketsFiltrados.Where(t => t.Prioridade == prioridade).ToList();
+                case "Alta":
+                    tickets = tickets.Where(t => t.Prioridade == Prioridade.Alta);
+                    break;
+                case "Media":
+                    tickets = tickets.Where(t => t.Prioridade == Prioridade.Media);
+                    break;
+                case "Baixa":
+                    tickets = tickets.Where(t => t.Prioridade == Prioridade.Baixa);
+                    break;
+                    // "Todas" não aplica filtro
             }
 
-            // Ordenar por data de criação (mais recentes primeiro)
-            _ticketsFiltrados = _ticketsFiltrados.OrderByDescending(t => t.DataCriacao).ToList();
+            // Ordenar: por atender primeiro, depois por prioridade crescente e data
+            tickets = tickets.OrderBy(t => t.Estado)
+                             .ThenBy(t => t.Prioridade)
+                             .ThenBy(t => t.DataCriacao);
+
+            _ticketsFiltrados = tickets.ToList();
 
             // Atualizar grid
-            dgTickets.ItemsSource = _ticketsFiltrados;
-            lblTotalTickets.Text = $"Total: {_ticketsFiltrados.Count} tickets";
+            if (dgTickets != null)
+            {
+                dgTickets.ItemsSource = _ticketsFiltrados;
+            }
+            AtualizarTotalTickets();
+        }
+
+        /// <summary>
+        /// Atualiza o total de tickets exibidos
+        /// </summary>
+        private void AtualizarTotalTickets()
+        {
+            var total = _ticketsFiltrados?.Count ?? 0;
+            if (lblTotalTickets != null)
+            {
+                lblTotalTickets.Text = $"Total: {total} tickets";
+            }
         }
 
         /// <summary>
@@ -203,10 +239,7 @@ namespace Ticket2Help.Views
         /// </summary>
         private void CmbFiltroEstado_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (_todosTickets != null)
-            {
-                AplicarFiltros();
-            }
+            AplicarFiltros();
         }
 
         /// <summary>
@@ -214,10 +247,7 @@ namespace Ticket2Help.Views
         /// </summary>
         private void CmbFiltroPrioridade_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (_todosTickets != null)
-            {
-                AplicarFiltros();
-            }
+            AplicarFiltros();
         }
 
         /// <summary>
