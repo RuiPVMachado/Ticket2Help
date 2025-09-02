@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using BLL.Interfaces;
 using DAL.Interfaces;
 using MODELS;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 
@@ -21,6 +22,7 @@ namespace BLL.Services
         private readonly ITicketRepository _ticketRepo;
         private readonly IDetalhesHardwareRepository _hwRepo;
         private readonly IDetalhesSoftwareRepository _swRepo;
+        private readonly ILogger<TicketService> _logger;
 
         /// <summary>
         /// Construtor com injeção dos repositórios de tickets e detalhes.
@@ -28,17 +30,22 @@ namespace BLL.Services
         public TicketService(
             ITicketRepository ticketRepo,
             IDetalhesHardwareRepository hwRepo,
-            IDetalhesSoftwareRepository swRepo)
+            IDetalhesSoftwareRepository swRepo,
+            ILogger<TicketService>? logger = null)
         {
             _ticketRepo = ticketRepo;
             _hwRepo = hwRepo;
             _swRepo = swRepo;
+            _logger = logger ?? Microsoft.Extensions.Logging.Abstractions.NullLogger<TicketService>.Instance;
         }
 
         /// <inheritdoc />
         public int CriarTicketHardware(string titulo, string descricao, Prioridade prioridade,
             int colaboradorId, string equipamento, string avaria, int criadoPorId, bool criadoPorTecnico = false)
         {
+            _logger.LogInformation("Iniciando criação de ticket de hardware. Título: {Titulo}, Colaborador: {ColaboradorId}, Equipamento: {Equipamento}", 
+                titulo, colaboradorId, equipamento);
+
             try
             {
                 // Utiliza o factory para criar o ticket e detalhes
@@ -47,20 +54,23 @@ namespace BLL.Services
 
                 // Persiste o ticket
                 int ticketId = _ticketRepo.Criar(ticket);
+                _logger.LogDebug("Ticket de hardware criado com ID: {TicketId}", ticketId);
 
                 // Define o ID do ticket nos detalhes e persiste
                 detalhes.TicketId = ticketId;
                 _hwRepo.Criar(detalhes);
 
+                _logger.LogInformation("Ticket de hardware criado com sucesso. ID: {TicketId}, Título: {Titulo}", ticketId, titulo);
                 return ticketId;
             }
-            catch (ArgumentException)
+            catch (ArgumentException ex)
             {
-                // Re-lança exceções de validação do factory
+                _logger.LogWarning("Erro de validação ao criar ticket de hardware: {Erro}", ex.Message);
                 throw;
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, "Erro inesperado ao criar ticket de hardware. Título: {Titulo}", titulo);
                 throw new InvalidOperationException("Erro ao criar ticket de hardware", ex);
             }
         }
@@ -185,15 +195,35 @@ namespace BLL.Services
 
         public bool EliminarTicket(int ticketId)
         {
+            _logger.LogInformation("Tentativa de eliminação do ticket ID: {TicketId}", ticketId);
+
             // Validar se o ticket existe
             var ticket = _ticketRepo.ObterPorId(ticketId);
             if (ticket == null)
+            {
+                _logger.LogWarning("Tentativa de eliminar ticket inexistente. ID: {TicketId}", ticketId);
                 return false;
+            }
 
             if (ticket.Estado == EstadoTicket.Atendido)
+            {
+                _logger.LogWarning("Tentativa de eliminar ticket já atendido. ID: {TicketId}, Estado: {Estado}", 
+                    ticketId, ticket.Estado);
                 return false;
+            }
 
-            return _ticketRepo.Eliminar(ticketId);
+            var resultado = _ticketRepo.Eliminar(ticketId);
+            if (resultado)
+            {
+                _logger.LogInformation("Ticket eliminado com sucesso. ID: {TicketId}, Título: {Titulo}", 
+                    ticketId, ticket.Titulo);
+            }
+            else
+            {
+                _logger.LogError("Falha ao eliminar ticket. ID: {TicketId}", ticketId);
+            }
+
+            return resultado;
         }
     }
 }
